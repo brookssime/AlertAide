@@ -1,19 +1,38 @@
 package cs408.alertaide;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class Condition_Activity extends ActionBarActivity {
+    Button selectCondition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condition);
+        selectCondition = (Button) findViewById(R.id.pph);
+        selectCondition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goto_trigger_questions();
+            }
+        });
     }
 
+    private void goto_trigger_questions(){
+        Intent intent = new Intent(this, Trig_Ques_Activity.class);
+        Bundle extras = new Bundle();
+        //extras.putString("username", username);
+        //extras.putString("password", password);
+        //intent.putExtras(extras);
+        startActivity(intent);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

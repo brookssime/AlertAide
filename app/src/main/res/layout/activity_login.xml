@@ -45,6 +45,7 @@
         android:layout_height="57.3dp"
         android:text="SiGN uP"
         android:layout_below="@+id/editCountry"
+        android:id="@+id/signUpButton"
         />
 
 </RelativeLayout>
