@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:text="CHECK OUT"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView1"
+        android:layout_width="242.0dp"
+        android:layout_height="71.8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="53.8dp"
+        android:layout_marginBottom="0dp"
+        android:textSize="32dp" />
+    <CheckBox
+        android:text="Successful Contact with Clinical Expert"
+        android:layout_width="match_parent"
+        android:layout_height="81.9dp"
+        android:id="@+id/checkBox1"
+        android:textSize="24dp"
+        android:layout_margin="50dp" />
+    <CheckBox
+        android:text="Successful Treatment of Patient"
+        android:layout_width="match_parent"
+        android:layout_height="81.9dp"
+        android:id="@+id/checkBox2"
+        android:textSize="24dp"
+        android:layout_margin="50dp" />
+</LinearLayout>

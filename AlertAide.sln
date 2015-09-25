@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertAide", "AlertAide\AlertAide.csproj", "{25DC9096-EBD6-4E3A-AA04-AAC8384F15D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertAide.UITests", "AlertAide.UITests\AlertAide.UITests.csproj", "{CECE3943-2066-41F0-A0AE-FD58AE7ECFA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25DC9096-EBD6-4E3A-AA04-AAC8384F15D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25DC9096-EBD6-4E3A-AA04-AAC8384F15D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25DC9096-EBD6-4E3A-AA04-AAC8384F15D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25DC9096-EBD6-4E3A-AA04-AAC8384F15D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CECE3943-2066-41F0-A0AE-FD58AE7ECFA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECE3943-2066-41F0-A0AE-FD58AE7ECFA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECE3943-2066-41F0-A0AE-FD58AE7ECFA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECE3943-2066-41F0-A0AE-FD58AE7ECFA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

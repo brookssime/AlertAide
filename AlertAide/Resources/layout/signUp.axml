@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:text="SIGN UP"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView1"
+        android:layout_width="242.0dp"
+        android:layout_height="71.8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="53.8dp"
+        android:layout_marginBottom="69.2dp" />
+    <EditText
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="57.3dp"
+        android:id="@+id/editText1"
+        android:background="#7f444444"
+        android:layout_marginBottom="15dp" />
+    <EditText
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="57.3dp"
+        android:id="@+id/editText1"
+        android:background="#7f444444"
+        android:layout_marginBottom="15dp" />
+    <EditText
+        android:inputType="textPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="57.3dp"
+        android:id="@+id/editText1"
+        android:background="#7f444444" />
+</LinearLayout>

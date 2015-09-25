@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:text="PATIENT MANAGEMENT"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView1"
+        android:layout_width="242.0dp"
+        android:layout_height="71.8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="53.8dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="32dp" />
+    <TextView
+        android:text="START 2 IVs"
+        android:layout_width="match_parent"
+        android:layout_height="70.2dp"
+        android:id="@+id/textView2"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginBottom="0.0dp"
+        android:textSize="24dp" />
+    <ImageView
+        android:src="@drawable/tempimage"
+        android:layout_width="250.8dp"
+        android:layout_height="154.2dp"
+        android:id="@+id/imageView1"
+        android:layout_gravity="center_horizontal" />
+    <Button
+        android:text="Done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/done"
+        android:layout_marginTop="23dp" />
+    <Button
+        android:text="Send SMS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
+    <Button
+        android:text="Send 2nd SMS to New CE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
+</LinearLayout>
