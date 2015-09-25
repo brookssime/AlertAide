@@ -1,18 +1,41 @@
 package cs408.alertaide;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 
-public class Login_Activity extends Activity {
+public class Splash_Activity extends Activity {
+    ImageView logo_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_splash);
+        logo_view = (ImageView) findViewById(R.id.logo);
+
+        logo_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goto_login_page();
+            }
+        });
+
+    }
+
+    private void goto_login_page(){
+        Intent intent = new Intent(this, Login_Activity.class);
+        Bundle extras = new Bundle();
+        //extras.putString("username", username);
+        //extras.putString("password", password);
+        //intent.putExtras(extras);
+        startActivity(intent);
     }
 
     @Override
