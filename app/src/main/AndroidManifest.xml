@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cs408.alertaide" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Splash_Activity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Login_Activity"
+            android:label="@string/title_activity_login_" >
+        </activity>
+        <activity
+            android:name=".Condition_Activity"
+            android:label="@string/title_activity_condition_" >
+        </activity>
+        <activity
+            android:name=".Trig_Ques_Activity"
+            android:label="@string/title_activity_trig__ques_" >
+        </activity>
+        <activity
+            android:name=".PManagement_Activity"
+            android:label="@string/title_activity_pmanagement_" >
+        </activity>
+        <activity
+            android:name=".Checkout_Activity"
+            android:label="@string/title_activity_checkout_" >
+        </activity>
+    </application>
+
+</manifest>

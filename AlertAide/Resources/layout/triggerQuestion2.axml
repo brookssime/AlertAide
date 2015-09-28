@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="355.2dp"
+        android:id="@+id/textView1"
+        android:text="Blood loss of more than 1 litre?"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:scaleY="1" />
+    <Button
+        android:text="Yes"
+        android:layout_width="190.8dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/yes"
+        android:layout_marginRight="0.0dp"
+        android:layout_weight="0"
+        android:layout_gravity="center" />
+    <Button
+        android:text="No"
+        android:layout_width="192.0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/no2"
+        android:layout_weight="0"
+        android:layout_marginRight="0.0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="0dp" />
+</LinearLayout>

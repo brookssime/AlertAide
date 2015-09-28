@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AlertAide</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login_">Login_Activity</string>
+    <string name="title_activity_condition_">Condition_Activity</string>
+    <string name="title_activity_trig__ques_">Trig_Ques_Activity</string>
+    <string name="title_activity_pmanagement_">PManagement_Activity</string>
+    <string name="title_activity_checkout_">Checkout_Activity</string>
+</resources>
