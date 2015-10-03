@@ -10,11 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import cs408.alertaide.backend.AA_Manager;
+
 
 public class Splash_Activity extends Activity {
     ImageView logo_view;
-
+    AA_Manager manager = new AA_Manager();
     @Override
+
+
+
+    //FRONTEND
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
@@ -59,4 +65,6 @@ public class Splash_Activity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
