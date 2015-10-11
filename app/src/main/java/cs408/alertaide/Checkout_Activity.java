@@ -1,12 +1,12 @@
 package cs408.alertaide;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class Checkout_Activity extends ActionBarActivity {
+public class Checkout_Activity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
