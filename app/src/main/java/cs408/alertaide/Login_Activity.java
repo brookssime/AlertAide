@@ -23,6 +23,14 @@ public class Login_Activity extends Activity {
                 goto_conditions();
             }
         });
+
+        Button testButton = (Button) findViewById(R.id.testViewButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goto_testBackend();
+            }
+        });
     }
 
     private void goto_conditions(){
@@ -33,6 +41,13 @@ public class Login_Activity extends Activity {
         //intent.putExtras(extras);
         startActivity(intent);
     }
+
+    private void goto_testBackend(){
+        Intent intent = new Intent(this, TestBackend_Activity.class);
+        startActivity(intent);
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

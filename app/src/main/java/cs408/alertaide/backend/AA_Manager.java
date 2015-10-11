@@ -5,10 +5,6 @@ package cs408.alertaide.backend;
  */
 public class AA_Manager {
 
-    public AA_Manager() {
-
-    }
-
     ///TODO:CREATE JAVADOC
 
     public boolean check_HW_Info() {
