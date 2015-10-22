@@ -1,6 +1,110 @@
-{
+{   
+    "Health Worker Info":
+    {
+        "health_worker": {
+                            "number": "1838910233",
+                            "loc": {
+                                    "country" : "Ghana",
+                                    "state" : "Accra Region",
+                                    "city" : "Accra"
+                                    }
+                          }
+    },
+
     "Conditions Array":
-        {
-            "conditions_array": [ "pphem", "other"]
-        }
+    {
+        "conditions_array": [ "pphem", "other"]
+    },
+    
+    "Condition":
+    {
+        "pphem": {
+                "name": "Postpartum Hemorrhage",
+                "status": true,
+                "TQ_Array": ["TQ1", "TQ2", "TQ3", "TQ4", "TQ5"],
+                "PM_Array": ["PM1", "PM2", "PM3", "PM4", "PM5"]
+                  }
+    },
+    
+    "Trigger Questions":
+    {	
+        "TQ1": {
+                 "label": "Pulse",
+                 "question": "Pulse greater than 130/min?",
+                 "answer_options": ["Yes", "No"]
+                },
+
+        "TQ2": {
+                 "label": "BP",
+                 "question": "Systolic BP less than 80?",
+                 "answer_options": ["Yes", "No"]
+                },
+    
+        "TQ3": {
+                 "label": "Conscious",
+                 "question": "Patient Restless or semiconscious?",
+                 "answer_options": ["Yes", "No"]
+                },
+    
+        "TQ4": {
+                 "label": "Blood Loss",
+                 "question": "Blood loss greater than 1 liter?",
+                 "answer_options": ["Yes", "No"]
+                },
+    
+        "TQ5": {
+             "label": "Respiration",
+             "question": "Resp rate greater than 35 per min?",
+             "answer_options": ["Yes", "No"]
+                }
+    },
+
+    "Patient Management":
+    {	
+        "PM1": {
+                 "label" : "IV",
+                 "action" : "Start Two IV",
+                 "image" : "iv.jpg"
+                },
+    
+        "PM2": {
+                 "label" : "transfusion",
+                 "action" : "Blood Transfusion",
+                 "image" : "bt.jpg"
+                },
+    
+        "PM3": {
+                 "label": "oxytocin",
+                 "action": "Oxytocin 20 units infusion",
+                 "image": "oxytocin.jpg"
+                },
+
+        "PM4": {
+                 "label": "massage",
+                 "action": "Fundal Massage",
+                 "image": "fm.jpg"
+                },
+    
+        "PM5": {
+                 "label": "laceration",
+                 "action": "Suture Laceration",
+                 "image": "sl.jpg"
+                }
+    },
+    
+    "Clinical Experts Array":
+    {
+        "CE_Array" : ["CE1", "CE2"]
+    },
+
+    "Clinical Experts":
+    {
+        "CE1": {
+                "number" : "341231243"
+               },
+
+        "CE2": {
+                "number" : "123342243"
+               }
+    }
 }

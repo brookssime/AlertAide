@@ -14,7 +14,6 @@ import cs408.alertaide.backend.AA_Manager;
 
 public class Splash_Activity extends Activity {
     ImageView logo_view;
-    AA_Manager manager = new AA_Manager();
     @Override
 
 

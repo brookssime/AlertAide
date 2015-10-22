@@ -7,10 +7,15 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
+import cs408.alertaide.backend.AA_Manager;
 
 /**
  * Created by Negatu on 10/11/15.
@@ -31,26 +36,17 @@ public class TestBackend_Activity extends Activity {
         titleView.setText("Testing AA Backend");
         myLayout.addView(titleView);
 
-        readInFile();
-
-    }
-
-    private void readInFile(){
-        StringBuilder sBuilder = new StringBuilder();
+        //readInFile();
+        TextView viewConds = new TextView(this);
         try {
-            InputStream is = this.getResources().getAssets().open("app_data.txt");
-            BufferedReader isr = new BufferedReader(new InputStreamReader(is));
-            char[] data = new char[1000];
-            while (isr.read(data)>0){
-                sBuilder.append(data);
-            }
-        } catch (Exception e){
-            //this.getFilesDir();
-            sBuilder.append(e.toString());
+            AA_Manager myManager = new AA_Manager(this);
+            JSONObject myPMs = myManager.get_PMs("pphem");
+            viewConds.setText(myPMs.toString());
+        } catch (Exception e) {
+            viewConds.setText(e.getMessage());
         }
-        TextView fileView = new TextView(this);
-        fileView.setText(sBuilder.toString());
-        myLayout.addView(fileView);
+        myLayout.addView(viewConds);
+
     }
 
     @Override
