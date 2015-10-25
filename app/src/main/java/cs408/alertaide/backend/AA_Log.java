@@ -35,7 +35,7 @@ public class AA_Log {
 
     public void logToFile(String fileName, String key, String value) throws AAException{
         try {
-            JSONObject rootObject = new JSONObject(readLog(fileName));
+            JSONObject rootObject = new JSONObject(readFile(fileName));
             JSONObject sessionObject = rootObject.getJSONObject("session");
             sessionObject.put(key, value);
             writeToFile(fileName, rootObject.toString());
@@ -56,7 +56,7 @@ public class AA_Log {
         }
     }
 
-    public String readLog(String fileName) throws AAException {
+    public String readFile(String fileName) throws AAException {
         try {
             FileInputStream inputStream = myContext.openFileInput(fileName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));

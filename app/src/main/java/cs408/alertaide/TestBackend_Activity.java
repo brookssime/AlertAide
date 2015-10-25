@@ -103,7 +103,7 @@ public class TestBackend_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    content.setText(myLogger.readLog(fileName.getText().toString()));
+                    content.setText(myLogger.readFile(fileName.getText().toString()));
                 } catch (Exception e) {
                     content.setText(e.getMessage());
                 }
