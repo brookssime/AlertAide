@@ -47,7 +47,7 @@ public class AA_Data {
         }
     }
 
-    public JSONObject get_TQs(String condition) throws AAException{
+    public JSONObject getTQs(String condition) throws AAException{
         try {
             JSONArray conditionTQs = myData.getJSONObject("Condition").getJSONObject(condition).getJSONArray("TQ_Array");
             JSONObject TQObjects = new JSONObject();
@@ -62,7 +62,7 @@ public class AA_Data {
         }
     }
 
-    public JSONObject get_PMs(String condition) throws AAException {
+    public JSONObject getPMs(String condition) throws AAException {
         try {
             JSONArray conditionPMs = myData.getJSONObject("Condition").getJSONObject(condition).getJSONArray("PM_Array");
             JSONObject PMObjects = new JSONObject();

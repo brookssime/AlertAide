@@ -12,10 +12,12 @@ import org.json.JSONObject;
 public class AA_Manager {
     Context myContext;
     AA_Data myData;
+    AA_Log myLog;
 
     public AA_Manager(Context context) throws AAException{
         myContext = context;
         myData = new AA_Data(myContext);
+        myLog = new AA_Log(myContext);
     }
 
     public boolean check_HW_Info() {
@@ -33,11 +35,11 @@ public class AA_Manager {
     public JSONArray getConditions() throws AAException{
         return myData.getConditions();
     }
-    public JSONObject get_TQs (String condition_Name)throws AAException {
-        return myData.get_TQs(condition_Name);
+    public JSONObject getTQs (String condition_Name)throws AAException {
+        return myData.getTQs(condition_Name);
     }
-    public JSONObject get_PMs(String condition_Name) throws AAException{
-        return myData.get_PMs(condition_Name);
+    public JSONObject getPMs(String condition_Name) throws AAException{
+        return myData.getPMs(condition_Name);
     }
 
     public String get_Next_CE() {
@@ -54,12 +56,12 @@ public class AA_Manager {
 
     //TODO: INCLUDE CALL NOW?
 
-   public boolean log_Info(String file_Name, String key, String value){
-       return false;
+   public void logInfo(String file_Name, String key, String value) throws AAException{
+       myLog.logToFile(file_Name, key, value);
    }
 
-    public String log_Session(){
-        return null;
+    public String getLogSession() throws AAException{
+            return myLog.createFile();
     }
 
 
