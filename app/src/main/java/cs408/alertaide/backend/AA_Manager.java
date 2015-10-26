@@ -24,7 +24,7 @@ public class AA_Manager {
         return false;
     }
 
-    public boolean put_HW_Info() {
+    public boolean put_HW_Info(JSONObject info) {
         return false;
     }
 

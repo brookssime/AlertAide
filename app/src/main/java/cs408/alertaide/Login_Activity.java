@@ -1,19 +1,41 @@
 package cs408.alertaide;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import cs408.alertaide.backend.AAException;
+import cs408.alertaide.backend.AA_Data;
+import cs408.alertaide.backend.AA_Log;
+import cs408.alertaide.backend.AA_Manager;
+import org.json.JSONObject;
 
 
 public class Login_Activity extends Activity {
     Button loginButton;
+    AA_Manager manager;AA_Data myData;AA_Log myLog;
+
+
+
+
+    protected void Login_Activity(Context context) throws AAException {
+        manager = new AA_Manager(context);
+        myData = new AA_Data(context);
+        myLog = new AA_Log(context);
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (manager.check_HW_Info()){
+            goto_conditions();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginButton = (Button) findViewById(R.id.signUpButton);
@@ -21,6 +43,9 @@ public class Login_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 goto_conditions();
+                //Set info in backend
+                manager.put_HW_Info(JSONObject info);
+
             }
         });
 
