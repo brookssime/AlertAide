@@ -48,7 +48,6 @@ public class AA_Log {
         try {
             FileOutputStream outputStream ;
             outputStream = myContext.openFileOutput( fileName ,  Context.MODE_PRIVATE );
-            logLine = "\n"+logLine;
             outputStream.write ( logLine. getBytes ());
             outputStream.close();
         } catch (Exception e) {

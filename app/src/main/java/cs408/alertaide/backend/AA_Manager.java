@@ -24,7 +24,7 @@ public class AA_Manager {
         return false;
     }
 
-    public boolean put_HW_Info() {
+    public boolean put_HW_Info(JSONObject info) {
         return false;
     }
 
@@ -46,9 +46,9 @@ public class AA_Manager {
         return null;
     }
 
-    public boolean send_Initial_SMS(String file_Name) {
+    public boolean send_Initial_SMS(String file_Name, int CEID) {
         return false;
-    }
+    } //
 
     public boolean send_Response_SMS(String file_Name) {
         return false;
