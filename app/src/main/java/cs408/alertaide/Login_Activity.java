@@ -1,8 +1,10 @@
 package cs408.alertaide;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +21,6 @@ public class Login_Activity extends Activity {
     private Button loginButton;
     private JSONObject hw_info;
     private EditText editName;
-    private EditText editNumber;
     private EditText editCountry;
 
 
@@ -40,7 +41,6 @@ public class Login_Activity extends Activity {
         hw_info = new JSONObject();
 
         editName = (EditText) findViewById(R.id.editName);
-        editNumber = (EditText) findViewById(R.id.editNumber);
         editCountry = (EditText) findViewById(R.id.editCountry);
 
         loginButton = (Button) findViewById(R.id.signUpButton);
@@ -48,18 +48,19 @@ public class Login_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 String name = editName.getText().toString();
-                String number = editNumber.getText().toString();
                 String country = editCountry.getText().toString();
 
-                if (name.equals("") || number.equals("") || country.equals("")){
+                TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+                String phoneNumber = tMgr.getLine1Number();
+
+                if (name.equals("") || country.equals("")){
                     //TODO Notify that the fields arenot complete
-                    //TODO inaddition we may need to check the number for format.
 
                 } else {
                     JSONObject infoFields = new JSONObject();
                     try {
                         infoFields.put("name", name);
-                        infoFields.put("number", number);
+                        infoFields.put("number", phoneNumber);
                         infoFields.put("country", country);
                         hw_info.put("hw_info", infoFields);
                         Boolean saveInfo = myManager.put_HW_Info(hw_info);

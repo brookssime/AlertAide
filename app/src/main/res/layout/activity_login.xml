@@ -41,17 +41,18 @@
         android:text="Country: "
         android:layout_below="@+id/editNumber"/>
     <Button
-    android:layout_width="wrap_content"
-    android:layout_height="57.3dp"
-    android:text="SiGN uP"
-    android:layout_below="@+id/editCountry"
-    android:id="@+id/signUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="57.3dp"
+        android:text="SiGN uP"
+        android:layout_below="@+id/editCountry"
+        android:id="@+id/signUpButton"
     />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="57.3dp"
         android:text="TestBackend"
-        android:id="@+id/testViewButton" />
+        android:id="@+id/testViewButton"
+        />
 
 </RelativeLayout>

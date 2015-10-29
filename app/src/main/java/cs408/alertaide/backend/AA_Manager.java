@@ -13,11 +13,13 @@ public class AA_Manager {
     Context myContext;
     AA_Data myData;
     AA_Log myLog;
+    AA_Comm myComm;
 
     public AA_Manager(Context context) throws AAException{
         myContext = context;
         myData = new AA_Data(myContext);
         myLog = new AA_Log(myContext);
+        myComm = new AA_Comm(myContext);
     }
 
     public boolean check_HW_Info() {
@@ -46,12 +48,8 @@ public class AA_Manager {
         return null;
     }
 
-    public boolean send_Initial_SMS(String file_Name, int CEID) {
-        return false;
-    } //
-
-    public boolean send_Response_SMS(String file_Name) {
-        return false;
+    public void send_Initial_SMS(String file_Name, int CEID) throws AAException{
+        myComm.sendSMS(file_Name, CEID);
     }
 
     //TODO: INCLUDE CALL NOW?
