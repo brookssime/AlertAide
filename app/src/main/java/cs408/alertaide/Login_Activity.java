@@ -54,8 +54,7 @@ public class Login_Activity extends Activity {
                 String phoneNumber = tMgr.getLine1Number();
 
                 if (name.equals("") || country.equals("")){
-                    //TODO Notify that the fields arenot complete
-
+                    throwError("Please complete all fields");
                 } else {
                     JSONObject infoFields = new JSONObject();
                     try {
@@ -83,6 +82,10 @@ public class Login_Activity extends Activity {
                 goto_testBackend();
             }
         });
+    }
+
+    private void throwError(String errorMessage) {
+        AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
 
     private void goto_conditions(){
