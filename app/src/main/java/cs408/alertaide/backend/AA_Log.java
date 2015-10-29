@@ -2,6 +2,7 @@ package cs408.alertaide.backend;
 
 import android.content.Context;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -48,7 +49,7 @@ public class AA_Log {
         try {
             FileOutputStream outputStream ;
             outputStream = myContext.openFileOutput( fileName ,  Context.MODE_PRIVATE );
-            outputStream.write ( logLine. getBytes ());
+            outputStream.write(logLine.getBytes());
             outputStream.close();
         } catch (Exception e) {
             throw new AAException("Failed to write to file named "+fileName+"\n"+e.getMessage());
@@ -60,7 +61,7 @@ public class AA_Log {
             FileInputStream inputStream = myContext.openFileInput(fileName);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder sb = new StringBuilder();
-            String line = null;
+            String line;
             while ((line = reader.readLine()) != null) {
                 sb.append(line).append("\n");
             }
@@ -70,5 +71,6 @@ public class AA_Log {
             throw new AAException("Failed to read file named "+fileName+"\n"+e.getMessage());
         }
     }
+
 }
 

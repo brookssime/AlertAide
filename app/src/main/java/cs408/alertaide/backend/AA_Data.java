@@ -39,6 +39,14 @@ public class AA_Data {
         }
     }
 
+    public JSONObject getObject(String key) throws AAException {
+        try {
+            return myData.getJSONObject(key);
+        } catch (Exception e) {
+            throw new AAException("Failed to read JSONObject from AAData \n"+e.getMessage());
+        }
+    }
+
     public JSONArray getConditions() throws AAException{
         try {
             return myData.getJSONObject("Conditions Array").getJSONArray("conditions_array");
@@ -76,4 +84,6 @@ public class AA_Data {
             throw new AAException("Failed to fetch PMs for condition="+condition+"\n"+e.getMessage());
         }
     }
+
+
 }
