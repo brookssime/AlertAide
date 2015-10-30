@@ -66,11 +66,12 @@ public class Login_Activity extends Activity {
                         if (!saveInfo) {
                             //TODO here, manager failed to save info.
                         }
+                        goto_conditions();
                     } catch (Exception e) {
                         //TODO here, show that something failed with the creation of the JSON structures.
                     }
 
-                    goto_conditions();
+
                 }
             }
         });
