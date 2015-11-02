@@ -2,10 +2,11 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,6 +47,7 @@ public class Trig_Ques_Activity extends Activity {
     private void set_Question_Layout(String question) {
         TextView myText = new TextView(this);
         myText.setText(question);
+        myText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         linear.addView(myText);
     }
 
@@ -85,15 +87,13 @@ public class Trig_Ques_Activity extends Activity {
             View v = layout.getChildAt(i);
             if (v instanceof LinearLayout) {
                 for (int j = 0; j < ((LinearLayout) v).getChildCount(); j++) {
-
                     View k = ((LinearLayout) v).getChildAt(j);
                     if (k instanceof Button) {
                         if (((Button) k).getText() == "Yes") {
-
                             k.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View k) {
-                                       k.setBackgroundColor(Color.parseColor("#00FF00"));
+                                       k.getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.MULTIPLY);
                                     //TODO: Log choice
                                 }
                             });
@@ -105,7 +105,7 @@ public class Trig_Ques_Activity extends Activity {
                             k.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View k) {
-                                    k.setBackgroundColor(Color.parseColor("#ff0000"));
+                                    k.getBackground().setColorFilter(0xFF00FF00, PorterDuff.Mode.MULTIPLY);
                                     //TODO: Log choice
                                 }
                             });
