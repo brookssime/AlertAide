@@ -4,6 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import android.widget.Button;
 
 
 public class Checkout_Activity extends Activity {
@@ -34,5 +41,29 @@ public class Checkout_Activity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    /** Called when the user clicks any button on Check out page, ends the session in app */
+    public void exit(View view) {
+        switch(view.getId())
+        {
+            case R.id.contact_treatment:
+
+
+                break;
+
+            case R.id.contact_notreatment:
+                // Code for button 3 click
+                break;
+
+            case R.id.nocontact_treatment:
+                // Code for button 3 click
+                break;
+
+            case R.id.nocontact_notreatment:
+                // Code for button 3 click
+                break;
+        }
+
+
     }
 }
