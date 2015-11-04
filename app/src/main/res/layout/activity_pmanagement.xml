@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:id="@+id/linear"
         >
     <TextView
         android:text="PATIENT MANAGEMENT"
@@ -30,7 +31,7 @@
         android:textSize="24dp"
         android:layout_below="@+id/textView1"/>
     <ImageView
-        android:src="@drawable/tempimage"
+        android:src="@drawable/iv"
         android:layout_width="250.8dp"
         android:layout_height="154.2dp"
         android:clickable="true"
@@ -53,7 +54,7 @@
         android:textSize="24dp"
         android:layout_below="@+id/textView1"/>
     <ImageView
-        android:src="@drawable/tempimage"
+        android:src="@drawable/iv"
         android:layout_width="250.8dp"
         android:layout_height="154.2dp"
         android:clickable="true"
@@ -76,7 +77,7 @@
             android:textSize="24dp"
             android:layout_below="@+id/textView1"/>
         <ImageView
-            android:src="@drawable/tempimage"
+            android:src="@drawable/iv"
             android:layout_width="250.8dp"
             android:layout_height="154.2dp"
             android:clickable="true"
@@ -100,7 +101,7 @@
             android:textSize="24dp"
             android:layout_below="@+id/textView1"/>
         <ImageView
-            android:src="@drawable/tempimage"
+            android:src="@drawable/iv"
             android:layout_width="250.8dp"
             android:layout_height="154.2dp"
             android:clickable="true"
@@ -123,7 +124,7 @@
             android:textSize="24dp"
             android:layout_below="@+id/textView1"/>
         <ImageView
-            android:src="@drawable/tempimage"
+            android:src="@drawable/iv"
             android:layout_width="250.8dp"
             android:layout_height="154.2dp"
             android:clickable="true"
@@ -146,7 +147,7 @@
             android:textSize="24dp"
             android:layout_below="@+id/textView1"/>
         <ImageView
-            android:src="@drawable/tempimage"
+            android:src="@drawable/iv"
             android:layout_width="250.8dp"
             android:layout_height="154.2dp"
             android:clickable="true"
@@ -169,7 +170,7 @@
             android:textSize="24dp"
             android:layout_below="@+id/textView1"/>
         <ImageView
-            android:src="@drawable/tempimage"
+            android:src="@drawable/iv"
             android:layout_width="250.8dp"
             android:layout_height="154.2dp"
             android:clickable="true"
@@ -192,7 +193,7 @@
             android:textSize="24dp"
             android:layout_below="@+id/textView1"/>
         <ImageView
-            android:src="@drawable/tempimage"
+            android:src="@drawable/iv"
             android:layout_width="250.8dp"
             android:layout_height="154.2dp"
             android:clickable="true"
