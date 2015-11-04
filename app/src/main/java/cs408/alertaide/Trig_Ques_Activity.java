@@ -2,65 +2,194 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import cs408.alertaide.backend.AAException;
+import cs408.alertaide.backend.AA_Manager;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 
 
 public class Trig_Ques_Activity extends Activity {
-    Button yes;
-    Button no;
+    LinearLayout linear;
+    JSONObject tqAnswers;
+    AA_Manager myManager;
+    Bundle myBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trig__ques);
-        yes = (Button) findViewById(R.id.yes);
-        no = (Button) findViewById(R.id.no);
-        yes.setOnClickListener(new View.OnClickListener() {
+        linear = (LinearLayout) findViewById(R.id.linear);
+        myBundle = getIntent().getExtras();
+
+
+
+
+
+
+        if (myBundle.getString ("condition") == null || myBundle.getString ("file") == null){
+            throw_Error("You have not chosen an appropriate condition.");
+        }
+
+
+        try {
+            myManager = new AA_Manager(this);
+            String condition = myBundle.getString("condition");
+            JSONObject tq = myManager.getTQs(condition);
+            ask_Question(tq);
+        } catch (AAException e) {
+            throw_Error(e.getMessage());
+        }
+
+    }
+
+
+    private void throw_Error(String errorMessage) {
+
+        AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
+    }
+
+    private void set_Question_Layout(String question) {
+        TextView myText = new TextView(this);
+        myText.setText(question);
+        myText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        linear.addView(myText);
+    }
+
+    private void set_Answer_Layout(JSONArray answer) throws JSONException {
+        LinearLayout buttonLayout = new LinearLayout(this);
+        buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+        for (int i = 0; i < answer.length(); i++) {
+            Button myButton = new Button(this);
+            String buttonText = answer.getString(i);
+            myButton.setText(buttonText);
+            buttonLayout.addView(myButton);
+        }
+
+        linear.addView(buttonLayout);
+    }
+
+    private void finish_TQ() {
+        Button done = new Button(this);
+        done.setText("Done");
+        done.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                try {
+                    myManager.logInfo(myBundle.getString("file"), "tqAnswers",tqAnswers.toString() );
+                } catch (AAException e) {
+                    throw_Error(e.getMessage());
+                }
                 goto_pmanagement();
+
             }
         });
-        no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goto_pmanagement();
+        linear.addView(done);
+    }
+
+        /**
+         * Goes through maximum of two nested linear layouts, only checks Yes No answers.
+         * If click Done Button goes to patient management.
+         * @param layout
+         */
+    public void is_Clicked(LinearLayout layout) {
+        for (int i = 0; i < layout.getChildCount(); i++) {
+            View v = layout.getChildAt(i);
+            if (v instanceof LinearLayout) {
+                for (int j = 0; j < ((LinearLayout) v).getChildCount(); j++) {
+                    View k = ((LinearLayout) v).getChildAt(j);
+                    if (k instanceof Button) {
+                        if (((Button) k).getText() == "Yes") {
+                            k.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View k) {
+                                    k.setBackgroundColor(Color.GREEN);
+                                    //TODO: Log choice
+                                }
+                            });
+                        }
+
+                        if (((Button) k).getText() == "No")
+
+                        {
+                            k.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View k) {
+                                    k.setBackgroundColor(Color.RED);
+                                    //TODO: Log choice
+                                }
+                            });
+                        }
+
+
+                    }
+                }
             }
-        });
+        }
+    }
+
+    private void createLogFile() throws JSONException {
+        tqAnswers = new JSONObject();
+        Long start = System.currentTimeMillis();
+        String startTime = start.toString();
+        tqAnswers.put("startTimeStamp", startTime);
+
+
+
+    }
+
+    private void endTime(){
+
+    }
+
+
+
+
+
+    private void ask_Question(JSONObject json) {
+        Iterator<String> iter = json.keys();
+        while (iter.hasNext()) {
+            String key = iter.next();
+            try {
+                JSONObject value = (JSONObject) json.get(key);
+                String question = value.getString("question");
+                JSONArray answer = value.getJSONArray("answer_options");
+                set_Question_Layout(question);
+                set_Answer_Layout(answer);
+            } catch (JSONException e) {
+                throw_Error(e.getMessage());
+
+            }
+        }
+         is_Clicked(linear);
+         finish_TQ();
+    }
+
+
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_trig__ques, menu);
+        return true;
     }
 
     private void goto_pmanagement(){
         Intent intent = new Intent(this, PManagement_Activity.class);
         Bundle extras = new Bundle();
-        //extras.putString("username", username);
-        //extras.putString("password", password);
-        //intent.putExtras(extras);
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_trig__ques, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
