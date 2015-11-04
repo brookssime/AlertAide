@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -36,6 +37,19 @@ public class AA_Data {
             return new JSONObject(sBuilder.toString());
         } catch (Exception e){
             throw new AAException("Failed to read app_data.txt \n" + e.getMessage());
+        }
+    }
+
+    public void logHWInfo(JSONObject object) throws AAException {
+        try {
+            JSONObject rootObject = readInDataFile();
+            rootObject.put("hw_info", object);
+            FileOutputStream outputStream ;
+            outputStream = myContext.openFileOutput( "app_data.txt" ,  Context.MODE_PRIVATE );
+            outputStream.write(rootObject.toString().getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            throw new AAException("Failed to put HW info \n" + e.getMessage());
         }
     }
 

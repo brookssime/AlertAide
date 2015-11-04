@@ -23,11 +23,21 @@ public class AA_Manager {
     }
 
     public boolean check_HW_Info() {
-        return false;
+        try {
+            myData.getObject("hw_info");
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public boolean put_HW_Info(JSONObject info) {
-        return false;
+        try {
+            myData.logHWInfo(info);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**

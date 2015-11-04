@@ -38,11 +38,5 @@
         android:id="@+id/signUpButton"
     />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="57.3dp"
-        android:text="TestBackend"
-        android:id="@+id/testViewButton"
-        />
 
 </RelativeLayout>
