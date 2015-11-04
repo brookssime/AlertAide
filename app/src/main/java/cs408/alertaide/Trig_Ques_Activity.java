@@ -2,7 +2,7 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.PorterDuff;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -21,16 +21,31 @@ import java.util.Iterator;
 
 public class Trig_Ques_Activity extends Activity {
     LinearLayout linear;
-    //int [] check;
+    JSONObject tqAnswers;
+    AA_Manager myManager;
+    Bundle myBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trig__ques);
         linear = (LinearLayout) findViewById(R.id.linear);
+        myBundle = getIntent().getExtras();
+
+
+
+
+
+
+        if (myBundle.getString ("condition") == null || myBundle.getString ("file") == null){
+            throw_Error("You have not chosen an appropriate condition.");
+        }
+
+
         try {
-            AA_Manager myManager = new AA_Manager(this);
-            JSONObject tq = myManager.getTQs("pphem");
+            myManager = new AA_Manager(this);
+            String condition = myBundle.getString("condition");
+            JSONObject tq = myManager.getTQs(condition);
             ask_Question(tq);
         } catch (AAException e) {
             throw_Error(e.getMessage());
@@ -71,7 +86,13 @@ public class Trig_Ques_Activity extends Activity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try {
+                    myManager.logInfo(myBundle.getString("file"), "tqAnswers",tqAnswers.toString() );
+                } catch (AAException e) {
+                    throw_Error(e.getMessage());
+                }
                 goto_pmanagement();
+
             }
         });
         linear.addView(done);
@@ -93,7 +114,7 @@ public class Trig_Ques_Activity extends Activity {
                             k.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View k) {
-                                       k.getBackground().setColorFilter(0xFFFF0000, PorterDuff.Mode.MULTIPLY);
+                                    k.setBackgroundColor(Color.GREEN);
                                     //TODO: Log choice
                                 }
                             });
@@ -105,7 +126,7 @@ public class Trig_Ques_Activity extends Activity {
                             k.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View k) {
-                                    k.getBackground().setColorFilter(0xFF00FF00, PorterDuff.Mode.MULTIPLY);
+                                    k.setBackgroundColor(Color.RED);
                                     //TODO: Log choice
                                 }
                             });
@@ -115,16 +136,21 @@ public class Trig_Ques_Activity extends Activity {
                     }
                 }
             }
-
-
-
-
-
-
-
-
-
         }
+    }
+
+    private void createLogFile() throws JSONException {
+        tqAnswers = new JSONObject();
+        Long start = System.currentTimeMillis();
+        String startTime = start.toString();
+        tqAnswers.put("startTimeStamp", startTime);
+
+
+
+    }
+
+    private void endTime(){
+
     }
 
 
@@ -141,11 +167,6 @@ public class Trig_Ques_Activity extends Activity {
                 JSONArray answer = value.getJSONArray("answer_options");
                 set_Question_Layout(question);
                 set_Answer_Layout(answer);
-
-
-
-
-
             } catch (JSONException e) {
                 throw_Error(e.getMessage());
 
@@ -154,6 +175,10 @@ public class Trig_Ques_Activity extends Activity {
          is_Clicked(linear);
          finish_TQ();
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
