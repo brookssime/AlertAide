@@ -23,7 +23,7 @@ public class AA_Manager {
     }
 
     public boolean check_HW_Info() {
-        return false;
+        return true;
     }
 
     public boolean put_HW_Info(JSONObject info) {
