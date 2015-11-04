@@ -19,7 +19,6 @@ public class Login_Activity extends Activity {
 
     private AA_Manager myManager;
     private Button loginButton;
-    private JSONObject hw_info;
     private EditText editName;
     private EditText editCountry;
 
@@ -38,7 +37,6 @@ public class Login_Activity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        hw_info = new JSONObject();
 
         editName = (EditText) findViewById(R.id.editName);
         editCountry = (EditText) findViewById(R.id.editCountry);
@@ -61,8 +59,7 @@ public class Login_Activity extends Activity {
                         infoFields.put("name", name);
                         infoFields.put("number", phoneNumber);
                         infoFields.put("country", country);
-                        hw_info.put("hw_info", infoFields);
-                        Boolean saveInfo = myManager.put_HW_Info(hw_info);
+                        Boolean saveInfo = myManager.put_HW_Info(infoFields);
                         if (!saveInfo) {
                             //TODO here, manager failed to save info.
                         }
@@ -75,13 +72,6 @@ public class Login_Activity extends Activity {
             }
         });
 
-        Button testButton = (Button) findViewById(R.id.testViewButton);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goto_testBackend();
-            }
-        });
     }
 
     private void throwError(String errorMessage) {
@@ -94,11 +84,6 @@ public class Login_Activity extends Activity {
         //extras.putString("username", username);
         //extras.putString("password", password);
         //intent.putExtras(extras);
-        startActivity(intent);
-    }
-
-    private void goto_testBackend(){
-        Intent intent = new Intent(this, TestBackend_Activity.class);
         startActivity(intent);
     }
 
