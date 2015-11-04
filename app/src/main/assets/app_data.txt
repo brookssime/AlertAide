@@ -1,16 +1,4 @@
-{   
-    "Health Worker Info":
-    {
-        "health_worker": {
-                            "number": "1838910233",
-                            "loc": {
-                                    "country" : "Ghana",
-                                    "state" : "Accra Region",
-                                    "city" : "Accra"
-                                    }
-                          }
-    },
-
+{
     "Conditions Array":
     {
         "conditions_array": [ "pphem", "other"]
