@@ -2,7 +2,6 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -31,10 +30,11 @@ public class Trig_Ques_Activity extends Activity {
         setContentView(R.layout.activity_trig__ques);
         linear = (LinearLayout) findViewById(R.id.linear);
         myBundle = getIntent().getExtras();
-
-
-
-
+        try {
+            createLogFile();
+        } catch (JSONException e) {
+            throw_Error(e.getMessage());
+        }
 
 
         if (myBundle.getString ("condition") == null || myBundle.getString ("file") == null){
@@ -86,12 +86,15 @@ public class Trig_Ques_Activity extends Activity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 try {
                     myManager.logInfo(myBundle.getString("file"), "tqAnswers",tqAnswers.toString() );
+                    goto_pmanagement();
+
                 } catch (AAException e) {
-                    throw_Error(e.getMessage());
+                    throw_Error("Stop" + e.getMessage());
                 }
-                goto_pmanagement();
+
 
             }
         });
@@ -104,39 +107,6 @@ public class Trig_Ques_Activity extends Activity {
          * @param layout
          */
     public void is_Clicked(LinearLayout layout) {
-        for (int i = 0; i < layout.getChildCount(); i++) {
-            View v = layout.getChildAt(i);
-            if (v instanceof LinearLayout) {
-                for (int j = 0; j < ((LinearLayout) v).getChildCount(); j++) {
-                    View k = ((LinearLayout) v).getChildAt(j);
-                    if (k instanceof Button) {
-                        if (((Button) k).getText() == "Yes") {
-                            k.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View k) {
-                                    k.setBackgroundColor(Color.GREEN);
-                                    //TODO: Log choice
-                                }
-                            });
-                        }
-
-                        if (((Button) k).getText() == "No")
-
-                        {
-                            k.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View k) {
-                                    k.setBackgroundColor(Color.RED);
-                                    //TODO: Log choice
-                                }
-                            });
-                        }
-
-
-                    }
-                }
-            }
-        }
     }
 
     private void createLogFile() throws JSONException {
