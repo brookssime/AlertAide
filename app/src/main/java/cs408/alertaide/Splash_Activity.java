@@ -8,6 +8,12 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import cs408.alertaide.backend.AA_Manager;
+
 
 public class Splash_Activity extends Activity {
 
@@ -35,6 +41,19 @@ public class Splash_Activity extends Activity {
 //            }
 //        });
 
+        Button testButton = (Button) findViewById(R.id.testViewButton);
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goto_testBackend();
+            }
+        });
+
+    }
+
+    private void goto_testBackend(){
+        Intent intent = new Intent(this, TestBackend_Activity.class);
+        startActivity(intent);
     }
 
     private void goto_login_page(){

@@ -52,19 +52,18 @@ public class AA_Comm {
             messageBuilder.append("Health worker name = "+name+"\n");
             String condition = sessionObject.getJSONObject("condition").getString("name");
             messageBuilder.append("Patient condition = "+condition+"\n");
-            JSONObject answers = sessionObject.getJSONObject("tq_answers").getJSONObject("ans");
+            JSONObject answers = sessionObject.getJSONObject("tqAswers");
             Iterator<String> iter = answers.keys();
             int quesNum = 1;
             while (iter.hasNext()) {
-                String key = iter.next();
+                String tqLabel = iter.next();
                 try {
-                    JSONObject answerObject = (JSONObject) answers.get(key);
-                    String question = answerObject.getString("tq_label");
-                    messageBuilder.append(quesNum + ") " + question + "\n");
-                    String answer = answerObject.getString("answer");
-                    messageBuilder.append(">> "+answer+"\n");
-                    quesNum ++;
-                    return messageBuilder.toString();
+                    if(!tqLabel.equals("startTime")){
+                        messageBuilder.append(quesNum + ") " + tqLabel + " >> ");
+                        String answer = answers.getString(tqLabel);
+                        messageBuilder.append(answer+"\n");
+                        quesNum ++;
+                    }
                 } catch (JSONException e2) {
                     throw new AAException("Failed to read answer from file \n" + e2.getMessage());
                 }
@@ -86,7 +85,6 @@ public class AA_Comm {
         } catch (Exception e) {
             throw new AAException("Failed to fetch CE number \n"+e.getMessage());
         }
-
     }
 
 }
