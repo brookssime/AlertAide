@@ -52,31 +52,31 @@
         "PM1": {
                  "label" : "IV",
                  "action" : "Start Two IV",
-                 "image" : "iv.png"
+                 "image" : "iv"
                 },
     
         "PM2": {
                  "label" : "transfusion",
                  "action" : "Blood Transfusion",
-                 "image" : "iv.png"
+                 "image" : "iv"
                 },
     
         "PM3": {
                  "label": "oxytocin",
                  "action": "Oxytocin 20 units infusion",
-                 "image": "iv.png"
+                 "image": "iv"
                 },
 
         "PM4": {
                  "label": "massage",
                  "action": "Fundal Massage",
-                 "image": "iv.png"
+                 "image": "iv"
                 },
     
         "PM5": {
                  "label": "laceration",
                  "action": "Suture Laceration",
-                 "image": "iv.png"
+                 "image": "iv"
                 }
     },
     
