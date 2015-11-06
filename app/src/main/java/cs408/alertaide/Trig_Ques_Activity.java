@@ -20,37 +20,61 @@ import java.util.Iterator;
 
 public class Trig_Ques_Activity extends Activity {
     LinearLayout linear;
+    JSONObject tq;
     JSONObject tqAnswers;
     AA_Manager myManager;
     Bundle myBundle;
-
+//    TextView text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trig__ques);
-        linear = (LinearLayout) findViewById(R.id.linear);
-        myBundle = getIntent().getExtras();
         try {
-            createLogFile();
-        } catch (JSONException e) {
+            super.onCreate(savedInstanceState);
+
+            setContentView(R.layout.activity_trig__ques);
+            linear = (LinearLayout) findViewById(R.id.linear);
+            myBundle = getIntent().getExtras();
+//            text = new TextView(this);
+            tqAnswers = new JSONObject();
+
+
+
+            if (myBundle.getString("condition") == null || myBundle.getString("file") == null) {
+                throw_Error("You have not chosen an appropriate condition.");
+            }
+
+
+            try {
+                myManager = new AA_Manager(this);
+                String condition = myBundle.getString("condition");
+                tq = myManager.getTQs(condition);
+                ask_Question(tq);
+            } catch (AAException e) {
+                throw_Error(e.getMessage());
+            }
+        }
+        catch(Exception e){
             throw_Error(e.getMessage());
         }
 
+    }
 
-        if (myBundle.getString ("condition") == null || myBundle.getString ("file") == null){
-            throw_Error("You have not chosen an appropriate condition.");
+    private void ask_Question(JSONObject json) {
+        Iterator<String> iter = json.keys();
+        while (iter.hasNext()) {
+            String key = iter.next();
+            try {
+                JSONObject value = (JSONObject) json.get(key);
+                String question = value.getString("question");
+                JSONArray answer = value.getJSONArray("answer_options");
+                set_Question_Layout(question);
+                set_Answer_Layout(question,answer);
+            } catch (JSONException e) {
+                throw_Error(e.getMessage());
+
+            }
         }
-
-
-        try {
-            myManager = new AA_Manager(this);
-            String condition = myBundle.getString("condition");
-            JSONObject tq = myManager.getTQs(condition);
-            ask_Question(tq);
-        } catch (AAException e) {
-            throw_Error(e.getMessage());
-        }
-
+        //isClicked(linear);
+        finish_TQ();
     }
 
 
@@ -66,18 +90,38 @@ public class Trig_Ques_Activity extends Activity {
         linear.addView(myText);
     }
 
-    private void set_Answer_Layout(JSONArray answer) throws JSONException {
+    private void set_Answer_Layout(String question, JSONArray answer) throws JSONException {
         LinearLayout buttonLayout = new LinearLayout(this);
         buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
 
+        try{
         for (int i = 0; i < answer.length(); i++) {
-            Button myButton = new Button(this);
+            AnswerButton myButton = new AnswerButton(this, question, answer.getString(i));
             String buttonText = answer.getString(i);
             myButton.setText(buttonText);
+            myButton.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    AnswerButton b = (AnswerButton) view;
+                    try {
+
+                        tqAnswers.put(b.getKey(), b.getValue());
+//                      text.setText(tqAnswers.toString());
+
+                    } catch (JSONException e) {
+                       throw_Error(e.getMessage());
+                    }
+                }
+            });
             buttonLayout.addView(myButton);
+        }}
+        catch(Exception e){
+            throw_Error(e.getMessage());
         }
 
         linear.addView(buttonLayout);
+//        linear.addView(text);
     }
 
     private void finish_TQ() {
@@ -88,11 +132,12 @@ public class Trig_Ques_Activity extends Activity {
             public void onClick(View view) {
 
                 try {
-                    myManager.logInfo(myBundle.getString("file"), "tqAnswers",tqAnswers.toString() );
+                    myManager.logInfo(myBundle.getString("file"), "tqAnswers", tqAnswers.toString());
                     goto_pmanagement();
+//                    endTime();
 
-                } catch (AAException e) {
-                    throw_Error("Stop" + e.getMessage());
+                } catch (Exception e) {
+                    throw_Error(e.getMessage());
                 }
 
 
@@ -101,16 +146,40 @@ public class Trig_Ques_Activity extends Activity {
         linear.addView(done);
     }
 
-        /**
-         * Goes through maximum of two nested linear layouts, only checks Yes No answers.
-         * If click Done Button goes to patient management.
-         * @param layout
-         */
-    public void is_Clicked(LinearLayout layout) {
-    }
+    /**
+     * Goes through maximum of two nested linear layouts, only checks Yes No answers.
+     * If click Done Button goes to patient management.
+     * @param
+     */
+//    public void isClicked(LinearLayout layout) {
+//        for (int i = 0; i<layout.getChildCount(); i++){
+//            View v = layout.getChildAt(i);
+//            if (v instanceof LinearLayout){
+//                for (int j = 0; j<((LinearLayout) v).getChildCount(); j++){
+//                    View k = ((LinearLayout) v).getChildAt(j);
+//                    if (k instanceof Button) {
+//                        k.setOnClickListener(new View.OnClickListener() {
+//
+//                            @Override
+//                            public void onClick(View view) {
+//                                Button b = (Button) view;
+//                                try {
+//                                    JSONObject question = ((LinearLayout) ).getChildAt(0);
+//                                    tq.put("ans", b.getText().toString());
+//                                } catch (JSONException e) {
+//                                    throw_Error(e.getMessage());
+//                                }
+//                            }
+//                        });
+//                    }
+//
+//                }
+//            }
+//        }
+//
+//    }
 
-    private void createLogFile() throws JSONException {
-        tqAnswers = new JSONObject();
+    private void startTime() throws JSONException {
         Long start = System.currentTimeMillis();
         String startTime = start.toString();
         tqAnswers.put("startTimeStamp", startTime);
@@ -119,35 +188,12 @@ public class Trig_Ques_Activity extends Activity {
 
     }
 
-    private void endTime(){
+    private void endTime() throws JSONException {
+        Long end = System.currentTimeMillis();
+        String endTime = end.toString();
+        tqAnswers.put("endTimeStamp", endTime);
 
     }
-
-
-
-
-
-    private void ask_Question(JSONObject json) {
-        Iterator<String> iter = json.keys();
-        while (iter.hasNext()) {
-            String key = iter.next();
-            try {
-                JSONObject value = (JSONObject) json.get(key);
-                String question = value.getString("question");
-                JSONArray answer = value.getJSONArray("answer_options");
-                set_Question_Layout(question);
-                set_Answer_Layout(answer);
-            } catch (JSONException e) {
-                throw_Error(e.getMessage());
-
-            }
-        }
-         is_Clicked(linear);
-         finish_TQ();
-    }
-
-
-
 
 
     @Override
