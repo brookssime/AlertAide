@@ -52,7 +52,7 @@ public class AA_Comm {
             messageBuilder.append("Health worker name = "+name+"\n");
             String condition = sessionObject.getJSONObject("condition").getString("name");
             messageBuilder.append("Patient condition = "+condition+"\n");
-            JSONObject answers = sessionObject.getJSONObject("tqAswers");
+            JSONObject answers = sessionObject.getJSONObject("tqAnswers");
             Iterator<String> iter = answers.keys();
             int quesNum = 1;
             while (iter.hasNext()) {

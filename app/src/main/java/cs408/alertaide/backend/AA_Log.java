@@ -23,7 +23,7 @@ public class AA_Log {
 
     public String createFile() throws AAException{
         Long timeStamp = System.currentTimeMillis();
-        String fileName = timeStamp.toString().substring(timeStamp.toString().length() - 4);
+        String fileName = timeStamp.toString().substring(timeStamp.toString().length());
         try {
             JSONObject sessionObject = new JSONObject();
             sessionObject.put("session", new JSONObject());
