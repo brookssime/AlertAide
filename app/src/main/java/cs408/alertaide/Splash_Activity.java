@@ -4,33 +4,41 @@ package cs408.alertaide;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+
+
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
-import cs408.alertaide.backend.AA_Manager;
 
 
 public class Splash_Activity extends Activity {
-    ImageView logo_view;
-    @Override
-
 
 
     //FRONTEND
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        logo_view = (ImageView) findViewById(R.id.logo);
 
-        logo_view.setOnClickListener(new View.OnClickListener() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable()
+        {
             @Override
-            public void onClick(View v) {
+            public void run()
+            {
                 goto_login_page();
             }
-        });
+        }, 2500);
+
+//        ImageView logo_view = (ImageView) findViewById(R.id.logo);
+//        logo_view.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goto_login_page();
+//            }
+//        });
 
         Button testButton = (Button) findViewById(R.id.testViewButton);
         testButton.setOnClickListener(new View.OnClickListener() {
