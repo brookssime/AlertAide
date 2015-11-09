@@ -40,19 +40,6 @@ public class AA_Data {
         }
     }
 
-    public void logHWInfo(JSONObject object) throws AAException {
-        try {
-            JSONObject rootObject = readInDataFile();
-            rootObject.put("hw_info", object);
-            FileOutputStream outputStream ;
-            outputStream = myContext.openFileOutput( "app_data.txt" ,  Context.MODE_PRIVATE );
-            outputStream.write(rootObject.toString().getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            throw new AAException("Failed to put HW info \n" + e.getMessage());
-        }
-    }
-
     public JSONObject getObject(String key) throws AAException {
         try {
             return myData.getJSONObject(key);

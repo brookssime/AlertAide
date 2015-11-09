@@ -132,7 +132,9 @@ public class Trig_Ques_Activity extends Activity {
             public void onClick(View view) {
 
                 try {
-                    myManager.logInfo(myBundle.getString("file"), "tqAnswers", tqAnswers.toString());
+                    myManager.logInfo(myBundle.getString("file"), "tqAnswers", tqAnswers);
+                    int clinicalExpertID = 0;
+                    myManager.send_Initial_SMS(myBundle.getString("file"), clinicalExpertID);
                     goto_pmanagement();
 //                    endTime();
 
@@ -205,6 +207,9 @@ public class Trig_Ques_Activity extends Activity {
     private void goto_pmanagement(){
         Intent intent = new Intent(this, PManagement_Activity.class);
         Bundle extras = new Bundle();
+        extras.putString("condition", myBundle.getString("condition"));
+        extras.putString("file", myBundle.getString("file"));
+        intent.putExtras(extras);
         startActivity(intent);
     }
 

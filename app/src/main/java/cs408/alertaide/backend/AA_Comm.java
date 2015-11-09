@@ -8,7 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+
+import cs408.alertaide.AA_ErrorPopup;
 
 /**
  * Created by Negatu on 10/28/15.
@@ -26,7 +29,8 @@ public class AA_Comm {
             String message = constructMessage(fileName);
             String ceNumber = getCENumber(ceIndex);
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(ceNumber, null, message, null, null);
+            ArrayList<String> smsParts = smsManager.divideMessage(message);
+            smsManager.sendMultipartTextMessage(ceNumber, null, smsParts, null, null);
         } catch (Exception e) {
             throw new AAException("Failed to send SMS \n"+e.getMessage());
         }
@@ -36,8 +40,7 @@ public class AA_Comm {
         try {
             AA_Log myLog = new AA_Log(myContext);
             JSONObject rootObject = new JSONObject(myLog.readFile(fileName));
-            JSONObject sessionObject = rootObject.getJSONObject("session");
-            String message = constructMessage(sessionObject);
+            String message = constructMessage(rootObject);
             return message;
         } catch (Exception e) {
             throw new AAException(e.getMessage());
@@ -45,12 +48,15 @@ public class AA_Comm {
 
     }
 
-    private String constructMessage(JSONObject sessionObject) throws AAException{
+    private String constructMessage(JSONObject rootObject) throws AAException{
         try {
+            JSONObject hwInfo = rootObject.getJSONObject("hw_info");
+            JSONObject sessionObject = rootObject.getJSONObject("session");
             StringBuilder messageBuilder = new StringBuilder();
-            String name = sessionObject.getJSONObject("hw_info").getString("name");
+
+            String name = hwInfo.getString("name");
             messageBuilder.append("Health worker name = "+name+"\n");
-            String condition = sessionObject.getJSONObject("condition").getString("name");
+            String condition = rootObject.getString("condition");
             messageBuilder.append("Patient condition = "+condition+"\n");
             JSONObject answers = sessionObject.getJSONObject("tqAnswers");
             Iterator<String> iter = answers.keys();
@@ -85,6 +91,10 @@ public class AA_Comm {
         } catch (Exception e) {
             throw new AAException("Failed to fetch CE number \n"+e.getMessage());
         }
+    }
+
+    private void throw_Error(String errorMessage) {
+        AA_ErrorPopup errorPopup = new AA_ErrorPopup(myContext, errorMessage);
     }
 
 }
