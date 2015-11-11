@@ -46,7 +46,6 @@ public class Login_Activity extends Activity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editName.setText("");
                 String name = editName.getText().toString();
                 String country = editCountry.getText().toString();
 
