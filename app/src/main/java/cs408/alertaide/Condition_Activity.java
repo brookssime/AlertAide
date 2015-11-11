@@ -83,7 +83,7 @@ public class Condition_Activity extends Activity {
     private void goto_trigger_questions(){
         try {
             selectedCondition = mySpinner.getSelectedItem().toString();
-            logFileID = myManager.getLogSession();
+            logFileID = myManager.getLogSession(selectedCondition);
             Intent intent = new Intent(this, Trig_Ques_Activity.class);
             Bundle extras = new Bundle();
             extras.putString("condition", selectedCondition);

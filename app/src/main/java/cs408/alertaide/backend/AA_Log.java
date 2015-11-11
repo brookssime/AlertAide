@@ -16,25 +16,71 @@ import java.io.InputStreamReader;
 public class AA_Log {
 
     private Context myContext;
+    private final String hwFile = "hw_info";
 
     public AA_Log(Context context){
         myContext = context;
     }
 
-    public String createFile() throws AAException{
+    public String createFile(String condition) throws AAException{
         Long timeStamp = System.currentTimeMillis();
-        String fileName = timeStamp.toString().substring(timeStamp.toString().length() - 4);
+        String fileName = "session_" + timeStamp.toString();
         try {
-            JSONObject sessionObject = new JSONObject();
-            sessionObject.put("session", new JSONObject());
-            writeToFile(fileName, sessionObject.toString());
+            JSONObject rootObject = new JSONObject();
+            rootObject.put("condition", condition);
+            rootObject.put("session", new JSONObject());
+            rootObject.put("hw_info", getHWInfo());
+            writeToFile(fileName, rootObject.toString());
             return fileName;
         } catch (Exception e){
             throw new AAException("Failed to log new file \n"+e.getMessage());
         }
     }
 
+    public boolean checkHWInfo() throws AAException {
+        try {
+            getHWInfo();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void logHWInfo(JSONObject object) throws AAException {
+        try {
+            JSONObject rootObject = new JSONObject();
+            rootObject.put("hw_info", object);
+            FileOutputStream outputStream ;
+            outputStream = myContext.openFileOutput( hwFile ,  Context.MODE_PRIVATE );
+            outputStream.write(rootObject.toString().getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            throw new AAException("Failed to put HW info \n" + e.getMessage());
+        }
+    }
+
+    public JSONObject getHWInfo() throws AAException{
+        try {
+            JSONObject rootObject = new JSONObject(readFile(hwFile));
+            JSONObject hw_info = rootObject.getJSONObject("hw_info");
+            return hw_info;
+        } catch (Exception e) {
+            throw new AAException("Failed to read HW info \n"+e.getMessage());
+        }
+    }
+
     public void logToFile(String fileName, String key, String value) throws AAException{
+        try {
+            JSONObject rootObject = new JSONObject(readFile(fileName));
+            JSONObject sessionObject = rootObject.getJSONObject("session");
+            sessionObject.put(key, value);
+            writeToFile(fileName, rootObject.toString());
+        } catch (Exception e) {
+            throw new AAException("Failed to add log "+key+" to file "+fileName+"\n"+e.getMessage());
+        }
+    }
+
+    public void logToFile(String fileName, String key, JSONObject value) throws AAException{
         try {
             JSONObject rootObject = new JSONObject(readFile(fileName));
             JSONObject sessionObject = rootObject.getJSONObject("session");

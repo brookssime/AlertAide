@@ -54,7 +54,7 @@ public class TestBackend_Activity extends Activity {
                                      public void onClick(View v) {
                                          String viewTxt = new String();
                                          try {
-                                             viewTxt = myLogger.createFile();
+                                             viewTxt = myLogger.createFile("sample");
                                          } catch (Exception e) {
                                              viewTxt = e.getMessage();
                                          }

@@ -24,8 +24,8 @@ public class AA_Manager {
 
     public boolean check_HW_Info() {
         try {
-            myData.getObject("hw_info");
-            return true;
+            boolean check = myLog.checkHWInfo();
+            return check;
         } catch (Exception e) {
             return false;
         }
@@ -33,7 +33,7 @@ public class AA_Manager {
 
     public boolean put_HW_Info(JSONObject info) {
         try {
-            myData.logHWInfo(info);
+            myLog.logHWInfo(info);
             return true;
         } catch (Exception e) {
             return false;
@@ -62,14 +62,19 @@ public class AA_Manager {
         myComm.sendSMS(file_Name, CEID);
     }
 
+
     //TODO: INCLUDE CALL NOW?
 
    public void logInfo(String file_Name, String key, String value) throws AAException{
        myLog.logToFile(file_Name, key, value);
    }
 
-    public String getLogSession() throws AAException{
-            return myLog.createFile();
+    public void logInfo(String file_Name, String key, JSONObject value) throws AAException{
+        myLog.logToFile(file_Name, key, value);
+    }
+
+    public String getLogSession(String condition) throws AAException{
+            return myLog.createFile(condition);
     }
 
 
