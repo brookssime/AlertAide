@@ -30,13 +30,16 @@
             android:id="@+id/editCountry"
             android:background="#7f444444"
             android:layout_below="@+id/editName" android:hint="Location" android:textColorHint="#9a9a9a" android:textColor="@android:color/white"/>
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="57.3dp"
+    <ImageButton
+            android:layout_width="180dp"
+            android:layout_height="90dp"
             android:text="Sign Up"
             android:id="@+id/signUpButton"
-            android:layout_centerVertical="true" android:layout_centerHorizontal="true"
-            android:background="@color/switch_thumb_normal_material_dark"/>
+            android:background="@drawable/sign_up"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_below="@+id/editCountry" android:layout_centerHorizontal="true" android:maxHeight="100dp"
+            android:maxWidth="100dp"/>
 
 
 </RelativeLayout>
