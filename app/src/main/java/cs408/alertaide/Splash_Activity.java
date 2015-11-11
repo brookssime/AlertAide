@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-
-
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.ImageView;
 
 
 public class Splash_Activity extends Activity {
@@ -21,6 +19,10 @@ public class Splash_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        View v = new ImageView(getBaseContext());
+        ImageView image;
+        image = new ImageView(v.getContext());
+        image.setImageResource(R.drawable.alert_aide);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable()
