@@ -8,8 +8,8 @@ import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONObject;
 
@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class Login_Activity extends Activity {
 
     private AA_Manager myManager;
-    private ImageButton loginButton;
+    private Button loginButton;
     private EditText editName;
     private EditText editCountry;
 
@@ -42,7 +42,7 @@ public class Login_Activity extends Activity {
         editName = (EditText) findViewById(R.id.editName);
         editCountry = (EditText) findViewById(R.id.editCountry);
 
-        loginButton = (ImageButton) findViewById(R.id.signUpButton);
+        loginButton = (Button) findViewById(R.id.signUpButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
