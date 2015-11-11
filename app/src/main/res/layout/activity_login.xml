@@ -40,6 +40,12 @@
             android:adjustViewBounds="true"
             android:layout_below="@+id/editCountry" android:layout_centerHorizontal="true" android:maxHeight="100dp"
             android:maxWidth="100dp"/>
+  <ImageView
+          android:layout_width="140dp"
+          android:layout_height="140dp"
+          android:id="@+id/imageView"
+          android:src="@drawable/alert_aide_2"
+          android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>
