@@ -8,9 +8,8 @@ import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-
+import android.widget.ImageButton;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONObject;
 
@@ -18,7 +17,7 @@ import org.json.JSONObject;
 public class Login_Activity extends Activity {
 
     private AA_Manager myManager;
-    private Button loginButton;
+    private ImageButton loginButton;
     private EditText editName;
     private EditText editCountry;
 
@@ -32,6 +31,8 @@ public class Login_Activity extends Activity {
         }
         if (myManager.check_HW_Info()){
             goto_conditions();
+            finish();
+
             //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
         }
 
@@ -41,10 +42,11 @@ public class Login_Activity extends Activity {
         editName = (EditText) findViewById(R.id.editName);
         editCountry = (EditText) findViewById(R.id.editCountry);
 
-        loginButton = (Button) findViewById(R.id.signUpButton);
+        loginButton = (ImageButton) findViewById(R.id.signUpButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                editName.setText("");
                 String name = editName.getText().toString();
                 String country = editCountry.getText().toString();
 
@@ -64,6 +66,7 @@ public class Login_Activity extends Activity {
                             //TODO here, manager failed to save info.
                         }
                         goto_conditions();
+
                     } catch (Exception e) {
                         //TODO here, show that something failed with the creation of the JSON structures.
                     }
