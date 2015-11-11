@@ -29,7 +29,7 @@ public class Login_Activity extends Activity {
         } catch (Exception e) {
             //TODO Brooks, implement what to show if the APP cannot load its backend DATA
         }
-        if (!myManager.check_HW_Info()){
+        if (myManager.check_HW_Info()){
             goto_conditions();
             finish();
 
@@ -46,7 +46,7 @@ public class Login_Activity extends Activity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editName.setText("");
+
                 String name = editName.getText().toString();
                 String country = editCountry.getText().toString();
 
