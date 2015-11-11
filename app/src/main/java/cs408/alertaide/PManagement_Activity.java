@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import cs408.alertaide.backend.AAException;
@@ -22,6 +23,7 @@ import java.util.Iterator;
 
 public class PManagement_Activity extends Activity {
     LinearLayout linear;
+    ImageView imgView;
     AA_Manager myManager;
     Bundle myBundle;
     Button done;
@@ -31,6 +33,7 @@ public class PManagement_Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pmanagement);
         linear = (LinearLayout) findViewById(R.id.linear);
+        imgView = (ImageView) findViewById(R.id.imgView);
         myBundle = getIntent().getExtras();
 
         /*done = (Button) findViewById(R.id.done);
@@ -122,25 +125,25 @@ public class PManagement_Activity extends Activity {
 
     private void setImage(String image)
     {
-        LinearLayout buttonLayout = new LinearLayout(this);
-        buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
-        buttonLayout.setLayoutParams(new ViewGroup.MarginLayoutParams(250, 150));
+        //LinearLayout buttonLayout = new LinearLayout(this);
+        //buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
+        //buttonLayout.setLayoutParams(new ViewGroup.MarginLayoutParams(250, 150));
 
         //buttonLayout.setBackgroundColor(R.drawable.img_button);
 
-        ImageButton myButton = new ImageButton(this);
+        //ImageButton myButton = new ImageButton(this);
 
         //TODO: Set it to do images automatically
-        myButton.setImageResource(R.drawable.iv);
+        //myButton.setImageResource(R.drawable.iv);
+        imgView.setImageResource(R.drawable.iv);
        // myButton.onTouchEvent(setBackgroundColor(00FF66));
         //myButton.setLayoutParams(new ViewGroup.LayoutParams.WRAP_CONTENT);
         //myButton.
        // myButton.setBackgroundColor(R.drawable.img_button);
 
-        buttonLayout.addView(myButton);
+        //buttonLayout.addView(myButton);
 
-
-        linear.addView(buttonLayout);
+        //imgView.addView(buttonLayout);
     }
 
 
