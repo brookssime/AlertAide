@@ -143,7 +143,7 @@ public class PManagement_Activity extends Activity {
 
         //buttonLayout.addView(myButton);
 
-        //imgView.addView(buttonLayout);
+        linear.addView(imgView);
     }
 
 
