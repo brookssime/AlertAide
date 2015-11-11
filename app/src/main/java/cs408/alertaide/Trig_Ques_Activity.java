@@ -205,12 +205,21 @@ public class Trig_Ques_Activity extends Activity {
     }
 
     private void goto_pmanagement(){
-        Intent intent = new Intent(this, PManagement_Activity.class);
-        Bundle extras = new Bundle();
-        extras.putString("condition", myBundle.getString("condition"));
-        extras.putString("file", myBundle.getString("file"));
-        intent.putExtras(extras);
-        startActivity(intent);
+        try{
+            Intent intent = new Intent(this, PManagement_Activity.class);
+            Bundle extras = new Bundle();
+            extras.putString("condition", myBundle.getString("condition"));
+            extras.putString("file", myBundle.getString("file"));
+            intent.putExtras(extras);
+            startActivity(intent);
+        } catch (Exception e)
+        {
+            throwError("Failed to go to PM Page \n" +  e.getMessage());
+        }
+
+    }
+    private void throwError(String errorMessage) {
+        AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
 
 }
