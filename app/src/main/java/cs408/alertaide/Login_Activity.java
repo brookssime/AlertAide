@@ -29,12 +29,12 @@ public class Login_Activity extends Activity {
         } catch (Exception e) {
             //TODO Brooks, implement what to show if the APP cannot load its backend DATA
         }
-        if (!myManager.check_HW_Info()){
-            goto_conditions();
-            finish();
-
-            //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
-        }
+//        if (!myManager.check_HW_Info()){
+//            goto_conditions();
+//            finish();
+//
+//            //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
+//        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -46,7 +46,6 @@ public class Login_Activity extends Activity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editName.setText("");
                 String name = editName.getText().toString();
                 String country = editCountry.getText().toString();
 
