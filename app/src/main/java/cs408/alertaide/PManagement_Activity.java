@@ -102,11 +102,11 @@ public class PManagement_Activity extends Activity {
         buttonLayout.addView(callCEButton);
 
 
-        Button done = new Button(this);
+        /*Button done = new Button(this);
         buttonText = "Done";
         done.setText(buttonText);
         buttonLayout.addView(done);
-        linear.addView(buttonLayout);
+        linear.addView(buttonLayout);*/
 
         is_Clicked(linear);
         finish_PM();
@@ -160,8 +160,27 @@ public class PManagement_Activity extends Activity {
 
 
     private void finish_PM(){
+        Button done = new Button(this);
+        done.setText("Done");
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goto_checkout();
+                /*try {
+                    //myManager.logInfo(myBundle.getString("file"), "tqAnswers",tqAnswers.toString() );
+
+
+                } catch (AAException e) {
+                    throw_Error("Stop" + e.getMessage());
+                }*/
+
+
+            }
+        });
+        linear.addView(done);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
