@@ -24,7 +24,7 @@ public class Trig_Ques_Activity extends Activity {
     JSONObject tqAnswers;
     AA_Manager myManager;
     Bundle myBundle;
-//    TextView text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
@@ -33,7 +33,7 @@ public class Trig_Ques_Activity extends Activity {
             setContentView(R.layout.activity_trig__ques);
             linear = (LinearLayout) findViewById(R.id.linear);
             myBundle = getIntent().getExtras();
-//            text = new TextView(this);
+
             tqAnswers = new JSONObject();
 
 
