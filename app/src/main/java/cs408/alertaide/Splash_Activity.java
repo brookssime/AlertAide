@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import android.view.View;
 import android.widget.Button;
-
+import android.widget.ImageView;
 
 
 public class Splash_Activity extends Activity {
@@ -22,31 +22,23 @@ public class Splash_Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable()
-        {
+
+        ImageView logo_view = (ImageView) findViewById(R.id.logo);
+        logo_view.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run()
-            {
+            public void onClick(View v) {
                 goto_login_page();
             }
-        }, 2500);
-
-//        ImageView logo_view = (ImageView) findViewById(R.id.logo);
-//        logo_view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                goto_login_page();
-//            }
-//        });
+        });
 
         Button testButton = (Button) findViewById(R.id.testViewButton);
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goto_testBackend();
+                goto_testUpdate();
             }
         });
+
 
     }
 
@@ -55,7 +47,12 @@ public class Splash_Activity extends Activity {
         startActivity(intent);
     }
 
-    private void goto_login_page(){
+    private void goto_testUpdate(){
+        Intent intent = new Intent(this, UpdateActivity.class);
+        startActivity(intent);
+    }
+
+    public void goto_login_page(){
         Intent intent = new Intent(this, Login_Activity.class);
         Bundle extras = new Bundle();
         //extras.putString("username", username);

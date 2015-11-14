@@ -8,4 +8,5 @@
     <string name="title_activity_trig__ques_">Trig_Ques_Activity</string>
     <string name="title_activity_pmanagement_">PManagement_Activity</string>
     <string name="title_activity_checkout_">Checkout_Activity</string>
+    <string name="title_activity_update">UpdateActivity</string>
 </resources>
