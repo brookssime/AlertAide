@@ -13,9 +13,9 @@ import java.security.Timestamp;
 /**
  * Created by Negatu on 11/15/15.
  */
-public class TitleView extends TextView {
+public class AAView extends TextView {
 
-    public TitleView(Context context, String title){
+    public AAView(Context context, String title){
         super(context);
         this.setText(title);
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);

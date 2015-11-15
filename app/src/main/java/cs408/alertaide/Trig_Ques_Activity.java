@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import cs408.alertaide.backend.AAException;
+
 import cs408.alertaide.backend.AA_Manager;
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,7 +24,7 @@ public class Trig_Ques_Activity extends Activity {
     AA_Manager myManager;
     Bundle myBundle;
     ArrayList<TQView> myTQViews;
-    TitleView titleView;
+    AAView AAView;
     LinearLayout.LayoutParams tqPadding;
 
     @Override
@@ -36,8 +34,8 @@ public class Trig_Ques_Activity extends Activity {
             setContentView(R.layout.activity_trig__ques);
             myLayout = (LinearLayout) findViewById(R.id.linear);
             myBundle = getIntent().getExtras();
-            titleView = new TitleView(this, "Please Answer Questions");
-            myLayout.addView(titleView);
+            AAView = new AAView(this, "Please Answer Questions");
+            myLayout.addView(AAView);
 
             tqPadding = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             tqPadding.setMargins(25, 30, 25, 30);

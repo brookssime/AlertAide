@@ -17,7 +17,7 @@ public class TQView extends LinearLayout {
 
     JSONObject myData;
     Context myContext;
-    TitleView myQuestionView;
+    AAView myQuestionView;
     LinearLayout myAnswersView;
     ArrayList<AnswerButton> myAnswerButtons;
     LinearLayout.LayoutParams answersPadding;
@@ -47,9 +47,9 @@ public class TQView extends LinearLayout {
     private void createMyView(){
         try {
             myQuestion = myData.getString("question");
-            myQuestionView = new TitleView(myContext, myQuestion);
+            myQuestionView = new AAView(myContext, myQuestion);
         } catch (Exception e){
-            myQuestionView = new TitleView(myContext, "Missing Question");
+            myQuestionView = new AAView(myContext, "Missing Question");
         }
         this.addView(myQuestionView);
 
@@ -68,7 +68,7 @@ public class TQView extends LinearLayout {
                 });
             }
         } catch (Exception e) {
-            TitleView missingAnswers = new TitleView(myContext, "Missing Answers");
+            AAView missingAnswers = new AAView(myContext, "Missing Answers");
             myAnswersView.addView(missingAnswers);
         }
         this.addView(myAnswersView);
