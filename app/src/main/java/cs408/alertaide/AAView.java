@@ -13,7 +13,7 @@ import java.security.Timestamp;
 /**
  * Created by Negatu on 11/15/15.
  */
-public class AAView extends TextView {
+class AAView extends TextView {
 
     public AAView(Context context, String title){
         super(context);

@@ -29,10 +29,10 @@ import cs408.alertaide.backend.AA_Manager;
 
 
 public class UpdateActivity extends Activity {
-    LinearLayout myLayout;
-    AAView statusView;
+    private LinearLayout myLayout;
+    private AAView statusView;
 
-    LinearLayout.LayoutParams layoutParams;
+    private LinearLayout.LayoutParams layoutParams;
 
     private String defaultURL = "http://animagics.negatuasmamaw.com/app_data.txt";
 

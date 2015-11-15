@@ -1,35 +1,30 @@
 package cs408.alertaide;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
+import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONObject;
 
 import java.util.Iterator;
 
-import cs408.alertaide.backend.AA_Manager;
-
 
 public class Checkout_Activity extends Activity {
 
-    LinearLayout myLayout;
-    AA_Manager myManager;
-    String myCondition;
+    private LinearLayout myLayout;
+    private AA_Manager myManager;
+    private String myCondition;
     String myFile;
-    JSONObject myPMJson;
+    private JSONObject myPMJson;
 
     int nextCE;
-    LinearLayout.LayoutParams layoutParams;
+    private LinearLayout.LayoutParams layoutParams;
 
-    TitleView myTitle;
+    private AAView myTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +36,7 @@ public class Checkout_Activity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        myTitle = new TitleView(this, "CHECK OUT");
+        myTitle = new AAView(this, "CHECK OUT");
         myLayout.addView(myTitle, layoutParams);
 
         try {
@@ -97,22 +92,22 @@ public class Checkout_Activity extends Activity {
     public void exit(View view) {
         switch(view.getId())
         {
-            case R.id.contact_treatment:
-
-
-                break;
-
-            case R.id.contact_notreatment:
-                // Code for button 3 click
-                break;
-
-            case R.id.nocontact_treatment:
-                // Code for button 3 click
-                break;
-
-            case R.id.nocontact_notreatment:
-                // Code for button 3 click
-                break;
+//            case R.id.contact_treatment:
+//
+//
+//                break;
+//
+//            case R.id.contact_notreatment:
+//                // Code for button 3 click
+//                break;
+//
+//            case R.id.nocontact_treatment:
+//                // Code for button 3 click
+//                break;
+//
+//            case R.id.nocontact_notreatment:
+//                // Code for button 3 click
+//                break;
         }
 
 

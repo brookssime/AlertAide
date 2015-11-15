@@ -7,10 +7,10 @@ import android.widget.Button;
 /**
  * Created by brookssime on 11/5/15.
  */
-public class AnswerButton extends Button {
+class AnswerButton extends Button {
 
-    String myValue;
-    int myIndex;
+    private String myValue;
+    private int myIndex;
 
     public AnswerButton(Context context, String value, int index) {
         super(context);

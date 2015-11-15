@@ -13,17 +13,17 @@ import java.util.ArrayList;
 /**
  * Created by Negatu on 11/15/15.
  */
-public class TQView extends LinearLayout {
+class TQView extends LinearLayout {
 
-    JSONObject myData;
-    Context myContext;
-    AAView myQuestionView;
-    LinearLayout myAnswersView;
-    ArrayList<AnswerButton> myAnswerButtons;
-    LinearLayout.LayoutParams answersPadding;
-    String myQuestion;
-    String mySelectedAnswer;
-    int myPrevIndex;
+    private JSONObject myData;
+    private Context myContext;
+    private AAView myQuestionView;
+    private LinearLayout myAnswersView;
+    private ArrayList<AnswerButton> myAnswerButtons;
+    private LinearLayout.LayoutParams answersPadding;
+    private String myQuestion;
+    private String mySelectedAnswer;
+    private int myPrevIndex;
 
     public TQView(Context context, JSONObject tq){
         super(context);

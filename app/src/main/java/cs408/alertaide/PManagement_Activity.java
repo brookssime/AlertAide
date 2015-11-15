@@ -18,16 +18,16 @@ import cs408.alertaide.backend.AA_Manager;
 
 public class PManagement_Activity extends Activity {
 
-    LinearLayout myLayout;
-    AA_Manager myManager;
-    String myCondition;
-    String myFile;
-    JSONObject myPMJson;
+    private LinearLayout myLayout;
+    private AA_Manager myManager;
+    private String myCondition;
+    private String myFile;
+    private JSONObject myPMJson;
 
-    int nextCE;
-    LinearLayout.LayoutParams layoutParams;
+    private int nextCE;
+    private LinearLayout.LayoutParams layoutParams;
 
-    AAView myTitle;
+    private AAView myTitle;
 
 
     @Override

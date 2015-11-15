@@ -18,7 +18,7 @@ import cs408.alertaide.AA_ErrorPopup;
 /**
  * Created by Negatu on 10/28/15.
  */
-public class AA_Comm {
+class AA_Comm {
 
     private Context myContext;
 

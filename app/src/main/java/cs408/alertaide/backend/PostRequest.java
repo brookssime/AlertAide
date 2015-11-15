@@ -10,9 +10,9 @@ import java.net.URLConnection;
 /**
  * Created by Negatu on 11/13/15.
  */
-public class PostRequest {
+class PostRequest {
 
-    String url_link = new String();
+    private String url_link = new String();
 
     public PostRequest(String link){
         url_link = link;

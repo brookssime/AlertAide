@@ -10,7 +10,7 @@ import android.widget.Button;
 /**
  * Created by Negatu on 11/15/15.
  */
-public class AAButton extends Button {
+class AAButton extends Button {
 
     public AAButton(Context context, String prompt){
         super(context);

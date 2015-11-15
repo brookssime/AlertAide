@@ -21,7 +21,7 @@ public class Condition_Activity extends Activity {
     private AA_Manager myManager;
     private AAView promptView;
 
-    LinearLayout.LayoutParams layoutParams;
+    private LinearLayout.LayoutParams layoutParams;
 
 
     @Override
