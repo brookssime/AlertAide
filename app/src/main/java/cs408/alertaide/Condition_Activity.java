@@ -18,7 +18,7 @@ public class Condition_Activity extends Activity {
     private LinearLayout myLayout;
     private Spinner mySpinner;
     private AA_Manager myManager;
-    private TextView promptView;
+    private TitleView promptView;
 
 
     @Override
@@ -27,8 +27,7 @@ public class Condition_Activity extends Activity {
         setContentView(R.layout.activity_condition);
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
-        promptView = new TextView(this);
-        promptView.setText("PLEASE SELECT A CONDITION");
+        promptView = new TitleView(this, "PLEASE SELECT A CONDITION");
         myLayout.addView(promptView);
 
         try {

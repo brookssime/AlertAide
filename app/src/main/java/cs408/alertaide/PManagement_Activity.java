@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -24,12 +25,21 @@ public class PManagement_Activity extends Activity {
     String myFile;
     JSONObject myPMJson;
 
+    int nextCE;
+
+    TitleView myTitle;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pmanagement);
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
 
+        myTitle = new TitleView(this, "PATIENT MANAGEMENT");
+        myLayout.addView(myTitle);
+
+        nextCE = 1;
         try {
             if (getIntent().getExtras().getString("condition") == null || getIntent().getExtras().getString("file") == null) {
                 throw_Error("Failed to get condition and file ");
