@@ -94,7 +94,7 @@ public class AA_Log {
     public void writeToFile(String fileName, String logLine) throws AAException {
         try {
             FileOutputStream outputStream ;
-            outputStream = myContext.openFileOutput( fileName ,  Context.MODE_PRIVATE );
+            outputStream = myContext.openFileOutput( fileName,  Context.MODE_PRIVATE );
             outputStream.write(logLine.getBytes());
             outputStream.close();
         } catch (Exception e) {

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -35,6 +37,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 
+import cs408.alertaide.backend.AAException;
 import cs408.alertaide.backend.AA_Log;
 import cs408.alertaide.backend.NetworkAsyncTask;
 import cs408.alertaide.backend.PostRequest;
@@ -44,6 +47,7 @@ public class UpdateActivity extends ActionBarActivity {
     LinearLayout myLayout;
     TextView statusView;
 
+    private String defaultURL = "http://animagics.negatuasmamaw.com/app_data.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,21 @@ public class UpdateActivity extends ActionBarActivity {
         });
         myLayout.addView(sysRestore);
 
+        final EditText linkInput = new EditText(this);
+        linkInput.setHint("link");
+        myLayout.addView(linkInput);
+
+        final Button updateLink = new Button(this);
+        updateLink.setText("Set udpate link");
+        updateLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String link = linkInput.getText().toString();
+                updateLink(link);
+                linkInput.setText("");
+            }
+        });
+        myLayout.addView(updateLink);
     }
 
     private void fetchData(){
@@ -85,7 +104,8 @@ public class UpdateActivity extends ActionBarActivity {
             StrictMode.setThreadPolicy(policy);
             // Create a URL for the desired page
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://animagics.negatuasmamaw.com/app_data.txt");
+            //TODO
+            HttpPost httpPost = new HttpPost(getLink());
             HttpResponse httpResponse = httpclient.execute(httpPost);
 
             InputStream inputStream = null;
@@ -185,6 +205,37 @@ public class UpdateActivity extends ActionBarActivity {
         } catch (Exception e){
             statusView.setText("Failed to restore original data \n" + e.getMessage());
         }
+    }
+
+    private void updateLink(String link){
+        AA_Log updateLog = new AA_Log(this);
+        //Question:- should we error check link here??
+        try {
+            updateLog.writeToFile("update_link", link);
+        } catch (Exception e)
+        {
+            statusView.setText("Failed to save update link");
+        }
+    }
+
+    private String getLink(){
+        try {
+            InputStream is = openFileInput("update_link");
+            String link = readStream(is);
+            return link.trim();
+        } catch (Exception e){
+            return defaultURL;
+        }
+    }
+
+    private String readStream(InputStream is) throws Exception{
+        StringBuilder sBuilder = new StringBuilder();
+        BufferedReader isr = new BufferedReader(new InputStreamReader(is));
+        char[] data = new char[1];
+        while (isr.read(data) > 0) {
+            sBuilder.append(data);
+        }
+        return sBuilder.toString();
     }
 
     @Override

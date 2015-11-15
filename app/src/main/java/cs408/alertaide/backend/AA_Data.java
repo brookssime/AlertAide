@@ -49,7 +49,7 @@ public class AA_Data {
         try {
             StringBuilder sBuilder = new StringBuilder();
             BufferedReader isr = new BufferedReader(new InputStreamReader(is));
-            char[] data = new char[10];
+            char[] data = new char[1];
             while (isr.read(data) > 0) {
                 sBuilder.append(data);
             }
