@@ -79,7 +79,6 @@ public class Trig_Ques_Activity extends Activity {
 
 
     private void throw_Error(String errorMessage) {
-
         AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
 
