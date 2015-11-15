@@ -2,33 +2,26 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-import cs408.alertaide.backend.AA_Data;
+import android.view.ViewGroup;
+import android.widget.*;
 import cs408.alertaide.backend.AA_Manager;
+import org.json.JSONArray;
 
 
 public class Condition_Activity extends Activity {
 
     private String selectedCondition;
     private String logFileID;
-    private Spinner mySpinner;
     private LinearLayout myLayout;
     private AA_Manager myManager;
-    private TextView promptView;
+    private TitleView promptView;
+
+    LinearLayout.LayoutParams layoutParams;
 
 
     @Override
@@ -37,29 +30,51 @@ public class Condition_Activity extends Activity {
         setContentView(R.layout.activity_condition);
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
-        promptView = new TextView(this);
-        promptView.setText("PLEASE SELECT A CONDITION");
-        myLayout.addView(promptView);
+        layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(25, 75, 25, 75);
+
+        promptView = new TitleView(this, "PLEASE SELECT A CONDITION");
+        myLayout.addView(promptView, layoutParams);
 
         try {
             myManager = new AA_Manager(this);
         } catch (Exception e) {
-            throwError("Failed to load AA Manger \n" + e.getMessage());
+            throwError("Failed to load AA Manager \n" + e.getMessage());
         }
 
         try {
             JSONArray conditionsJA = myManager.getConditions();
-            String[] spinnerArray = new String[conditionsJA.length()];
-            for(int i=0; i<conditionsJA.length(); i++) {
-                spinnerArray[i] = conditionsJA.getString(i);
-            }
-            mySpinner = new Spinner(this);
-            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray); //selected item will look like a spinner set from XML
-            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            mySpinner.setAdapter(spinnerArrayAdapter);
+            //String[] spinnerArray = new String[conditionsJA.length()];
+            String[] radioArray = new String[conditionsJA.length()];
+            RadioGroup myGroup = new RadioGroup(this);
+            myGroup.setOrientation(RadioGroup.VERTICAL);
+            myGroup.setBackgroundColor(Color.WHITE);
 
-            Button selectButton = new Button(this);
-            selectButton.setText("Select Condition");
+            for(int i=0; i<conditionsJA.length(); i++) {
+                radioArray[i] = conditionsJA.getString(i);
+            }
+            RadioButton myRadio = new RadioButton(this);
+            for(int i=0; i<radioArray.length; i++) {
+                String text = radioArray[i];
+                myRadio.setText(text);
+                myRadio.setTextColor(Color.BLACK);
+                myRadio.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                myRadio.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        RadioButton rb = (RadioButton) view;
+                        selectedCondition = (String) rb.getText();
+                    }
+                });
+                myGroup.addView(myRadio);
+                myRadio = new RadioButton(this);
+            }
+//            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray); //selected item will look like a spinner set from XML
+//            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//            mySpinner.setAdapter(spinnerArrayAdapter);
+
+            AAButton selectButton = new AAButton(this, "Select Condition");
             selectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -68,10 +83,10 @@ public class Condition_Activity extends Activity {
             });
 
             LinearLayout selectLayout = new LinearLayout(this);
-            selectLayout.setOrientation(LinearLayout.HORIZONTAL);
-            selectLayout.addView(mySpinner);
-            selectLayout.addView(selectButton);
-            myLayout.addView(selectLayout);
+            selectLayout.setOrientation(LinearLayout.VERTICAL);
+            selectLayout.addView(myGroup, layoutParams);
+            selectLayout.addView(selectButton, layoutParams);
+            myLayout.addView(selectLayout, layoutParams);
 
         } catch (Exception e) {
             throwError("Failed to create list of conditions \n" + e.getMessage());
@@ -80,9 +95,12 @@ public class Condition_Activity extends Activity {
 
     }
 
+
+
+
     private void goto_trigger_questions(){
         try {
-            selectedCondition = mySpinner.getSelectedItem().toString();
+            //selectedCondition = mySpinner.getSelectedItem().toString();
             logFileID = myManager.getLogSession(selectedCondition);
             Intent intent = new Intent(this, Trig_Ques_Activity.class);
             Bundle extras = new Bundle();

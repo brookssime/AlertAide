@@ -79,7 +79,6 @@ public class Trig_Ques_Activity extends Activity {
 
 
     private void throw_Error(String errorMessage) {
-
         AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
 
@@ -125,8 +124,7 @@ public class Trig_Ques_Activity extends Activity {
     }
 
     private void finish_TQ() {
-        Button done = new Button(this);
-        done.setText("Done");
+        AAButton done = new AAButton(this, "Done");
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

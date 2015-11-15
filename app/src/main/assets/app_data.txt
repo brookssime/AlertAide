@@ -1,7 +1,7 @@
 {
     "Conditions Array":
     {
-        "conditions_array": [ "pphem", "preeclampsia"]
+        "conditions_array": [ "pphem"]
     },
     
     "Condition":
@@ -56,27 +56,43 @@
                 },
     
         "PM2": {
-                 "label" : "transfusion",
+                 "label" : "Transfusion",
                  "action" : "Blood Transfusion",
+<<<<<<< HEAD
                  "image" : "iv"
+=======
+                 "image" : "transfusion"
+>>>>>>> 3c6f1a9b01b59aa0a27817b514a9c81064b4af94
                 },
     
         "PM3": {
-                 "label": "oxytocin",
+                 "label": "Oxytocin",
                  "action": "Oxytocin 20 units infusion",
+<<<<<<< HEAD
                  "image": "iv"
+=======
+                 "image": "oxytocin"
+>>>>>>> 3c6f1a9b01b59aa0a27817b514a9c81064b4af94
                 },
 
         "PM4": {
-                 "label": "massage",
+                 "label": "Massage",
                  "action": "Fundal Massage",
+<<<<<<< HEAD
                  "image": "iv"
+=======
+                 "image": "massage"
+>>>>>>> 3c6f1a9b01b59aa0a27817b514a9c81064b4af94
                 },
     
         "PM5": {
-                 "label": "laceration",
+                 "label": "Laceration",
                  "action": "Suture Laceration",
+<<<<<<< HEAD
                  "image": "iv"
+=======
+                 "image": "laceration"
+>>>>>>> 3c6f1a9b01b59aa0a27817b514a9c81064b4af94
                 }
     },
     
@@ -88,11 +104,13 @@
     "Clinical Experts":
     {
         "CE1": {
-                "number" : "5712962238"
+
+                "number" : "3212031733"
                },
 
         "CE2": {
                 "number" : "5712962238"
                }
-    }
+    },
+
 }

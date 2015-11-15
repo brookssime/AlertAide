@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
 /**
  * A class with multiple static methods that fetch different data
  * Created by Negatu on 10/20/15.
@@ -26,17 +27,35 @@ public class AA_Data {
     }
 
     private JSONObject readInDataFile() throws AAException{
-        StringBuilder sBuilder = new StringBuilder();
         try {
             InputStream is = myContext.getResources().getAssets().open("app_data.txt");
+            try {
+                InputStream updateTrueIS = myContext.openFileInput("update_available");
+                String updateTrue = readStream(updateTrueIS);
+                if(updateTrue.trim().equals("true")){
+                    is = myContext.openFileInput("app_data");
+                }
+            } catch (Exception e){
+
+            }
+            String app_data = readStream(is);
+            return new JSONObject(app_data);
+        } catch (Exception e){
+            throw new AAException("Failed to read App data \n" + e.getMessage());
+        }
+    }
+
+    private String readStream(InputStream is) throws  AAException{
+        try {
+            StringBuilder sBuilder = new StringBuilder();
             BufferedReader isr = new BufferedReader(new InputStreamReader(is));
-            char[] data = new char[10];
-            while (isr.read(data)>0){
+            char[] data = new char[1];
+            while (isr.read(data) > 0) {
                 sBuilder.append(data);
             }
-            return new JSONObject(sBuilder.toString());
+            return sBuilder.toString();
         } catch (Exception e){
-            throw new AAException("Failed to read app_data.txt \n" + e.getMessage());
+            throw new AAException("Failed to read stream \n"+e.getMessage());
         }
     }
 
