@@ -1,6 +1,8 @@
 package cs408.alertaide;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.StrictMode;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -44,9 +47,11 @@ import cs408.alertaide.backend.NetworkAsyncTask;
 import cs408.alertaide.backend.PostRequest;
 
 
-public class UpdateActivity extends ActionBarActivity {
+public class UpdateActivity extends Activity {
     LinearLayout myLayout;
-    TextView statusView;
+    TitleView statusView;
+
+    LinearLayout.LayoutParams layoutParams;
 
     private String defaultURL = "http://animagics.negatuasmamaw.com/app_data.txt";
 
@@ -56,9 +61,11 @@ public class UpdateActivity extends ActionBarActivity {
         setContentView(R.layout.activity_update);
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
-        statusView = new TextView(this);
-        statusView.setText("Press to update or to restore app data");
-        myLayout.addView(statusView);
+        layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(25, 75, 25, 75);
+
+        statusView = new TitleView(this, "Press to update or to restore app data");
+        myLayout.addView(statusView, layoutParams);
 
         AAButton updateMe = new AAButton(this, "Update data");
         updateMe.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +74,7 @@ public class UpdateActivity extends ActionBarActivity {
                 fetchData();
             }
         });
-        myLayout.addView(updateMe);
+        myLayout.addView(updateMe, layoutParams);
 
         AAButton sysRestore = new AAButton(this, "Restore Original");
         sysRestore.setOnClickListener(new View.OnClickListener() {
@@ -76,9 +83,11 @@ public class UpdateActivity extends ActionBarActivity {
                 restoreData();
             }
         });
-        myLayout.addView(sysRestore);
+        myLayout.addView(sysRestore, layoutParams);
 
         final EditText linkInput = new EditText(this);
+        linkInput.setHintTextColor(Color.BLUE);
+        linkInput.setTextColor(Color.BLUE);
         linkInput.setHint("link");
         myLayout.addView(linkInput);
 
@@ -91,7 +100,7 @@ public class UpdateActivity extends ActionBarActivity {
                 linkInput.setText("");
             }
         });
-        myLayout.addView(updateLink);
+        myLayout.addView(updateLink, layoutParams);
 
         Button call = new Button(this);
         call.setText("Test CALL");
@@ -101,7 +110,7 @@ public class UpdateActivity extends ActionBarActivity {
                 callCE();
             }
         });
-        myLayout.addView(call);
+        myLayout.addView(call, layoutParams);
     }
 
     private void callCE(){

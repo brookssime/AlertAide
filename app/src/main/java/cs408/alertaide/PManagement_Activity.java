@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class PManagement_Activity extends Activity {
     JSONObject myPMJson;
 
     int nextCE;
+    LinearLayout.LayoutParams layoutParams;
 
     TitleView myTitle;
 
@@ -37,9 +39,11 @@ public class PManagement_Activity extends Activity {
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
         myLayout.setPadding(0, 100, 0, 100);
+        layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(25, 75, 25, 75);
 
         myTitle = new TitleView(this, "PATIENT MANAGEMENT");
-        myLayout.addView(myTitle);
+        myLayout.addView(myTitle, layoutParams);
 
         nextCE = 1;
         try {
@@ -56,7 +60,7 @@ public class PManagement_Activity extends Activity {
             throw_Error("Failed to start Patient Management \n" + e.getMessage());
         }
 
-        //TODO add to layout
+
         AAButton done = new AAButton(this, "DONE");
         done.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +68,42 @@ public class PManagement_Activity extends Activity {
                 goto_checkout();
             }
         });
-        myLayout.addView(done);
+        myLayout.addView(done, layoutParams);
+
+        AAButton newSms = new AAButton(this, "Send New SMS");
+        newSms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendSmsAgain();
+            }
+        });
+        myLayout.addView(newSms, layoutParams);
+
+        AAButton callCE = new AAButton(this, "Call CE");
+        callCE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callTheCE();
+            }
+        });
+        myLayout.addView(callCE, layoutParams);
+    }
+
+    private void sendSmsAgain(){
+        try {
+            myManager.send_Initial_SMS(myFile, nextCE);
+        } catch (Exception e){
+            throw_Error(e.getMessage());
+        }
+    }
+
+    private void callTheCE(){
+        try {
+            myManager.callCE(nextCE);
+            nextCE++;
+        } catch (Exception e){
+            throw_Error(e.getMessage());
+        }
     }
 
     private void createPMViews(){
@@ -74,7 +113,7 @@ public class PManagement_Activity extends Activity {
                 String key = iterator.next();
                 JSONObject pm = myPMJson.getJSONObject(key);
                 PMView pmView = new PMView(this, pm);
-                myLayout.addView(pmView);
+                myLayout.addView(pmView, layoutParams);
                 //add view to layout and arraylist for log grabbing;
             }
         } catch (Exception e){

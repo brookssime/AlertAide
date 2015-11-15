@@ -2,10 +2,12 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONArray;
@@ -16,9 +18,10 @@ public class Condition_Activity extends Activity {
     private String selectedCondition;
     private String logFileID;
     private LinearLayout myLayout;
-    private Spinner mySpinner;
     private AA_Manager myManager;
     private TitleView promptView;
+
+    LinearLayout.LayoutParams layoutParams;
 
 
     @Override
@@ -27,8 +30,11 @@ public class Condition_Activity extends Activity {
         setContentView(R.layout.activity_condition);
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
+        layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(25, 75, 25, 75);
+
         promptView = new TitleView(this, "PLEASE SELECT A CONDITION");
-        myLayout.addView(promptView);
+        myLayout.addView(promptView, layoutParams);
 
         try {
             myManager = new AA_Manager(this);
@@ -52,6 +58,11 @@ public class Condition_Activity extends Activity {
             for(int i=0; i<radioArray.length; i++) {
                 String text = radioArray[i];
                 myRadio.setText(text);
+                myRadio.setTextColor(Color.WHITE);
+                myRadio.setBackgroundColor(Color.GRAY);
+                myRadio.setDrawingCacheBackgroundColor(Color.BLUE);
+                myRadio.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                myRadio.setHighlightColor(Color.GREEN);
                 myRadio.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -77,9 +88,9 @@ public class Condition_Activity extends Activity {
 
             LinearLayout selectLayout = new LinearLayout(this);
             selectLayout.setOrientation(LinearLayout.VERTICAL);
-            selectLayout.addView(myGroup);
-            selectLayout.addView(selectButton);
-            myLayout.addView(selectLayout);
+            selectLayout.addView(myGroup, layoutParams);
+            selectLayout.addView(selectButton, layoutParams);
+            myLayout.addView(selectLayout, layoutParams);
 
         } catch (Exception e) {
             throwError("Failed to create list of conditions \n" + e.getMessage());

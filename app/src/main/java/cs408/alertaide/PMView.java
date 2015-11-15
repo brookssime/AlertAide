@@ -25,6 +25,7 @@ public class PMView extends LinearLayout {
         super(context);
         this.setOrientation(VERTICAL);
         this.setPadding(0, 10, 0, 50);
+        
         myContext = context;
         myData = json;
         createMyView();
@@ -40,7 +41,15 @@ public class PMView extends LinearLayout {
         this.addView(myTitle);
 
         myImage = new ImageView(myContext);
-        myImage.setImageResource(R.drawable.iv);
+        try {
+            String uri = "drawable/" + myData.getString("image");
+            int imageResource = getResources().getIdentifier(uri, null, myContext.getPackageName());
+            myImage.setImageResource(imageResource);
+        } catch (Exception e){
+            myImage.setImageResource(R.drawable.no_image);
+        }
+
+        myImage.setBackgroundColor(Color.RED);
 
         myImage.setOnClickListener(new OnClickListener() {
             @Override
@@ -54,13 +63,15 @@ public class PMView extends LinearLayout {
     }
 
     private void blackBG(){
-        myImage.setBackgroundColor(Color.BLACK);
+        myImage.setBackgroundColor(Color.GREEN);
     }
 
     private void setStyle(){
         LinearLayout.LayoutParams imageParams=new LinearLayout.LayoutParams(1000, 1000);
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
         myTitle.setTextSize(24);
+        myTitle.setTextColor(Color.WHITE);
+        myTitle.setBackgroundColor(Color.GRAY);
         myTitle.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         myTitle.setLayoutParams(textParams);
         imageParams.gravity= Gravity.CENTER;
