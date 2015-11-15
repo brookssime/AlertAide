@@ -6,74 +6,72 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import cs408.alertaide.backend.AAException;
+
 import cs408.alertaide.backend.AA_Manager;
-import org.json.JSONArray;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 
 public class Trig_Ques_Activity extends Activity {
-    LinearLayout linear;
+    LinearLayout myLayout;
     JSONObject tq;
     JSONObject tqAnswers;
     AA_Manager myManager;
     Bundle myBundle;
+    ArrayList<TQView> myTQViews;
+    AAView AAView;
+    LinearLayout.LayoutParams tqPadding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
             super.onCreate(savedInstanceState);
 
             setContentView(R.layout.activity_trig__ques);
-            linear = (LinearLayout) findViewById(R.id.linear);
+            myLayout = (LinearLayout) findViewById(R.id.linear);
             myBundle = getIntent().getExtras();
+            AAView = new AAView(this, "Please Answer Questions");
+            myLayout.addView(AAView);
+
+            tqPadding = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            tqPadding.setMargins(25, 30, 25, 30);
 
             tqAnswers = new JSONObject();
-
-
+            myTQViews = new ArrayList<>();
 
             if (myBundle.getString("condition") == null || myBundle.getString("file") == null) {
                 throw_Error("You have not chosen an appropriate condition.");
             }
 
-
             try {
+                startTime();
                 myManager = new AA_Manager(this);
                 String condition = myBundle.getString("condition");
                 tq = myManager.getTQs(condition);
                 ask_Question(tq);
-            } catch (AAException e) {
-                throw_Error(e.getMessage());
+            } catch (Exception e) {
+                throw_Error("Error starting TQ: "+e.getMessage());
             }
-        }
-        catch(Exception e){
-            throw_Error(e.getMessage());
-        }
-
     }
+
 
     private void ask_Question(JSONObject json) {
         Iterator<String> iter = json.keys();
         while (iter.hasNext()) {
             String key = iter.next();
             try {
-                JSONObject value = (JSONObject) json.get(key);
-                String question = value.getString("question");
-                JSONArray answer = value.getJSONArray("answer_options");
-                set_Question_Layout(question);
-                set_Answer_Layout(question,answer);
+                JSONObject tq = (JSONObject) json.get(key);
+                TQView tqView = new TQView(this, tq);
+                myTQViews.add(tqView);
+                myLayout.addView(tqView, tqPadding);
             } catch (JSONException e) {
-                throw_Error(e.getMessage());
-
+                throw_Error("Error in AskQ "+e.getMessage());
             }
         }
-        //isClicked(linear);
         finish_TQ();
     }
 
@@ -82,6 +80,7 @@ public class Trig_Ques_Activity extends Activity {
         AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
 
+    /*
     private void set_Question_Layout(String question) {
         TextView myText = new TextView(this);
         myText.setText(question);
@@ -122,6 +121,7 @@ public class Trig_Ques_Activity extends Activity {
         linear.addView(buttonLayout);
 //        linear.addView(text);
     }
+    */
 
     private void finish_TQ() {
         AAButton done = new AAButton(this, "Done");
@@ -130,11 +130,17 @@ public class Trig_Ques_Activity extends Activity {
             public void onClick(View view) {
 
                 try {
+                    for(int i=0; i<myTQViews.size(); i++){
+                        TQView tqView = myTQViews.get(i);
+                        if (tqView.getIndex()!=-1) {
+                            tqAnswers.put(tqView.getQuestion(), tqView.getAnswer());
+                        }
+                    }
                     myManager.logInfo(myBundle.getString("file"), "tqAnswers", tqAnswers);
                     int clinicalExpertID = 0;
                     myManager.send_Initial_SMS(myBundle.getString("file"), clinicalExpertID);
                     goto_pmanagement();
-//                    endTime();
+                    endTime();
 
                 } catch (Exception e) {
                     throw_Error(e.getMessage());
@@ -143,7 +149,7 @@ public class Trig_Ques_Activity extends Activity {
 
             }
         });
-        linear.addView(done);
+        myLayout.addView(done);
     }
 
     /**

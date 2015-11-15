@@ -7,9 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import org.json.JSONObject;
 
@@ -29,7 +27,7 @@ public class PManagement_Activity extends Activity {
     int nextCE;
     LinearLayout.LayoutParams layoutParams;
 
-    TitleView myTitle;
+    AAView myTitle;
 
 
     @Override
@@ -42,7 +40,7 @@ public class PManagement_Activity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        myTitle = new TitleView(this, "PATIENT MANAGEMENT");
+        myTitle = new AAView(this, "PATIENT MANAGEMENT");
         myLayout.addView(myTitle, layoutParams);
 
         nextCE = 1;

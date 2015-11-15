@@ -1,12 +1,8 @@
 package cs408.alertaide;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,41 +11,26 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Iterator;
 
-import cs408.alertaide.backend.AAException;
 import cs408.alertaide.backend.AA_Log;
 import cs408.alertaide.backend.AA_Manager;
-import cs408.alertaide.backend.NetworkAsyncTask;
-import cs408.alertaide.backend.PostRequest;
 
 
 public class UpdateActivity extends Activity {
     LinearLayout myLayout;
-    TitleView statusView;
+    AAView statusView;
 
     LinearLayout.LayoutParams layoutParams;
 
@@ -64,7 +45,7 @@ public class UpdateActivity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        statusView = new TitleView(this, "Press to update or to restore app data");
+        statusView = new AAView(this, "Press to update or to restore app data");
         myLayout.addView(statusView, layoutParams);
 
         AAButton updateMe = new AAButton(this, "Update data");
