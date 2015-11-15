@@ -48,21 +48,17 @@ public class Condition_Activity extends Activity {
             String[] radioArray = new String[conditionsJA.length()];
             RadioGroup myGroup = new RadioGroup(this);
             myGroup.setOrientation(RadioGroup.VERTICAL);
+            myGroup.setBackgroundColor(Color.WHITE);
 
             for(int i=0; i<conditionsJA.length(); i++) {
                 radioArray[i] = conditionsJA.getString(i);
-                //spinnerArray[i] =conditionsJA.getString(i);
-
             }
             RadioButton myRadio = new RadioButton(this);
             for(int i=0; i<radioArray.length; i++) {
                 String text = radioArray[i];
                 myRadio.setText(text);
-                myRadio.setTextColor(Color.WHITE);
-                myRadio.setBackgroundColor(Color.GRAY);
-                myRadio.setDrawingCacheBackgroundColor(Color.BLUE);
+                myRadio.setTextColor(Color.BLACK);
                 myRadio.setGravity(View.TEXT_ALIGNMENT_CENTER);
-                myRadio.setHighlightColor(Color.GREEN);
                 myRadio.setOnClickListener(new View.OnClickListener() {
 
                     @Override
