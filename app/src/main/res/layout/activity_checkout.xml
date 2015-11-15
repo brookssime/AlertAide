@@ -4,10 +4,98 @@
     android:layout_height="wrap_content">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
         android:id="@+id/myLayout"
-        android:background="@android:color/background_dark"/>
+        android:background="@android:color/background_dark">
+
+
+
+    <TableLayout
+        android:id="@+id/tl"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/contact_treatment"
+                android:src="@drawable/checkout_ce_t"
+                android:text="Successful Contact CE - Successful Treatment of Patient"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="20dp"
+                android:scaleType="fitCenter"/>
+            <ImageButton
+                android:id="@+id/contact_notreatment"
+                android:src="@drawable/checkout_ce"
+                android:text="Successful Contact CE - Unsuccessful Treatment of Patient"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="20dp"
+                android:scaleType="fitCenter"/>
+
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/nocontact_treatment"
+                android:src="@drawable/checkout_t"
+                android:text="Unsuccessful Contact CE - Successful Treatment of Patient"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="20dp"
+                android:scaleType="fitCenter"/>
+            <ImageButton
+                android:id="@+id/nocontact_notreatment"
+                android:src="@drawable/checkout"
+                android:text="Unsuccessful Contact CE - Unsuccessful Treatment of Patient"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:padding="20dp"
+                android:scaleType="fitCenter"/>
+
+
+        </TableRow>
+
+
+    </TableLayout>
+</LinearLayout>
 
 </ScrollView>
