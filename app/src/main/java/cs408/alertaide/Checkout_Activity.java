@@ -17,6 +17,11 @@ import java.util.Iterator;
 
 import cs408.alertaide.backend.AA_Manager;
 
+import android.widget.ImageButton;
+import android.widget.Toast;
+import android.view.View;
+import android.view.View.OnClickListener;
+
 
 public class Checkout_Activity extends Activity {
 
@@ -36,6 +41,8 @@ public class Checkout_Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+
+
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
         myLayout.setPadding(0, 100, 0, 100);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -44,14 +51,17 @@ public class Checkout_Activity extends Activity {
         myTitle = new AAView(this, "CHECK OUT");
         myLayout.addView(myTitle, layoutParams);
 
+        /*
+        createCheckout();
+
         try {
 
             myManager = new AA_Manager(this);
             myPMJson = myManager.getPMs(myCondition);
-            createCheckout();
+
         } catch (Exception e){
             throw_Error("Failed to start Patient Management \n" + e.getMessage());
-        }
+        }*/
     }
 
     private void throw_Error(String errorMessage) {
@@ -59,6 +69,7 @@ public class Checkout_Activity extends Activity {
     }
 
     private void createCheckout(){
+        /*
         try {
             Iterator<String> iterator = myPMJson.keys();
             while (iterator.hasNext()) {
@@ -70,7 +81,7 @@ public class Checkout_Activity extends Activity {
             }
         } catch (Exception e){
             throw_Error("Error while creating PM views \n" + e.getMessage());
-        }
+        }*/
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,7 +107,7 @@ public class Checkout_Activity extends Activity {
     /** Called when the user clicks any button on Check out page, ends the session in app */
     public void exit(View view) {
         switch(view.getId())
-        {
+        {/*
             case R.id.contact_treatment:
 
 
@@ -112,7 +123,7 @@ public class Checkout_Activity extends Activity {
 
             case R.id.nocontact_notreatment:
                 // Code for button 3 click
-                break;
+                break; */
         }
 
 
