@@ -65,6 +65,10 @@ public class AA_Manager {
 
     //TODO: INCLUDE CALL NOW?
 
+    public void callCE(int ceIndex) throws AAException{
+        myComm.callCE(ceIndex);
+    }
+
    public void logInfo(String file_Name, String key, String value) throws AAException{
        myLog.logToFile(file_Name, key, value);
    }

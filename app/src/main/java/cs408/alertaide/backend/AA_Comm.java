@@ -1,6 +1,8 @@
 package cs408.alertaide.backend;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.telephony.SmsManager;
 
 import org.apache.http.impl.conn.AbstractPooledConnAdapter;
@@ -34,6 +36,18 @@ public class AA_Comm {
         } catch (Exception e) {
             throw new AAException("Failed to send SMS \n"+e.getMessage());
         }
+    }
+
+    public void callCE(int ceIndex) throws AAException{
+        String ceNumber = getCENumber(ceIndex);
+        //Use ACTION_DIAL instead to edit number??
+        Intent in=new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+ceNumber));
+        try{
+            myContext.startActivity(in);
+        } catch (android.content.ActivityNotFoundException e){
+            throw new AAException("Failed to call "+ceNumber+"\n"+e.getMessage());
+        }
+
     }
 
     private String constructMessage(String fileName) throws AAException{

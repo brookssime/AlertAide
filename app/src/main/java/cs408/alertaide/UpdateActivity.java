@@ -39,6 +39,7 @@ import java.util.Iterator;
 
 import cs408.alertaide.backend.AAException;
 import cs408.alertaide.backend.AA_Log;
+import cs408.alertaide.backend.AA_Manager;
 import cs408.alertaide.backend.NetworkAsyncTask;
 import cs408.alertaide.backend.PostRequest;
 
@@ -94,6 +95,26 @@ public class UpdateActivity extends ActionBarActivity {
             }
         });
         myLayout.addView(updateLink);
+
+        Button call = new Button(this);
+        call.setText("Test CALL");
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callCE();
+            }
+        });
+        myLayout.addView(call);
+    }
+
+    private void callCE(){
+        try {
+            AA_Manager manager = new AA_Manager(this);
+            manager.callCE(0);
+        } catch (Exception e){
+            statusView.setText("Failed to call "+e.getMessage());
+        }
+
     }
 
     private void fetchData(){
