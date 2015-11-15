@@ -49,7 +49,7 @@ public class Checkout_Activity extends Activity {
             myManager = new AA_Manager(this);
             myPMJson = myManager.getPMs(myCondition);
             createCheckout();
-        } catch (Exception e){
+        } catch (Exception e) {
             throw_Error("Failed to start Patient Management \n" + e.getMessage());
         }
     }
@@ -58,20 +58,10 @@ public class Checkout_Activity extends Activity {
         AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
 
-    private void createCheckout(){
-        try {
-            Iterator<String> iterator = myPMJson.keys();
-            while (iterator.hasNext()) {
-                String key = iterator.next();
-                JSONObject pm = myPMJson.getJSONObject(key);
-                PMView pmView = new PMView(this, pm);
-                myLayout.addView(pmView, layoutParams);
-                //add view to layout and arraylist for log grabbing;
-            }
-        } catch (Exception e){
-            throw_Error("Error while creating PM views \n" + e.getMessage());
-        }
+    private void createCheckout() {
+
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -93,10 +83,12 @@ public class Checkout_Activity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    /** Called when the user clicks any button on Check out page, ends the session in app */
+
+    /**
+     * Called when the user clicks any button on Check out page, ends the session in app
+     */
     public void exit(View view) {
-        switch(view.getId())
-        {
+        switch (view.getId()) {/*
             case R.id.contact_treatment:
 
 
@@ -113,8 +105,10 @@ public class Checkout_Activity extends Activity {
             case R.id.nocontact_notreatment:
                 // Code for button 3 click
                 break;
-        }
+        }*/
 
+
+        }
 
     }
 }
