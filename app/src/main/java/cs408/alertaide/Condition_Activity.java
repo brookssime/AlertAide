@@ -67,8 +67,7 @@ public class Condition_Activity extends Activity {
 //            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //            mySpinner.setAdapter(spinnerArrayAdapter);
 
-            Button selectButton = new Button(this);
-            selectButton.setText("Select Condition");
+            AAButton selectButton = new AAButton(this, "Select Condition");
             selectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

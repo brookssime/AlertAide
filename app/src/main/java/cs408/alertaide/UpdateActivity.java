@@ -60,8 +60,7 @@ public class UpdateActivity extends ActionBarActivity {
         statusView.setText("Press to update or to restore app data");
         myLayout.addView(statusView);
 
-        Button updateMe = new Button(this);
-        updateMe.setText("Update data");
+        AAButton updateMe = new AAButton(this, "Update data");
         updateMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,8 +69,7 @@ public class UpdateActivity extends ActionBarActivity {
         });
         myLayout.addView(updateMe);
 
-        Button sysRestore = new Button(this);
-        sysRestore.setText("Restore Original");
+        AAButton sysRestore = new AAButton(this, "Restore Original");
         sysRestore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,8 +82,7 @@ public class UpdateActivity extends ActionBarActivity {
         linkInput.setHint("link");
         myLayout.addView(linkInput);
 
-        final Button updateLink = new Button(this);
-        updateLink.setText("Set udpate link");
+        final AAButton updateLink = new AAButton(this, "Set udpate link");
         updateLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

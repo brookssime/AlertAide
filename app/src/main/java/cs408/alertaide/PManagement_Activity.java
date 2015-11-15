@@ -34,7 +34,9 @@ public class PManagement_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pmanagement);
+
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
+        myLayout.setPadding(0, 100, 0, 100);
 
         myTitle = new TitleView(this, "PATIENT MANAGEMENT");
         myLayout.addView(myTitle);
@@ -55,13 +57,14 @@ public class PManagement_Activity extends Activity {
         }
 
         //TODO add to layout
-        Button done = new Button(this);
+        AAButton done = new AAButton(this, "DONE");
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goto_checkout();
             }
         });
+        myLayout.addView(done);
     }
 
     private void createPMViews(){

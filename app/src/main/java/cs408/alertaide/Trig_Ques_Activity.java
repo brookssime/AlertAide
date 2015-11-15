@@ -124,8 +124,7 @@ public class Trig_Ques_Activity extends Activity {
     }
 
     private void finish_TQ() {
-        Button done = new Button(this);
-        done.setText("Done");
+        AAButton done = new AAButton(this, "Done");
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
