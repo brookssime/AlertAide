@@ -15,6 +15,11 @@ public class AAButton extends Button {
     public AAButton(Context context, String prompt){
         super(context);
         this.setText(prompt);
+        this.setStyleDefault();
+    }
+
+
+    public void setStyleDefault(){
         this.setTextColor(Color.WHITE);
         this.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         this.setShadowLayer(5, 5, 5, Color.BLACK);

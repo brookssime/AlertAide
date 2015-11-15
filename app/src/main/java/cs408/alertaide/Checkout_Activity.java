@@ -29,7 +29,7 @@ public class Checkout_Activity extends Activity {
     int nextCE;
     LinearLayout.LayoutParams layoutParams;
 
-    TitleView myTitle;
+    AAView myTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class Checkout_Activity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        myTitle = new TitleView(this, "CHECK OUT");
+        myTitle = new AAView(this, "CHECK OUT");
         myLayout.addView(myTitle, layoutParams);
 
         try {
