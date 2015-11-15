@@ -1,29 +1,40 @@
 package cs408.alertaide;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.widget.Button;
 
 /**
  * Created by brookssime on 11/5/15.
  */
 public class AnswerButton extends Button {
-    String myKey;
+
     String myValue;
+    int myIndex;
 
-    public AnswerButton(Context context, String key, String value) {
+    public AnswerButton(Context context, String value, int index) {
         super(context);
-        myKey = key;
         myValue = value;
-
+        myIndex = index;
+        setText(value);
+        setBackgroundColor(Color.GRAY);
+        setTextColor(Color.WHITE);
     }
 
-    protected String getKey(){
-        return myKey;
-    }
-
-    protected String getValue(){
+    public String getValue(){
         return myValue;
     }
 
+    public void setClicked(){
+        setBackgroundColor(Color.GREEN);
+    }
+
+    public void undoClicked(){
+        setBackgroundColor(Color.GRAY);
+    }
+
+    public int getIndex(){
+        return myIndex;
+    }
 
 }

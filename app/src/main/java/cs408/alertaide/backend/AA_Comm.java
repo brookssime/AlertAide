@@ -78,7 +78,7 @@ public class AA_Comm {
             while (iter.hasNext()) {
                 String tqLabel = iter.next();
                 try {
-                    if(!tqLabel.equals("startTime")){
+                    if(!tqLabel.equals("startTimeStamp") && !tqLabel.equals("endTimeStamp")){
                         messageBuilder.append(quesNum + ") " + tqLabel + " >> ");
                         String answer = answers.getString(tqLabel);
                         messageBuilder.append(answer+"\n");
