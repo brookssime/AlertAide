@@ -1,62 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-    <TextView
-        android:text="CHECK OUT"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="242.0dp"
-        android:layout_height="71.8dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:textSize="32dp" />
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
 
-    <Button
-        android:text="Successful Contacted CE - Successful Treatment of Patient"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:id="@+id/contact_treatment"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_gravity="center"
-        android:onClick="exit"
-         />
-    <Button
-        android:text="Successful Contacted CE - Unsuccessful Treatment of Patient"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:id="@+id/contact_notreatment"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_gravity="center"
-        android:onClick="exit"
-        />
-    <Button
-        android:text="No Contact with CE - Successful Treatment of Patient"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:id="@+id/nocontact_treatment"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_gravity="center"
-        android:onClick="exit"
-       />
-    <Button
-        android:text="No Contact with CE - Unsuccessful Treatment of Patient"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:id="@+id/nocontact_notreatment"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_gravity="center"
-        android:onClick="exit"
-        />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/myLayout"
+        android:background="@android:color/background_dark"/>
 
-
-</LinearLayout>
+</ScrollView>
