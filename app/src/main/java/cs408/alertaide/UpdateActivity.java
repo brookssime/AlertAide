@@ -117,6 +117,7 @@ public class UpdateActivity extends ActionBarActivity {
             JSONObject cond = rootObject.getJSONObject("Condition");
             JSONObject tqs = rootObject.getJSONObject("Trigger Questions");
             JSONObject pms = rootObject.getJSONObject("Patient Management");
+            JSONObject ceArrayObject = rootObject.getJSONObject("Clinical Experts Array");
             JSONObject ces = rootObject.getJSONObject("Clinical Experts");
 
             //Check conditions array
@@ -153,11 +154,13 @@ public class UpdateActivity extends ActionBarActivity {
                 //Drawable drawable = getResources().getDrawable(getResources().getIdentifier("icon.png", "drawable", getPackageName()));
             }
 
-            //Check each Clinical Expert
-            iter = ces.keys();
-            while(iter.hasNext()){
-                String key = iter.next();
-                JSONObject ce = ces.getJSONObject(key);
+            //Check each Clinical Expert Array
+            JSONArray ceArray = ceArrayObject.getJSONArray("CE_Array");
+
+            //Check each CE
+            for (int i=0; i<ceArray.length(); i++){
+                String ceid = ceArray.getString(i);
+                JSONObject ce = ces.getJSONObject(ceid);
                 String number = ce.getString("number");
             }
 
