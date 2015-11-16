@@ -25,11 +25,17 @@ public class Login_Activity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
         try {
             myManager = new AA_Manager(this);
         } catch (Exception e) {
             //TODO Brooks, implement what to show if the APP cannot load its backend DATA
         }
+
         /*
         if (myManager.check_HW_Info()){
             goto_conditions();

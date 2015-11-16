@@ -1,19 +1,24 @@
 package cs408.alertaide;
 
 import android.app.Activity;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
+
+import cs408.alertaide.backend.AA_Manager;
+
 import android.widget.TextView;
 
 import org.json.JSONException;
+
 import org.json.JSONObject;
 
 import java.util.Iterator;
@@ -30,6 +35,7 @@ import java.util.Arrays;
 
 public class Checkout_Activity extends Activity implements OnClickListener {
 
+
     LinearLayout myLayout;
     AA_Manager myManager;
     JSONObject myCheckout;
@@ -45,7 +51,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
     ImageButton noce_not_button;
     ImageButton ce_not_button;
 
-    AAView myTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +60,17 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
         myCheckout = new JSONObject();
 
+        myLayout = (LinearLayout) findViewById(R.id.myLayout);
+        myLayout.setPadding(0, 100, 0, 100);
+        layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(25, 75, 25, 75);
+
         checkoutanswer = "default";
         ce_t = false;
         noce_t = false;
         noce_not = false;
         ce_not = false;
+
 
 
 
@@ -73,6 +85,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
         setButtonColors();
 
+
     }
 
 
@@ -81,6 +94,8 @@ public class Checkout_Activity extends Activity implements OnClickListener {
     private void throw_Error(String errorMessage) {
         AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
+
+
 
 
     @Override
@@ -104,6 +119,8 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     private void timeStamp () throws JSONException {
         Long end = System.currentTimeMillis();
@@ -133,6 +150,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
         switch(v.getId())
         {
+
             case R.id.contact_treatment:
                 if(ce_t)
                 {
@@ -168,6 +186,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
             case R.id.nocontact_treatment:
                 // Code for button 3 click
+
                 if(noce_t)
                 {
                     v.setBackgroundColor(Color.LTGRAY);
@@ -180,6 +199,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
                     noce_t = true;
 
                 }
+
                 checkoutanswer = "Unsuccessful CE Contact, Successful Patient Treatment";
                 break;
 
@@ -198,9 +218,15 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
                 }
                 checkoutanswer = "Unsuccessful CE Contact, Unsuccessful Patient Treatment";
+
+
                 break;
+
+
         }
+
     }
+
 
     /** Called when the user clicks any button on Check out page, ends the session in app */
     public void exit(View view) throws JSONException {
@@ -226,6 +252,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
         Intent intent = new Intent(this, Condition_Activity.class);
         Bundle extras = new Bundle();
         startActivity(intent);
+
 
     }
 }

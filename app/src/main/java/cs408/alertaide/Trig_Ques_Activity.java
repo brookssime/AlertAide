@@ -18,14 +18,14 @@ import java.util.Iterator;
 
 
 public class Trig_Ques_Activity extends Activity {
-    LinearLayout myLayout;
-    JSONObject tq;
-    JSONObject tqAnswers;
-    AA_Manager myManager;
-    Bundle myBundle;
-    ArrayList<TQView> myTQViews;
-    AAView AAView;
-    LinearLayout.LayoutParams tqPadding;
+    private LinearLayout myLayout;
+    private JSONObject tq;
+    private JSONObject tqAnswers;
+    private AA_Manager myManager;
+    private Bundle myBundle;
+    private ArrayList<TQView> myTQViews;
+    private AAView AAView;
+    private LinearLayout.LayoutParams tqPadding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

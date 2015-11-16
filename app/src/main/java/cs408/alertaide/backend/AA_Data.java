@@ -16,9 +16,11 @@ import java.io.InputStreamReader;
  * A class with multiple static methods that fetch different data
  * Created by Negatu on 10/20/15.
  */
-public class AA_Data {
+class AA_Data {
 
+    @SuppressWarnings("WeakerAccess")
     Context myContext;
+    @SuppressWarnings("WeakerAccess")
     JSONObject myData;
 
     public AA_Data(Context context) throws AAException{
