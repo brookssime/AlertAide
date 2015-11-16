@@ -18,6 +18,10 @@ public class AAView extends TextView {
     public AAView(Context context, String title){
         super(context);
         this.setText(title);
+        this.setStyleDefault();
+    }
+
+    public void setStyleDefault(){
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
         this.setTextSize(24);
         this.setTextColor(Color.WHITE);
@@ -28,6 +32,5 @@ public class AAView extends TextView {
         shape.setColor(Color.parseColor("#0099cc"));
         shape.setCornerRadius(20);
         this.setBackground(shape);
-
     }
 }
