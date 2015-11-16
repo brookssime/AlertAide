@@ -1,12 +1,7 @@
 package cs408.alertaide;
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,18 +9,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.json.JSONObject;
-import cs408.alertaide.backend.AA_Manager;
 import cs408.alertaide.backend.AA_Log;
+import cs408.alertaide.backend.AA_Manager;
+import org.json.JSONObject;
 
 /**
  * Created by Negatu on 10/11/15.
  */
 public class TestBackend_Activity extends Activity {
 
-    LinearLayout myLayout;
-    TextView titleView;
+    private LinearLayout myLayout;
+    private TextView titleView;
 
 
     @Override

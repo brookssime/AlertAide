@@ -55,7 +55,7 @@ public class Splash_Activity extends Activity {
         startActivity(intent);
     }
 
-    public void goto_login_page(){
+    private void goto_login_page(){
         Intent intent = new Intent(this, Login_Activity.class);
         Bundle extras = new Bundle();
         //extras.putString("username", username);

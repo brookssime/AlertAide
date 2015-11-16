@@ -14,7 +14,7 @@ import org.json.JSONObject;
 /**
  * Created by Negatu on 11/15/15.
  */
-public class PMView extends LinearLayout {
+class PMView extends LinearLayout {
 
     Context myContext;
     JSONObject myData;

@@ -20,8 +20,9 @@ public class Condition_Activity extends Activity {
     private LinearLayout myLayout;
     private AA_Manager myManager;
     private AAView promptView;
+    private Button myButton;
 
-    LinearLayout.LayoutParams layoutParams;
+    private LinearLayout.LayoutParams layoutParams;
 
 
     @Override
@@ -44,35 +45,53 @@ public class Condition_Activity extends Activity {
 
         try {
             JSONArray conditionsJA = myManager.getConditions();
-            //String[] spinnerArray = new String[conditionsJA.length()];
-            String[] radioArray = new String[conditionsJA.length()];
-            RadioGroup myGroup = new RadioGroup(this);
-            myGroup.setOrientation(RadioGroup.VERTICAL);
-            myGroup.setBackgroundColor(Color.WHITE);
+            String[] buttonArray = new String[conditionsJA.length()];
+
 
             for(int i=0; i<conditionsJA.length(); i++) {
-                radioArray[i] = conditionsJA.getString(i);
+                buttonArray[i] = conditionsJA.getString(i);
             }
-            RadioButton myRadio = new RadioButton(this);
-            for(int i=0; i<radioArray.length; i++) {
-                String text = radioArray[i];
-                myRadio.setText(text);
-                myRadio.setTextColor(Color.BLACK);
-                myRadio.setGravity(View.TEXT_ALIGNMENT_CENTER);
-                myRadio.setOnClickListener(new View.OnClickListener() {
 
+            TableLayout myTable = new TableLayout(this);
+            TableRow myFirstRow = new TableRow(this);
+            TableRow mySecondRow = new TableRow(this);
+            int count = 0;
+            for(int i=0; i<buttonArray.length; i++) {
+                myButton = new Button(this);
+                String text = buttonArray[i];
+                myButton.setText(text);
+                myButton.setTextColor(Color.BLACK);
+                myButton.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        RadioButton rb = (RadioButton) view;
+                        Button rb = (Button) view;
                         selectedCondition = (String) rb.getText();
                     }
                 });
-                myGroup.addView(myRadio);
-                myRadio = new RadioButton(this);
+
+                try {
+                    if (count == 0){
+                        myFirstRow.addView(myButton);
+                        count++;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    if (count ==1){
+                        mySecondRow.addView(myButton);
+                        count--;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
             }
-//            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray); //selected item will look like a spinner set from XML
-//            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//            mySpinner.setAdapter(spinnerArrayAdapter);
+
+            myTable.addView(myFirstRow);
+           // myTable.addView(mySecondRow);
 
             AAButton selectButton = new AAButton(this, "Select Condition");
             selectButton.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +103,7 @@ public class Condition_Activity extends Activity {
 
             LinearLayout selectLayout = new LinearLayout(this);
             selectLayout.setOrientation(LinearLayout.VERTICAL);
-            selectLayout.addView(myGroup, layoutParams);
+            selectLayout.addView(myTable, layoutParams);
             selectLayout.addView(selectButton, layoutParams);
             myLayout.addView(selectLayout, layoutParams);
 

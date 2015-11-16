@@ -24,22 +24,24 @@ public class Login_Activity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
         try {
             myManager = new AA_Manager(this);
         } catch (Exception e) {
             //TODO Brooks, implement what to show if the APP cannot load its backend DATA
         }
 
-        if (myManager.check_HW_Info()){
-            goto_conditions();
-            finish();
+//        if (myManager.check_HW_Info()){
+//            goto_conditions();
+//            finish();
 
             //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
-        }
+//        }
 
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         editName = (EditText) findViewById(R.id.editName);
         editCountry = (EditText) findViewById(R.id.editCountry);

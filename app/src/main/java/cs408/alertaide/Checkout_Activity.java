@@ -1,16 +1,13 @@
 package cs408.alertaide;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
+import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONObject;
 
 import java.util.Iterator;
@@ -25,22 +22,23 @@ import android.view.View.OnClickListener;
 
 public class Checkout_Activity extends Activity {
 
-    LinearLayout myLayout;
-    AA_Manager myManager;
-    String myCondition;
+    private LinearLayout myLayout;
+    private AA_Manager myManager;
+    private String myCondition;
     String myFile;
-    JSONObject myPMJson;
+    private JSONObject myPMJson;
 
     int nextCE;
-    LinearLayout.LayoutParams layoutParams;
+    private LinearLayout.LayoutParams layoutParams;
 
-    AAView myTitle;
+
+    private AAView myTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-
 
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
@@ -68,7 +66,7 @@ public class Checkout_Activity extends Activity {
         AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
 
-    private void createCheckout(){
+    private void createCheckout() {
         /*
         try {
             Iterator<String> iterator = myPMJson.keys();
@@ -83,6 +81,7 @@ public class Checkout_Activity extends Activity {
             throw_Error("Error while creating PM views \n" + e.getMessage());
         }*/
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -104,9 +103,13 @@ public class Checkout_Activity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    /** Called when the user clicks any button on Check out page, ends the session in app */
+
+    /**
+     * Called when the user clicks any button on Check out page, ends the session in app
+     */
     public void exit(View view) {
-        switch(view.getId())
+        switch (view.getId())
+
         {/*
             case R.id.contact_treatment:
 
@@ -124,8 +127,8 @@ public class Checkout_Activity extends Activity {
             case R.id.nocontact_notreatment:
                 // Code for button 3 click
                 break; */
+
+
         }
-
-
     }
 }
