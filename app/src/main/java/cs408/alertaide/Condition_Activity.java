@@ -31,6 +31,8 @@ public class Condition_Activity extends Activity {
         setContentView(R.layout.activity_condition);
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
+        LinearLayout myLinear = new LinearLayout(this);
+        myLinear.setOrientation(LinearLayout.VERTICAL);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
@@ -45,20 +47,15 @@ public class Condition_Activity extends Activity {
 
         try {
             JSONArray conditionsJA = myManager.getConditions();
-            String[] buttonArray = new String[conditionsJA.length()];
-
+            String[] nameArray = new String[conditionsJA.length()];
 
             for(int i=0; i<conditionsJA.length(); i++) {
-                buttonArray[i] = conditionsJA.getString(i);
+                nameArray[i] = conditionsJA.getString(i);
             }
 
-            TableLayout myTable = new TableLayout(this);
-            TableRow myFirstRow = new TableRow(this);
-            TableRow mySecondRow = new TableRow(this);
-            int count = 0;
-            for(int i=0; i<buttonArray.length; i++) {
+            for(int i=0; i<nameArray.length; i++) {
                 myButton = new Button(this);
-                String text = buttonArray[i];
+                String text = nameArray[i];
                 myButton.setText(text);
                 myButton.setTextColor(Color.BLACK);
                 myButton.setGravity(View.TEXT_ALIGNMENT_CENTER);
@@ -67,48 +64,17 @@ public class Condition_Activity extends Activity {
                     public void onClick(View view) {
                         Button rb = (Button) view;
                         selectedCondition = (String) rb.getText();
+                        goto_trigger_questions();
                     }
                 });
-
-                try {
-                    if (count == 0){
-                        myFirstRow.addView(myButton);
-                        count++;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                try {
-                    if (count ==1){
-                        mySecondRow.addView(myButton);
-                        count--;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-
+                myLinear.addView(myButton);
             }
 
-            myTable.addView(myFirstRow);
-           // myTable.addView(mySecondRow);
 
-            AAButton selectButton = new AAButton(this, "Select Condition");
-            selectButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    goto_trigger_questions();
-                }
-            });
-
-            LinearLayout selectLayout = new LinearLayout(this);
-            selectLayout.setOrientation(LinearLayout.VERTICAL);
-            selectLayout.addView(myTable, layoutParams);
-            selectLayout.addView(selectButton, layoutParams);
-            myLayout.addView(selectLayout, layoutParams);
+            myLayout.addView(myLinear, layoutParams);
 
         } catch (Exception e) {
-            throwError("Failed to create list of conditions \n" + e.getMessage());
+            throwError("Failed to create list of conditions\n" + e.getMessage());
         }
 
 
@@ -157,4 +123,6 @@ public class Condition_Activity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

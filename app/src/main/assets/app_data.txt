@@ -1,12 +1,12 @@
 {
     "Conditions Array":
     {
-        "conditions_array": [ "pphem", "preeclampsia"]
+        "conditions_array": [ "Postpartum Hemorrhage", "preeclampsia"]
     },
     
     "Condition":
     {
-        "pphem": {
+        "Postpartum Hemorrhage": {
                 "name": "Postpartum Hemorrhage",
                 "status": true,
                 "TQ_Array": ["TQ1", "TQ2", "TQ3", "TQ4", "TQ5"],

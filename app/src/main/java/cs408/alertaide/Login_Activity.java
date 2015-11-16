@@ -89,9 +89,6 @@ public class Login_Activity extends Activity {
     private void goto_conditions(){
         Intent intent = new Intent(this, Condition_Activity.class);
         Bundle extras = new Bundle();
-        //extras.putString("username", username);
-        //extras.putString("password", password);
-        //intent.putExtras(extras);
         startActivity(intent);
     }
 

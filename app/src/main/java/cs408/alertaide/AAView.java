@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.security.Timestamp;
-
 /**
  * Created by Negatu on 11/15/15.
  */
@@ -23,13 +21,13 @@ class AAView extends TextView {
 
     public void setStyleDefault(){
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
-        this.setTextSize(24);
+        this.setTextSize(20);
         this.setTextColor(Color.WHITE);
-        this.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        this.setGravity(Gravity.CENTER);
         this.setShadowLayer(1, 1, 1, Color.BLACK);
 
         GradientDrawable shape =  new GradientDrawable();
-        shape.setColor(Color.parseColor("#0099cc"));
+        shape.setColor(Color.parseColor("#cc0042a0"));
         shape.setCornerRadius(20);
         this.setBackground(shape);
     }
