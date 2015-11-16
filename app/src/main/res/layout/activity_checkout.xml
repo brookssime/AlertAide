@@ -1,14 +1,15 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="fill_parent"
+    android:background="@android:color/background_dark">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
-        android:id="@+id/myLayout"
-        android:background="@android:color/background_dark">
+        android:id="@+id/myLayout">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -18,10 +19,10 @@
         android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:text="Check Out"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="12dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         />
 
 
@@ -40,27 +41,27 @@
             <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:textColor="#FFFFFF"
             android:layout_gravity="center_horizontal"
                 android:gravity="center"
-            android:text="Successful CE Contact \n Successful Patient Treatment"
+            android:text="Successful CE Contact\nSuccessful Patient Treatment"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
             android:layout_marginTop="0dp"
             />
             <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="10dp"
+            android:textSize="12dp"
             android:textColor="#FFFFFF"
                 android:gravity="center"
             android:layout_gravity="center_horizontal"
-                android:text="Successful CE Contact \n Unsuccessful Patient Treatment"
+                android:text="Successful CE Contact\nUnsuccessful Patient Treatment"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="0dp"
             />
      </TableRow>
@@ -73,11 +74,10 @@
             <ImageButton
                 android:id="@+id/contact_treatment"
                 android:src="@drawable/checkout_ce_t"
-                android:text="Successful Contact CE - Successful Treatment of Patient"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
@@ -88,12 +88,11 @@
             <ImageButton
                 android:id="@+id/contact_notreatment"
                 android:src="@drawable/checkout_ce"
-                android:text="Successful Contact CE - Unsuccessful Treatment of Patient"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
@@ -111,27 +110,27 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:textColor="#FFFFFF"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:text="Unsuccessful CE Contact \n Successful Patient Treatment"
+                android:text="Unsuccessful CE Contact\nSuccessful Patient Treatment"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="2dp"
                 android:layout_marginTop="0dp"
                 />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
-                android:text="Unsuccessful CE Contact \n Unsuccessful Patient Treatment"
+                android:text="Unsuccessful CE Contact\nUnsuccessful Patient Treatment"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="2dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="0dp"
                 />
         </TableRow>
@@ -148,7 +147,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
@@ -159,12 +158,11 @@
             <ImageButton
                 android:id="@+id/nocontact_notreatment"
                 android:src="@drawable/checkout"
-                android:text="Unsuccessful Contact CE - Unsuccessful Treatment of Patient"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="0dp"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
@@ -187,9 +185,9 @@
             android:layout_gravity="center_horizontal"
             android:text="Done"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
             android:onClick="exit"
         />
 

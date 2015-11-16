@@ -36,6 +36,14 @@ public class Checkout_Activity extends Activity implements OnClickListener {
     LinearLayout.LayoutParams layoutParams;
     String checkoutanswer;
     Bundle myBundle;
+    boolean ce_t;
+    boolean noce_t;
+    boolean noce_not;
+    boolean ce_not;
+    ImageButton ce_t_button;
+    ImageButton noce_t_button;
+    ImageButton noce_not_button;
+    ImageButton ce_not_button;
 
     AAView myTitle;
 
@@ -47,16 +55,23 @@ public class Checkout_Activity extends Activity implements OnClickListener {
         myCheckout = new JSONObject();
 
         checkoutanswer = "default";
+        ce_t = false;
+        noce_t = false;
+        noce_not = false;
+        ce_not = false;
 
-        ImageButton btn = (ImageButton)findViewById(R.id.contact_treatment);
-        btn.setOnClickListener(this); // calling onClick() method
-        ImageButton btn1 = (ImageButton)findViewById(R.id.nocontact_treatment);
-        btn1.setOnClickListener(this); // calling onClick() method
-        ImageButton btn2 = (ImageButton)findViewById(R.id.contact_notreatment);
-        btn2.setOnClickListener(this); // calling onClick() method
-        ImageButton btn3 = (ImageButton)findViewById(R.id.nocontact_notreatment);
-        btn3.setOnClickListener(this); // calling onClick() method
 
+
+        ce_t_button = (ImageButton)findViewById(R.id.contact_treatment);
+        ce_t_button.setOnClickListener(this); // calling onClick() method
+        noce_t_button = (ImageButton)findViewById(R.id.nocontact_treatment);
+        noce_t_button.setOnClickListener(this); // calling onClick() method
+        ce_not_button = (ImageButton)findViewById(R.id.contact_notreatment);
+        ce_not_button.setOnClickListener(this); // calling onClick() method
+        noce_not_button = (ImageButton)findViewById(R.id.nocontact_notreatment);
+        noce_not_button.setOnClickListener(this); // calling onClick() method
+
+        setButtonColors();
 
     }
 
@@ -97,6 +112,19 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
     }
 
+    private void setButtonColors ()
+    {
+        ce_t_button.setBackgroundColor(Color.LTGRAY);
+        ce_not_button.setBackgroundColor(Color.LTGRAY);
+        noce_t_button.setBackgroundColor(Color.LTGRAY);
+        noce_not_button.setBackgroundColor(Color.LTGRAY);
+
+        ce_t = false;
+        ce_not = false;
+        noce_t = false;
+        noce_not = false;
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -106,34 +134,69 @@ public class Checkout_Activity extends Activity implements OnClickListener {
         switch(v.getId())
         {
             case R.id.contact_treatment:
-                if(v.getBackground().equals(Color.GREEN))
+                if(ce_t)
                 {
-                    v.setBackgroundColor(Color.TRANSPARENT);
+                    v.setBackgroundColor(Color.LTGRAY);
+                    ce_t = false;
                 }
 
                 else {
+                    setButtonColors();
                     v.setBackgroundColor(Color.GREEN);
+                    ce_t = true;
                 }
                 checkoutanswer = "Successful CE Contact, Successful Patient Treatment";
-
                 break;
 
             case R.id.contact_notreatment:
                 // Code for button 3 click
-                v.setBackgroundColor(Color.GREEN);
+                if(ce_not)
+                {
+                    v.setBackgroundColor(Color.LTGRAY);
+                    ce_not = false;
+                }
+
+                else {
+                    setButtonColors();
+                    v.setBackgroundColor(Color.GREEN);
+                    ce_not = true;
+
+                }
                 checkoutanswer = "Successful CE Contact, Unsuccessful Patient Treatment";
 
                 break;
 
             case R.id.nocontact_treatment:
                 // Code for button 3 click
-                v.setBackgroundColor(Color.GREEN);
+                if(noce_t)
+                {
+                    v.setBackgroundColor(Color.LTGRAY);
+                    noce_t = false;
+                }
+
+                else {
+                    setButtonColors();
+                    v.setBackgroundColor(Color.GREEN);
+                    noce_t = true;
+
+                }
                 checkoutanswer = "Unsuccessful CE Contact, Successful Patient Treatment";
                 break;
 
             case R.id.nocontact_notreatment:
                 // Code for button 3 click
-                v.setBackgroundColor(Color.GREEN);
+                if(noce_not)
+                {
+                    v.setBackgroundColor(Color.LTGRAY);
+                    noce_not = false;
+                }
+
+                else {
+                    setButtonColors();
+                    v.setBackgroundColor(Color.GREEN);
+                    noce_not = true;
+
+                }
                 checkoutanswer = "Unsuccessful CE Contact, Unsuccessful Patient Treatment";
                 break;
         }

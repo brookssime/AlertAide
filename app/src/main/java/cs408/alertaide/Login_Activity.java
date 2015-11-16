@@ -22,6 +22,7 @@ public class Login_Activity extends Activity {
     private EditText editCountry;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
@@ -29,7 +30,7 @@ public class Login_Activity extends Activity {
         } catch (Exception e) {
             //TODO Brooks, implement what to show if the APP cannot load its backend DATA
         }
-
+        /*
         if (myManager.check_HW_Info()){
             goto_conditions();
             finish();
@@ -37,7 +38,7 @@ public class Login_Activity extends Activity {
             //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
         }
 
-
+*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
