@@ -37,9 +37,9 @@ class PMView extends LinearLayout {
     private void createMyView(){
         myTitle = new TextView(myContext);
         try {
-            myTitle.setText(myData.getString("label"));
+            myTitle.setText(myData.getString("action"));
         } catch (Exception e){
-            myTitle.setText("PM label not found");
+            myTitle.setText("PM action not found");
         }
         this.addView(myTitle);
 
@@ -82,7 +82,7 @@ class PMView extends LinearLayout {
         return "not done";
     }
 
-    public String getLabel(){
+    public String getAction(){
         try {
             return myData.getString("action");
         } catch (Exception e){
