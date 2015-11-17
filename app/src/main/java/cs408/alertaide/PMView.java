@@ -37,9 +37,9 @@ class PMView extends LinearLayout {
     private void createMyView(){
         myTitle = new TextView(myContext);
         try {
-            myTitle.setText(myData.getString("label"));
+            myTitle.setText(myData.getString("action"));
         } catch (Exception e){
-            myTitle.setText("PM label not found");
+            myTitle.setText("PM action not found");
         }
         this.addView(myTitle);
 
@@ -52,7 +52,7 @@ class PMView extends LinearLayout {
             myImage.setImageResource(R.drawable.no_image);
         }
 
-        myImage.setBackgroundColor(Color.RED);
+        myImage.setBackgroundColor(Color.parseColor("#990000"));
 
         myImage.setOnClickListener(new OnClickListener() {
             @Override
@@ -67,10 +67,10 @@ class PMView extends LinearLayout {
 
     private void clicked(){
         if (status) {
-            myImage.setBackgroundColor(Color.RED);
+            myImage.setBackgroundColor(Color.parseColor("#990000"));
             status = false;
         } else {
-            myImage.setBackgroundColor(Color.GREEN);
+            myImage.setBackgroundColor(Color.parseColor("#339900"));
             status = true;
         }
     }
@@ -82,7 +82,7 @@ class PMView extends LinearLayout {
         return "not done";
     }
 
-    public String getLabel(){
+    public String getAction(){
         try {
             return myData.getString("action");
         } catch (Exception e){
