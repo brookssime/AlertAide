@@ -8,9 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Gravity;
 import android.widget.*;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class Condition_Activity extends Activity {
@@ -21,6 +24,7 @@ public class Condition_Activity extends Activity {
     private AA_Manager myManager;
     private AAView promptView;
     private Button myButton;
+    JSONObject myCondition;
 
     private LinearLayout.LayoutParams layoutParams;
 
@@ -29,6 +33,7 @@ public class Condition_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condition);
+        myCondition = new JSONObject();
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
         LinearLayout myLinear = new LinearLayout(this);
@@ -36,7 +41,7 @@ public class Condition_Activity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        promptView = new AAView(this, "PLEASE SELECT A CONDITION");
+        promptView = new AAView(this, "SELECT A CONDITION", 1);
         myLayout.addView(promptView, layoutParams);
 
         try {
@@ -57,8 +62,11 @@ public class Condition_Activity extends Activity {
                 myButton = new Button(this);
                 String text = nameArray[i];
                 myButton.setText(text);
+                myButton.setPadding(20, 30, 20, 30);
                 myButton.setTextColor(Color.BLACK);
-                myButton.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                myButton.setTextSize(20);
+                myButton.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+
                 myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -80,13 +88,27 @@ public class Condition_Activity extends Activity {
 
     }
 
+    private void timeStamp () throws JSONException {
+        Long end = System.currentTimeMillis();
+        String time = end.toString();
+        myCondition.put("timeStamp", time);
 
+    }
 
 
     private void goto_trigger_questions(){
         try {
+            //Logging
+            timeStamp();
+            myCondition.put("conditionName", selectedCondition);
+
+
             //selectedCondition = mySpinner.getSelectedItem().toString();
             logFileID = myManager.getLogSession(selectedCondition);
+
+            //myManager.logInfo(logFileID, "condition", myCondition );
+            /*Toast.makeText(Condition_Activity.this,
+                    myCondition.toString(), Toast.LENGTH_LONG).show();*/
             Intent intent = new Intent(this, Trig_Ques_Activity.class);
             Bundle extras = new Bundle();
             extras.putString("condition", selectedCondition);
@@ -96,6 +118,8 @@ public class Condition_Activity extends Activity {
         } catch (Exception e) {
             throwError("Failed to select the condition \n" +  e.getMessage());
         }
+
+
     }
 
     private void throwError(String errorMessage) {

@@ -40,7 +40,7 @@ public class PManagement_Activity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        myTitle = new AAView(this, "PATIENT MANAGEMENT");
+        myTitle = new AAView(this, "PATIENT MANAGEMENT",1);
         myLayout.addView(myTitle, layoutParams);
 
         nextCE = 1;

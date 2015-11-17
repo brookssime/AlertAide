@@ -62,9 +62,6 @@ public class AA_Manager {
         myComm.sendSMS(file_Name, CEID);
     }
 
-
-    //TODO: INCLUDE CALL NOW?
-
     public void callCE(int ceIndex) throws AAException{
         myComm.callCE(ceIndex);
     }

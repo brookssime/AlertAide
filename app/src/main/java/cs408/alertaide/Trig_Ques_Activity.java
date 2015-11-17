@@ -34,7 +34,7 @@ public class Trig_Ques_Activity extends Activity {
             setContentView(R.layout.activity_trig__ques);
             myLayout = (LinearLayout) findViewById(R.id.linear);
             myBundle = getIntent().getExtras();
-            AAView = new AAView(this, "Please Answer Questions");
+            AAView = new AAView(this, "Answer Questions",1);
             myLayout.addView(AAView);
 
             tqPadding = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

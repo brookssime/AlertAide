@@ -1,6 +1,7 @@
 package cs408.alertaide;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -34,7 +35,7 @@ class TQView extends LinearLayout {
 
         myAnswersView = new LinearLayout(myContext);
         myAnswersView.setOrientation(HORIZONTAL);
-        myAnswersView.setGravity(TEXT_ALIGNMENT_CENTER);
+        myAnswersView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         answersPadding = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         answersPadding.setMargins(25, 10, 25, 10);
 
@@ -47,9 +48,9 @@ class TQView extends LinearLayout {
     private void createMyView(){
         try {
             myQuestion = myData.getString("question");
-            myQuestionView = new AAView(myContext, myQuestion);
+            myQuestionView = new AAView(myContext, myQuestion, 1);
         } catch (Exception e){
-            myQuestionView = new AAView(myContext, "Missing Question");
+            myQuestionView = new AAView(myContext, "Missing Question",1);
         }
         this.addView(myQuestionView);
 
@@ -68,7 +69,7 @@ class TQView extends LinearLayout {
                 });
             }
         } catch (Exception e) {
-            AAView missingAnswers = new AAView(myContext, "Missing Answers");
+            AAView missingAnswers = new AAView(myContext, "Missing Answers", 1);
             myAnswersView.addView(missingAnswers);
         }
         this.addView(myAnswersView);

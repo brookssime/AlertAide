@@ -152,8 +152,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
         {
 
             case R.id.contact_treatment:
-                if(ce_t)
-                {
+                if(ce_t) {
                     v.setBackgroundColor(Color.LTGRAY);
                     ce_t = false;
                 }
@@ -168,8 +167,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
             case R.id.contact_notreatment:
                 // Code for button 3 click
-                if(ce_not)
-                {
+                if(ce_not) {
                     v.setBackgroundColor(Color.LTGRAY);
                     ce_not = false;
                 }
@@ -178,7 +176,6 @@ public class Checkout_Activity extends Activity implements OnClickListener {
                     setButtonColors();
                     v.setBackgroundColor(Color.GREEN);
                     ce_not = true;
-
                 }
                 checkoutanswer = "Successful CE Contact, Unsuccessful Patient Treatment";
 
@@ -187,8 +184,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
             case R.id.nocontact_treatment:
                 // Code for button 3 click
 
-                if(noce_t)
-                {
+                if(noce_t) {
                     v.setBackgroundColor(Color.LTGRAY);
                     noce_t = false;
                 }
@@ -197,7 +193,6 @@ public class Checkout_Activity extends Activity implements OnClickListener {
                     setButtonColors();
                     v.setBackgroundColor(Color.GREEN);
                     noce_t = true;
-
                 }
 
                 checkoutanswer = "Unsuccessful CE Contact, Successful Patient Treatment";
@@ -205,8 +200,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
             case R.id.nocontact_notreatment:
                 // Code for button 3 click
-                if(noce_not)
-                {
+                if(noce_not) {
                     v.setBackgroundColor(Color.LTGRAY);
                     noce_not = false;
                 }
@@ -215,10 +209,8 @@ public class Checkout_Activity extends Activity implements OnClickListener {
                     setButtonColors();
                     v.setBackgroundColor(Color.GREEN);
                     noce_not = true;
-
                 }
                 checkoutanswer = "Unsuccessful CE Contact, Unsuccessful Patient Treatment";
-
 
                 break;
 
