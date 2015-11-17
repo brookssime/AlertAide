@@ -20,6 +20,7 @@ import java.util.Iterator;
 public class Trig_Ques_Activity extends Activity {
     LinearLayout myLayout;
     JSONObject tq;
+    JSONObject tqLog;
     JSONObject tqAnswers;
     AA_Manager myManager;
     Bundle myBundle;
@@ -41,6 +42,8 @@ public class Trig_Ques_Activity extends Activity {
             tqPadding.setMargins(25, 30, 25, 30);
 
             tqAnswers = new JSONObject();
+            tqLog = new JSONObject();
+
             myTQViews = new ArrayList<>();
 
             if (myBundle.getString("condition") == null || myBundle.getString("file") == null) {
@@ -136,7 +139,8 @@ public class Trig_Ques_Activity extends Activity {
                             tqAnswers.put(tqView.getQuestion(), tqView.getAnswer());
                         }
                     }
-                    myManager.logInfo(myBundle.getString("file"), "tqAnswers", tqAnswers);
+                    tqLog.put("tqLog", tqAnswers);
+                    myManager.logInfo(myBundle.getString("file"), "tqLog", tqAnswers);
                     int clinicalExpertID = 0;
                     myManager.send_Initial_SMS(myBundle.getString("file"), clinicalExpertID);
                     goto_pmanagement();
@@ -189,16 +193,12 @@ public class Trig_Ques_Activity extends Activity {
         Long start = System.currentTimeMillis();
         String startTime = start.toString();
         tqAnswers.put("startTimeStamp", startTime);
-
-
-
     }
 
     private void endTime() throws JSONException {
         Long end = System.currentTimeMillis();
         String endTime = end.toString();
         tqAnswers.put("endTimeStamp", endTime);
-
     }
 
 

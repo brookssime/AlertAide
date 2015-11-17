@@ -7,10 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import cs408.alertaide.backend.AA_Manager;
@@ -19,16 +21,20 @@ import cs408.alertaide.backend.AA_Manager;
 public class PManagement_Activity extends Activity {
 
     LinearLayout myLayout;
+    ArrayList<PMView> myPMViews;
     AA_Manager myManager;
     String myCondition;
     String myFile;
+
     JSONObject myPMJson;
+
+    JSONObject pmLog;
+    JSONObject myLog;
 
     int nextCE;
     LinearLayout.LayoutParams layoutParams;
 
     AAView myTitle;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +48,12 @@ public class PManagement_Activity extends Activity {
 
         myTitle = new AAView(this, "PATIENT MANAGEMENT");
         myLayout.addView(myTitle, layoutParams);
+        myPMViews = new ArrayList<>();
 
         nextCE = 1;
+        myLog = new JSONObject();
+        pmLog = new JSONObject();
+
         try {
             if (getIntent().getExtras().getString("condition") == null || getIntent().getExtras().getString("file") == null) {
                 throw_Error("Failed to get condition and file ");
@@ -63,31 +73,31 @@ public class PManagement_Activity extends Activity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goto_checkout();
+                finishPM();
             }
         });
         myLayout.addView(done, layoutParams);
 
-        AAButton newSms = new AAButton(this, "Send New SMS");
+        Button newSms = (Button) findViewById(R.id.newSms);
         newSms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendSmsAgain();
             }
         });
-        myLayout.addView(newSms, layoutParams);
 
-        AAButton callCE = new AAButton(this, "Call CE");
+        Button callCE = (Button) findViewById(R.id.callCe);
         callCE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 callTheCE();
             }
         });
-        myLayout.addView(callCE, layoutParams);
+
+
     }
 
-    private void sendSmsAgain(){
+    public void sendSmsAgain(){
         try {
             myManager.send_Initial_SMS(myFile, nextCE);
         } catch (Exception e){
@@ -95,7 +105,7 @@ public class PManagement_Activity extends Activity {
         }
     }
 
-    private void callTheCE(){
+    public void callTheCE(){
         try {
             myManager.callCE(nextCE);
             nextCE++;
@@ -111,6 +121,7 @@ public class PManagement_Activity extends Activity {
                 String key = iterator.next();
                 JSONObject pm = myPMJson.getJSONObject(key);
                 PMView pmView = new PMView(this, pm);
+                myPMViews.add(pmView);
                 myLayout.addView(pmView, layoutParams);
                 //add view to layout and arraylist for log grabbing;
             }
@@ -122,10 +133,31 @@ public class PManagement_Activity extends Activity {
         AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
     }
 
+    private void finishPM(){
+        try {
+            Long end = System.currentTimeMillis();
+            String endTime = end.toString();
+            myLog.put("endTimeStamp", endTime);
+
+            for (int i=0; i<myPMViews.size(); i++){
+                String label = myPMViews.get(i).getLabel();
+                String isDone = myPMViews.get(i).getStatus();
+                myLog.put(label, isDone);
+            }
+
+            pmLog.put("pmLog", myLog);
+            myManager.logInfo(myFile, "pmLog", pmLog);
+        } catch (Exception e){
+            throw_Error("Error logging PM: \n"+e.getMessage());
+        }
+        goto_checkout();
+        myTitle.setText(pmLog.toString());
+    }
+
     private void goto_checkout(){
         Intent intent = new Intent(this, Checkout_Activity.class);
         Bundle extras = new Bundle();
-        //extras.putString("username", username);
+        extras.putString("file", myFile);
         //extras.putString("password", password);
         //intent.putExtras(extras);
         startActivity(intent);
