@@ -1,6 +1,7 @@
 package cs408.alertaide;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ class TQView extends LinearLayout {
         super(context);
         myContext = context;
         this.setOrientation(VERTICAL);
-        this.setPadding(0, 10, 0, 50);
+        this.setBackgroundColor(Color.parseColor("#000000"));
         myData = tq;
 
         myAnswersView = new LinearLayout(myContext);

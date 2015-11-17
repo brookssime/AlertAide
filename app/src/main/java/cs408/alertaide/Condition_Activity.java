@@ -41,8 +41,7 @@ public class Condition_Activity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        promptView = new AAView(this, "SELECT A CONDITION", 1);
-        myLayout.addView(promptView, layoutParams);
+
 
         try {
             myManager = new AA_Manager(this);

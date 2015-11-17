@@ -1,7 +1,7 @@
 {
     "Conditions Array":
     {
-        "conditions_array": [ "Postpartum Hemorrhage", "preeclampsia"]
+        "conditions_array": [ "Postpartum Hemorrhage", "Preeclampsia"]
     },
     
     "Condition":
@@ -18,7 +18,7 @@
     {	
         "TQ1": {
                  "label": "Pulse",
-                 "question": "Pulse greater than 130/min?",
+                 "question": "Pulse greater than 130 bpm?",
                  "answer_options": ["Yes", "No"]
                 },
 
@@ -30,7 +30,7 @@
     
         "TQ3": {
                  "label": "Conscious",
-                 "question": "Patient Restless or semiconscious?",
+                 "question": "Patient restless or semiconscious?",
                  "answer_options": ["Yes", "No"]
                 },
     

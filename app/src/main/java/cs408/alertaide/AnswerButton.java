@@ -17,7 +17,7 @@ class AnswerButton extends Button {
         myValue = value;
         myIndex = index;
         setText(value);
-        setBackgroundColor(Color.GRAY);
+        setBackgroundResource(R.drawable.answer_white);
         setTextColor(Color.WHITE);
     }
 
@@ -26,11 +26,11 @@ class AnswerButton extends Button {
     }
 
     public void setClicked(){
-        setBackgroundColor(Color.GREEN);
+        setBackgroundResource(R.drawable.answer_white_clicked);
     }
 
     public void undoClicked(){
-        setBackgroundColor(Color.GRAY);
+        setBackgroundResource(R.drawable.answer_white);
     }
 
     public int getIndex(){
