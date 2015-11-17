@@ -182,7 +182,7 @@
             android:layout_height="match_parent"
             android:textSize="24dp"
             android:textColor="#FFFFFF"
-            android:background="#0099cc"
+            android:background="@drawable/pm_button"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:text="Done"
