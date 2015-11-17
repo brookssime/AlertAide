@@ -29,10 +29,10 @@ import cs408.alertaide.backend.AA_Manager;
 
 
 public class UpdateActivity extends Activity {
-    LinearLayout myLayout;
-    AAView statusView;
+    private LinearLayout myLayout;
+    private AAView statusView;
 
-    LinearLayout.LayoutParams layoutParams;
+    private LinearLayout.LayoutParams layoutParams;
 
     private String defaultURL = "http://animagics.negatuasmamaw.com/app_data.txt";
 
@@ -45,7 +45,7 @@ public class UpdateActivity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        statusView = new AAView(this, "Press to update or to restore app data");
+        statusView = new AAView(this, "Press to update or to restore app data", 1);
         myLayout.addView(statusView, layoutParams);
 
         AAButton updateMe = new AAButton(this, "Update data");

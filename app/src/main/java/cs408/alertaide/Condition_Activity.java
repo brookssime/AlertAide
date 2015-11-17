@@ -8,9 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Gravity;
 import android.widget.*;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class Condition_Activity extends Activity {
@@ -20,20 +23,25 @@ public class Condition_Activity extends Activity {
     private LinearLayout myLayout;
     private AA_Manager myManager;
     private AAView promptView;
+    private Button myButton;
+    JSONObject myCondition;
 
-    LinearLayout.LayoutParams layoutParams;
+    private LinearLayout.LayoutParams layoutParams;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condition);
+        myCondition = new JSONObject();
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
+        LinearLayout myLinear = new LinearLayout(this);
+        myLinear.setOrientation(LinearLayout.VERTICAL);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        promptView = new AAView(this, "PLEASE SELECT A CONDITION");
+        promptView = new AAView(this, "SELECT A CONDITION", 1);
         myLayout.addView(promptView, layoutParams);
 
         try {
@@ -44,64 +52,63 @@ public class Condition_Activity extends Activity {
 
         try {
             JSONArray conditionsJA = myManager.getConditions();
-            //String[] spinnerArray = new String[conditionsJA.length()];
-            String[] radioArray = new String[conditionsJA.length()];
-            RadioGroup myGroup = new RadioGroup(this);
-            myGroup.setOrientation(RadioGroup.VERTICAL);
-            myGroup.setBackgroundColor(Color.WHITE);
+            String[] nameArray = new String[conditionsJA.length()];
 
             for(int i=0; i<conditionsJA.length(); i++) {
-                radioArray[i] = conditionsJA.getString(i);
+                nameArray[i] = conditionsJA.getString(i);
             }
-            RadioButton myRadio = new RadioButton(this);
-            for(int i=0; i<radioArray.length; i++) {
-                String text = radioArray[i];
-                myRadio.setText(text);
-                myRadio.setTextColor(Color.BLACK);
-                myRadio.setGravity(View.TEXT_ALIGNMENT_CENTER);
-                myRadio.setOnClickListener(new View.OnClickListener() {
 
+            for(int i=0; i<nameArray.length; i++) {
+                myButton = new Button(this);
+                String text = nameArray[i];
+                myButton.setText(text);
+                myButton.setPadding(20, 30, 20, 30);
+                myButton.setTextColor(Color.BLACK);
+                myButton.setTextSize(20);
+                myButton.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+
+                myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        RadioButton rb = (RadioButton) view;
+                        Button rb = (Button) view;
                         selectedCondition = (String) rb.getText();
+                        goto_trigger_questions();
                     }
                 });
-                myGroup.addView(myRadio);
-                myRadio = new RadioButton(this);
+                myLinear.addView(myButton);
             }
-//            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray); //selected item will look like a spinner set from XML
-//            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//            mySpinner.setAdapter(spinnerArrayAdapter);
 
-            AAButton selectButton = new AAButton(this, "Select Condition");
-            selectButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    goto_trigger_questions();
-                }
-            });
 
-            LinearLayout selectLayout = new LinearLayout(this);
-            selectLayout.setOrientation(LinearLayout.VERTICAL);
-            selectLayout.addView(myGroup, layoutParams);
-            selectLayout.addView(selectButton, layoutParams);
-            myLayout.addView(selectLayout, layoutParams);
+            myLayout.addView(myLinear, layoutParams);
 
         } catch (Exception e) {
-            throwError("Failed to create list of conditions \n" + e.getMessage());
+            throwError("Failed to create list of conditions\n" + e.getMessage());
         }
 
 
     }
 
+    private void timeStamp () throws JSONException {
+        Long end = System.currentTimeMillis();
+        String time = end.toString();
+        myCondition.put("timeStamp", time);
 
+    }
 
 
     private void goto_trigger_questions(){
         try {
+            //Logging
+            timeStamp();
+            myCondition.put("conditionName", selectedCondition);
+
+
             //selectedCondition = mySpinner.getSelectedItem().toString();
             logFileID = myManager.getLogSession(selectedCondition);
+
+            //myManager.logInfo(logFileID, "condition", myCondition );
+            /*Toast.makeText(Condition_Activity.this,
+                    myCondition.toString(), Toast.LENGTH_LONG).show();*/
             Intent intent = new Intent(this, Trig_Ques_Activity.class);
             Bundle extras = new Bundle();
             extras.putString("condition", selectedCondition);
@@ -111,6 +118,8 @@ public class Condition_Activity extends Activity {
         } catch (Exception e) {
             throwError("Failed to select the condition \n" +  e.getMessage());
         }
+
+
     }
 
     private void throwError(String errorMessage) {
@@ -138,4 +147,6 @@ public class Condition_Activity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

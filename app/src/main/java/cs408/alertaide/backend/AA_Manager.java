@@ -10,10 +10,10 @@ import org.json.JSONObject;
  * Created by brookssime on 10/3/15.
  */
 public class AA_Manager {
-    Context myContext;
-    AA_Data myData;
-    AA_Log myLog;
-    AA_Comm myComm;
+    private Context myContext;
+    private AA_Data myData;
+    private AA_Log myLog;
+    private AA_Comm myComm;
 
     public AA_Manager(Context context) throws AAException{
         myContext = context;
@@ -61,9 +61,6 @@ public class AA_Manager {
     public void send_Initial_SMS(String file_Name, int CEID) throws AAException{
         myComm.sendSMS(file_Name, CEID);
     }
-
-
-    //TODO: INCLUDE CALL NOW?
 
     public void callCE(int ceIndex) throws AAException{
         myComm.callCE(ceIndex);

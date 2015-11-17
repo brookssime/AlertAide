@@ -19,16 +19,25 @@ public class Login_Activity extends Activity {
     private AA_Manager myManager;
     private ImageButton loginButton;
     private EditText editName;
-    private EditText editCountry;
+    private EditText editLocation;
+    private EditText editHospital;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
         try {
             myManager = new AA_Manager(this);
         } catch (Exception e) {
             //TODO Brooks, implement what to show if the APP cannot load its backend DATA
         }
+
+
 
         if (myManager.check_HW_Info()){
             goto_conditions();
@@ -42,7 +51,8 @@ public class Login_Activity extends Activity {
         setContentView(R.layout.activity_login);
 
         editName = (EditText) findViewById(R.id.editName);
-        editCountry = (EditText) findViewById(R.id.editCountry);
+        editLocation = (EditText) findViewById(R.id.editLocation);
+        editHospital = (EditText) findViewById(R.id.editHospital);
 
         loginButton = (ImageButton) findViewById(R.id.signUpButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -50,19 +60,21 @@ public class Login_Activity extends Activity {
             public void onClick(View v) {
 
                 String name = editName.getText().toString();
-                String country = editCountry.getText().toString();
+                String location = editLocation.getText().toString();
+                String hospital = editHospital.getText().toString();
 
                 TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
                 String phoneNumber = tMgr.getLine1Number();
 
-                if (name.equals("") || country.equals("")){
+                if (name.equals("") || location.equals("") || hospital.equals("")){
                     throwError("Please complete all fields");
                 } else {
                     JSONObject infoFields = new JSONObject();
                     try {
                         infoFields.put("name", name);
                         infoFields.put("number", phoneNumber);
-                        infoFields.put("country", country);
+                        infoFields.put("location", location);
+                        infoFields.put("hospital", hospital);
                         Boolean saveInfo = myManager.put_HW_Info(infoFields);
                         if (!saveInfo) {
                             //TODO here, manager failed to save info.
@@ -87,9 +99,6 @@ public class Login_Activity extends Activity {
     private void goto_conditions(){
         Intent intent = new Intent(this, Condition_Activity.class);
         Bundle extras = new Bundle();
-        //extras.putString("username", username);
-        //extras.putString("password", password);
-        //intent.putExtras(extras);
         startActivity(intent);
     }
 

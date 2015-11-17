@@ -18,7 +18,7 @@ import cs408.alertaide.AA_ErrorPopup;
 /**
  * Created by Negatu on 10/28/15.
  */
-public class AA_Comm {
+class AA_Comm {
 
     private Context myContext;
 
@@ -70,6 +70,10 @@ public class AA_Comm {
 
             String name = hwInfo.getString("name");
             messageBuilder.append("Health worker name = "+name+"\n");
+            String location = hwInfo.getString("location");
+            messageBuilder.append("Health worker location = "+location+"\n");
+            String hospital = hwInfo.getString("hospital");
+            messageBuilder.append("Health worker hospital = "+hospital+"\n");
             String condition = rootObject.getString("condition");
             messageBuilder.append("Patient condition = "+condition+"\n");
             JSONObject answers = sessionObject.getJSONObject("tqLog");
@@ -88,6 +92,7 @@ public class AA_Comm {
                     throw new AAException("Failed to read answer from file \n" + e2.getMessage());
                 }
             }
+            messageBuilder.append("\nExpect a phone call from the health worker.");
             return messageBuilder.toString();
         } catch (Exception e) {
             throw new AAException("Failed to construct message from log data \n"+e.getMessage());

@@ -1,8 +1,6 @@
 package cs408.alertaide.backend;
 
 import android.content.Context;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -37,7 +35,7 @@ public class AA_Log {
         }
     }
 
-    public boolean checkHWInfo() throws AAException {
+    public boolean checkHWInfo() {
         try {
             getHWInfo();
             return true;
@@ -59,7 +57,7 @@ public class AA_Log {
         }
     }
 
-    public JSONObject getHWInfo() throws AAException{
+    private JSONObject getHWInfo() throws AAException{
         try {
             JSONObject rootObject = new JSONObject(readFile(hwFile));
             JSONObject hw_info = rootObject.getJSONObject("hw_info");

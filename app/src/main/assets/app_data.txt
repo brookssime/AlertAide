@@ -1,12 +1,12 @@
 {
     "Conditions Array":
     {
-        "conditions_array": [ "pphem"]
+        "conditions_array": [ "Postpartum Hemorrhage", "preeclampsia"]
     },
     
     "Condition":
     {
-        "pphem": {
+        "Postpartum Hemorrhage": {
                 "name": "Postpartum Hemorrhage",
                 "status": true,
                 "TQ_Array": ["TQ1", "TQ2", "TQ3", "TQ4", "TQ5"],
@@ -88,11 +88,11 @@
     "Clinical Experts":
     {
         "CE1": {
-                "number" : "9194487606"
+                "number" : "5712962238"
                },
 
         "CE2": {
-                "number" : "9194487606"
+                "number" : "5712962238"
                }
     }
 

@@ -5,9 +5,9 @@ import android.os.AsyncTask;
 /**
  * Created by Negatu on 11/13/15.
  */
-public class NetworkAsyncTask extends AsyncTask<String, Void, String> {
-    PostRequest myRequest;
-    String myResponse;
+class NetworkAsyncTask extends AsyncTask<String, Void, String> {
+    private PostRequest myRequest;
+    private String myResponse;
 
     public NetworkAsyncTask(PostRequest request){
         myRequest = request;
@@ -31,7 +31,7 @@ public class NetworkAsyncTask extends AsyncTask<String, Void, String> {
         myResponse = result;
     }
 
-    public String getResponse(){
+    private String getResponse(){
         while(getResponse()== null){
             try {
                 Thread.sleep(100);

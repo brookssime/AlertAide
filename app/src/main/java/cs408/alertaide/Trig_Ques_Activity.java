@@ -3,13 +3,13 @@ package cs408.alertaide;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
-
 import cs408.alertaide.backend.AA_Manager;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,6 +18,7 @@ import java.util.Iterator;
 
 
 public class Trig_Ques_Activity extends Activity {
+
     LinearLayout myLayout;
     JSONObject tq;
     JSONObject tqLog;
@@ -35,7 +36,7 @@ public class Trig_Ques_Activity extends Activity {
             setContentView(R.layout.activity_trig__ques);
             myLayout = (LinearLayout) findViewById(R.id.linear);
             myBundle = getIntent().getExtras();
-            AAView = new AAView(this, "Please Answer Questions");
+            AAView = new AAView(this, "Answer Questions",1);
             myLayout.addView(AAView);
 
             tqPadding = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -58,6 +59,19 @@ public class Trig_Ques_Activity extends Activity {
                 ask_Question(tq);
             } catch (Exception e) {
                 throw_Error("Error starting TQ: "+e.getMessage());
+                Button condition = new Button(this);
+                condition.setText("Go To Conditions");
+                condition.setGravity(Gravity.CENTER);
+                condition.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        goto_conditions();
+                    }
+                });
+                LinearLayout.LayoutParams error = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                myLayout.addView(condition, error);
+
+
             }
     }
 
@@ -73,6 +87,8 @@ public class Trig_Ques_Activity extends Activity {
                 myLayout.addView(tqView, tqPadding);
             } catch (JSONException e) {
                 throw_Error("Error in AskQ "+e.getMessage());
+
+
             }
         }
         finish_TQ();
@@ -81,6 +97,14 @@ public class Trig_Ques_Activity extends Activity {
 
     private void throw_Error(String errorMessage) {
         AA_ErrorPopup errorPopup = new AA_ErrorPopup(this, errorMessage);
+
+    }
+
+
+    private void goto_conditions(){
+        Intent intent = new Intent(this, Condition_Activity.class);
+        Bundle extras = new Bundle();
+        startActivity(intent);
     }
 
     /*
