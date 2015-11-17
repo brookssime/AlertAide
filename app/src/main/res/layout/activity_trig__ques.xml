@@ -1,18 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent" android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="@android:color/background_dark">
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
-  <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical"
-          android:layout_gravity="center_horizontal"
-          android:id="@+id/linear">
-  </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TRIGGER QUESTIONS"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:paddingTop="10dp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/black"
+        android:id="@+id/tv1"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:background="@android:color/black">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/linear">
+        </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+
+
+</RelativeLayout>

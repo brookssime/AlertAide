@@ -21,13 +21,16 @@ class PMView extends LinearLayout {
     TextView myTitle;
     ImageView myImage;
 
+    Boolean status;
+
     public PMView(Context context, JSONObject json){
         super(context);
         this.setOrientation(VERTICAL);
         this.setPadding(0, 10, 0, 50);
-        
+
         myContext = context;
         myData = json;
+        status = false;
         createMyView();
     }
 
@@ -54,7 +57,7 @@ class PMView extends LinearLayout {
         myImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                blackBG();
+                clicked();
             }
         });
         this.addView(myImage);
@@ -62,8 +65,29 @@ class PMView extends LinearLayout {
         setStyle();
     }
 
-    private void blackBG(){
-        myImage.setBackgroundColor(Color.GREEN);
+    private void clicked(){
+        if (status) {
+            myImage.setBackgroundColor(Color.RED);
+            status = false;
+        } else {
+            myImage.setBackgroundColor(Color.GREEN);
+            status = true;
+        }
+    }
+
+    public String getStatus(){
+        if (status) {
+            return "done";
+        }
+        return "not done";
+    }
+
+    public String getLabel(){
+        try {
+            return myData.getString("label");
+        } catch (Exception e){
+            return "Missing PM label";
+        }
     }
 
     private void setStyle(){
