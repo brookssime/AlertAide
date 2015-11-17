@@ -159,7 +159,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
                 else {
                     setButtonColors();
-                    v.setBackgroundColor(Color.GREEN);
+                    v.setBackgroundColor(Color.parseColor("#339900"));
                     ce_t = true;
                 }
                 checkoutanswer = "Successful CE Contact, Successful Patient Treatment";
@@ -174,7 +174,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
                 else {
                     setButtonColors();
-                    v.setBackgroundColor(Color.GREEN);
+                    v.setBackgroundColor(Color.parseColor("#339900"));
                     ce_not = true;
                 }
                 checkoutanswer = "Successful CE Contact, Unsuccessful Patient Treatment";
@@ -191,7 +191,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
                 else {
                     setButtonColors();
-                    v.setBackgroundColor(Color.GREEN);
+                    v.setBackgroundColor(Color.parseColor("#339900"));
                     noce_t = true;
                 }
 
@@ -207,7 +207,7 @@ public class Checkout_Activity extends Activity implements OnClickListener {
 
                 else {
                     setButtonColors();
-                    v.setBackgroundColor(Color.GREEN);
+                    v.setBackgroundColor(Color.parseColor("#339900"));
                     noce_not = true;
                 }
                 checkoutanswer = "Unsuccessful CE Contact, Unsuccessful Patient Treatment";
