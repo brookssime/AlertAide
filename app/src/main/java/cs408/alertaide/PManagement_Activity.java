@@ -1,6 +1,8 @@
 package cs408.alertaide;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.content.DialogInterface.OnClickListener;
 
 import org.json.JSONObject;
 
@@ -25,6 +28,7 @@ public class PManagement_Activity extends Activity {
     AA_Manager myManager;
     String myCondition;
     String myFile;
+
 
     JSONObject myPMJson;
 
@@ -73,10 +77,13 @@ public class PManagement_Activity extends Activity {
         AAButton done = new AAButton(this, "DONE");
         done.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                finishPM();
+                public void onClick(View v) {
+                onDone();
             }
+
+
         });
+
         myLayout.addView(done, layoutParams);
 
         Button newSms = (Button) findViewById(R.id.newSms);
@@ -97,6 +104,21 @@ public class PManagement_Activity extends Activity {
 
 
     }
+
+    //Double Checking that user is ready to exit Patient Management
+    public void onDone() {
+        new AlertDialog.Builder(this)
+                .setTitle("Exit Patient Management?")
+                .setMessage("Are you sure you want to checkout?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        finishPM();
+                    }
+                }).create().show();
+    }
+
 
     public void sendSmsAgain(){
         try {
@@ -152,7 +174,7 @@ public class PManagement_Activity extends Activity {
             throw_Error("Error logging PM: \n"+e.getMessage());
         }
         goto_checkout();
-        myTitle.setText(pmLog.toString());
+        //myTitle.setText(pmLog.toString());
     }
 
     private void goto_checkout(){

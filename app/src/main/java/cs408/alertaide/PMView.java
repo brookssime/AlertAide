@@ -84,7 +84,7 @@ class PMView extends LinearLayout {
 
     public String getLabel(){
         try {
-            return myData.getString("label");
+            return myData.getString("action");
         } catch (Exception e){
             return "Missing PM label";
         }
