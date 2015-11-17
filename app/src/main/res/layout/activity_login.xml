@@ -29,10 +29,19 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="57.3dp"
-            android:id="@+id/editCountry"
+            android:id="@+id/editHospital"
             android:background="@drawable/rounded"
-            android:hint="Location" android:textColorHint="#9a9a9a" android:textColor="@android:color/black"
-            android:layout_below="@+id/editName" android:layout_alignParentStart="true"/>
+            android:hint="Hospital" android:textColorHint="#9a9a9a" android:textColor="@android:color/black"
+            android:layout_below="@+id/editLocation" android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="57.3dp"
+        android:id="@+id/editLocation"
+        android:background="@drawable/rounded"
+        android:hint="City/Town" android:textColorHint="#9a9a9a" android:textColor="@android:color/black"
+        android:layout_below="@+id/editName" android:layout_alignParentStart="true"/>
+
     <ImageButton
             android:layout_width="180dp"
             android:layout_height="90dp"
@@ -41,7 +50,7 @@
             android:background="@drawable/sign_up"
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
-            android:layout_below="@+id/editCountry" android:layout_centerHorizontal="true" android:maxHeight="100dp"
+            android:layout_below="@+id/editHospital" android:layout_centerHorizontal="true" android:maxHeight="100dp"
             android:maxWidth="100dp"/>
   <ImageView
           android:layout_width="140dp"

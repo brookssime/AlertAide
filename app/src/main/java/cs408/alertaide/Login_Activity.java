@@ -19,7 +19,8 @@ public class Login_Activity extends Activity {
     private AA_Manager myManager;
     private ImageButton loginButton;
     private EditText editName;
-    private EditText editCountry;
+    private EditText editLocation;
+    private EditText editHospital;
 
 
 
@@ -37,19 +38,21 @@ public class Login_Activity extends Activity {
         }
 
         /*
+
         if (myManager.check_HW_Info()){
             goto_conditions();
             finish();
 
             //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
-        }
+        }*/
 
-*/
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         editName = (EditText) findViewById(R.id.editName);
-        editCountry = (EditText) findViewById(R.id.editCountry);
+        editLocation = (EditText) findViewById(R.id.editLocation);
+        editHospital = (EditText) findViewById(R.id.editHospital);
 
         loginButton = (ImageButton) findViewById(R.id.signUpButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -57,19 +60,21 @@ public class Login_Activity extends Activity {
             public void onClick(View v) {
 
                 String name = editName.getText().toString();
-                String country = editCountry.getText().toString();
+                String location = editLocation.getText().toString();
+                String hospital = editHospital.getText().toString();
 
                 TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
                 String phoneNumber = tMgr.getLine1Number();
 
-                if (name.equals("") || country.equals("")){
+                if (name.equals("") || location.equals("") || hospital.equals("")){
                     throwError("Please complete all fields");
                 } else {
                     JSONObject infoFields = new JSONObject();
                     try {
                         infoFields.put("name", name);
                         infoFields.put("number", phoneNumber);
-                        infoFields.put("country", country);
+                        infoFields.put("location", location);
+                        infoFields.put("hospital", hospital);
                         Boolean saveInfo = myManager.put_HW_Info(infoFields);
                         if (!saveInfo) {
                             //TODO here, manager failed to save info.
