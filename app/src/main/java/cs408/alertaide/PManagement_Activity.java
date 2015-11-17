@@ -9,13 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
+import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import cs408.alertaide.backend.AA_Manager;
 
 
 public class PManagement_Activity extends Activity {
@@ -35,7 +33,7 @@ public class PManagement_Activity extends Activity {
     LinearLayout.LayoutParams layoutParams;
 
 
-    private AAView myTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +45,6 @@ public class PManagement_Activity extends Activity {
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
 
-        myTitle = new AAView(this, "PATIENT MANAGEMENT",1);
-        myLayout.addView(myTitle, layoutParams);
         myPMViews = new ArrayList<>();
 
         nextCE = 1;
@@ -57,7 +53,7 @@ public class PManagement_Activity extends Activity {
 
         try {
             if (getIntent().getExtras().getString("condition") == null || getIntent().getExtras().getString("file") == null) {
-                throw_Error("Failed to get condition and file ");
+                throw_Error("Failed to get condition and file!");
             } else {
                 myCondition = getIntent().getExtras().getString("condition");
                 myFile = getIntent().getExtras().getString("file");
@@ -66,7 +62,7 @@ public class PManagement_Activity extends Activity {
             myPMJson = myManager.getPMs(myCondition);
             createPMViews();
         } catch (Exception e){
-            throw_Error("Failed to start Patient Management \n" + e.getMessage());
+            throw_Error("Failed to start Patient Management!\n" + e.getMessage());
         }
 
 
@@ -124,10 +120,9 @@ public class PManagement_Activity extends Activity {
                 PMView pmView = new PMView(this, pm);
                 myPMViews.add(pmView);
                 myLayout.addView(pmView, layoutParams);
-                //add view to layout and arraylist for log grabbing;
             }
         } catch (Exception e){
-            throw_Error("Error while creating PM views \n" + e.getMessage());
+            throw_Error("Error while creating PM views!\n" + e.getMessage());
         }
     }
     private void throw_Error(String errorMessage) {
@@ -152,15 +147,13 @@ public class PManagement_Activity extends Activity {
             throw_Error("Error logging PM: \n"+e.getMessage());
         }
         goto_checkout();
-        myTitle.setText(pmLog.toString());
+
     }
 
     private void goto_checkout(){
         Intent intent = new Intent(this, Checkout_Activity.class);
         Bundle extras = new Bundle();
         extras.putString("file", myFile);
-        //extras.putString("password", password);
-        //intent.putExtras(extras);
         startActivity(intent);
     }
 

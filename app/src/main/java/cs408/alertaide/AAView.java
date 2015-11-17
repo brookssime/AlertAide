@@ -4,8 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -28,7 +26,6 @@ class AAView extends TextView {
     }
 
     public void setStyleOne(){
-        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
         this.setTextSize(20);
         this.setTextColor(Color.WHITE);
         this.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
@@ -36,8 +33,7 @@ class AAView extends TextView {
         this.setPadding(20,30,20,30);
 
         GradientDrawable shape =  new GradientDrawable();
-        shape.setColor(Color.parseColor("#cc0042a0"));
-        shape.setCornerRadius(20);
+        shape.setColor(Color.parseColor("#0099cc"));
         this.setBackground(shape);
     }
 

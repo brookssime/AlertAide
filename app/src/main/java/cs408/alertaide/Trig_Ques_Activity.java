@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,8 +27,7 @@ public class Trig_Ques_Activity extends Activity {
     AA_Manager myManager;
     Bundle myBundle;
     ArrayList<TQView> myTQViews;
-    AAView AAView;
-    LinearLayout.LayoutParams tqPadding;
+    LayoutParams tqPadding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,11 @@ public class Trig_Ques_Activity extends Activity {
 
             setContentView(R.layout.activity_trig__ques);
             myLayout = (LinearLayout) findViewById(R.id.linear);
-            myBundle = getIntent().getExtras();
-            AAView = new AAView(this, "Answer Questions",1);
-            myLayout.addView(AAView);
 
-            tqPadding = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            tqPadding.setMargins(25, 30, 25, 30);
+            myBundle = getIntent().getExtras();
+
+            tqPadding = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
 
             tqAnswers = new JSONObject();
             tqLog = new JSONObject();
@@ -68,7 +67,7 @@ public class Trig_Ques_Activity extends Activity {
                         goto_conditions();
                     }
                 });
-                LinearLayout.LayoutParams error = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                LayoutParams error = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 myLayout.addView(condition, error);
 
 
@@ -86,7 +85,7 @@ public class Trig_Ques_Activity extends Activity {
                 myTQViews.add(tqView);
                 myLayout.addView(tqView, tqPadding);
             } catch (JSONException e) {
-                throw_Error("Error in AskQ "+e.getMessage());
+                throw_Error("Error in method"+e.getMessage());
 
 
             }
@@ -107,51 +106,10 @@ public class Trig_Ques_Activity extends Activity {
         startActivity(intent);
     }
 
-    /*
-    private void set_Question_Layout(String question) {
-        TextView myText = new TextView(this);
-        myText.setText(question);
-        myText.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        linear.addView(myText);
-    }
-
-    private void set_Answer_Layout(String question, JSONArray answer) throws JSONException {
-        LinearLayout buttonLayout = new LinearLayout(this);
-        buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-        try{
-        for (int i = 0; i < answer.length(); i++) {
-            AnswerButton myButton = new AnswerButton(this, question, answer.getString(i));
-            String buttonText = answer.getString(i);
-            myButton.setText(buttonText);
-            myButton.setOnClickListener(new View.OnClickListener(){
-
-                @Override
-                public void onClick(View view) {
-                    AnswerButton b = (AnswerButton) view;
-                    try {
-
-                        tqAnswers.put(b.getKey(), b.getValue());
-//                      text.setText(tqAnswers.toString());
-
-                    } catch (JSONException e) {
-                       throw_Error(e.getMessage());
-                    }
-                }
-            });
-            buttonLayout.addView(myButton);
-        }}
-        catch(Exception e){
-            throw_Error(e.getMessage());
-        }
-
-        linear.addView(buttonLayout);
-//        linear.addView(text);
-    }
-    */
-
     private void finish_TQ() {
         AAButton done = new AAButton(this, "Done");
+
+
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,38 +138,7 @@ public class Trig_Ques_Activity extends Activity {
         myLayout.addView(done);
     }
 
-    /**
-     * Goes through maximum of two nested linear layouts, only checks Yes No answers.
-     * If click Done Button goes to patient management.
-     * @param
-     */
-//    public void isClicked(LinearLayout layout) {
-//        for (int i = 0; i<layout.getChildCount(); i++){
-//            View v = layout.getChildAt(i);
-//            if (v instanceof LinearLayout){
-//                for (int j = 0; j<((LinearLayout) v).getChildCount(); j++){
-//                    View k = ((LinearLayout) v).getChildAt(j);
-//                    if (k instanceof Button) {
-//                        k.setOnClickListener(new View.OnClickListener() {
-//
-//                            @Override
-//                            public void onClick(View view) {
-//                                Button b = (Button) view;
-//                                try {
-//                                    JSONObject question = ((LinearLayout) ).getChildAt(0);
-//                                    tq.put("ans", b.getText().toString());
-//                                } catch (JSONException e) {
-//                                    throw_Error(e.getMessage());
-//                                }
-//                            }
-//                        });
-//                    }
-//
-//                }
-//            }
-//        }
-//
-//    }
+
 
     private void startTime() throws JSONException {
         Long start = System.currentTimeMillis();
