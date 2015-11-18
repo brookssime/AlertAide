@@ -24,7 +24,5 @@ public class UpdateButton extends Button {
         this.setPadding(5,5,5,5);
         this.setBackgroundResource(R.drawable.pm_button);
 
-
-
     }
 }

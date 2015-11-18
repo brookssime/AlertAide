@@ -40,19 +40,26 @@ public class UpdateActivity extends Activity {
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(25, 75, 25, 75);
+        layoutParams.setMargins(15, 75, 15, 75);
+
+        LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 0.5f);
+        layoutParams2.setMargins(15, 75, 15, 75);
 
         statusView = new AAView(this, "Press to update or to restore app data", 1);
         myLayout.addView(statusView, layoutParams);
 
-        UpdateButton updateMe = new UpdateButton(this, "Update data");
+
+        LinearLayout updateBox = new LinearLayout(this);
+        updateBox.setOrientation(LinearLayout.HORIZONTAL);
+
+        UpdateButton updateMe = new UpdateButton(this, "Update Data");
         updateMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fetchData();
             }
         });
-        myLayout.addView(updateMe, layoutParams);
+        updateBox.addView(updateMe, layoutParams2);
 
         UpdateButton sysRestore = new UpdateButton(this, "Restore Original");
         sysRestore.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +68,14 @@ public class UpdateActivity extends Activity {
                 restoreData();
             }
         });
-        myLayout.addView(sysRestore, layoutParams);
+        updateBox.addView(sysRestore, layoutParams2);
+
+        myLayout.addView(updateBox);
 
         final EditText linkInput = new EditText(this);
         linkInput.setHintTextColor(Color.WHITE);
         linkInput.setTextColor(Color.WHITE);
-        linkInput.setHint("link");
+        linkInput.setText("http://");
         myLayout.addView(linkInput);
 
         final UpdateButton updateLink = new UpdateButton(this, "Set update link");
@@ -80,14 +89,6 @@ public class UpdateActivity extends Activity {
         });
         myLayout.addView(updateLink, layoutParams);
 
-        final UpdateButton call = new UpdateButton(this, "Test Call");
-        call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callCE();
-            }
-        });
-        myLayout.addView(call, layoutParams);
     }
 
     private void callCE(){
