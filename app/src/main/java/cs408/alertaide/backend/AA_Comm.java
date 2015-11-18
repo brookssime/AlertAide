@@ -115,7 +115,7 @@ class AA_Comm {
 
             }
 
-            messageBuilder.append("\nExpect a phone call from the health worker.");
+            messageBuilder.append("EXPECT A PHONE CALL FROM HEALTH WORKER.");
             return messageBuilder.toString();
         } catch (Exception e) {
             throw new AAException("Failed to construct message from log data \n"+e.getMessage());

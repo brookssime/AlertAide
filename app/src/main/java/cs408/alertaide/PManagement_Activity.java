@@ -167,9 +167,9 @@ public class PManagement_Activity extends Activity {
             myLog.put("endTimeStamp", endTime);
 
             for (int i=0; i<myPMViews.size(); i++){
-                String label = myPMViews.get(i).getLabel();
+                String action = myPMViews.get(i).getAction();
                 String isDone = myPMViews.get(i).getStatus();
-                myLog.put(label, isDone);
+                myLog.put(action, isDone);
             }
 
             myManager.logInfo(myFile, "pmLog", myLog);

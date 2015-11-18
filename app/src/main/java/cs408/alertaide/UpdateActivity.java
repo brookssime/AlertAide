@@ -34,7 +34,7 @@ public class UpdateActivity extends Activity {
 
     private LinearLayout.LayoutParams layoutParams;
 
-    private String defaultURL = "http://animagics.negatuasmamaw.com/app_data.txt";
+    private String defaultURL = "http://alertaide.com/app_data.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
