@@ -92,6 +92,29 @@ class AA_Comm {
                     throw new AAException("Failed to read answer from file \n" + e2.getMessage());
                 }
             }
+            try {
+                JSONObject pmLog = sessionObject.getJSONObject("pmLog");
+                messageBuilder.append("Steps Taken \n");
+                iter = pmLog.keys();
+                int pmNum = 1;
+                while (iter.hasNext()) {
+                    String pmLabel = iter.next();
+                    try {
+                        if(!pmLabel.equals("startTimeStamp") && !pmLabel.equals("endTimeStamp")){
+                            messageBuilder.append(pmNum + ") " + pmLabel + " >> ");
+                            String doneStatus = pmLog.getString(pmLabel);
+                            messageBuilder.append(doneStatus+"\n");
+                            pmNum ++;
+                        }
+                    } catch (JSONException e2) {
+                        throw new AAException("Failed to read answer from file \n" + e2.getMessage());
+                    }
+                }
+
+            } catch (Exception e){
+
+            }
+
             messageBuilder.append("\nExpect a phone call from the health worker.");
             return messageBuilder.toString();
         } catch (Exception e) {
