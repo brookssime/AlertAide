@@ -10,7 +10,7 @@
                 "name": "Postpartum Hemorrhage",
                 "status": true,
                 "TQ_Array": ["TQ1", "TQ2", "TQ3", "TQ4", "TQ5"],
-                "PM_Array": ["PM1", "PM2", "PM3", "PM4", "PM5"]
+                "PM_Array": ["PM1", "PM2", "PM3", "PM4", "PM5", "PM6"]
                   }
     },
     
@@ -77,6 +77,11 @@
                  "label": "Laceration",
                  "action": "Suture Laceration",
                  "image": "laceration"
+                },
+         "PM6": {
+                  "label": "Oxygen",
+                  "action": "Give Oxygen",
+                  "image": "oxygen"
                 }
     },
     
