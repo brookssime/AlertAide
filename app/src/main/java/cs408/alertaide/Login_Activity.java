@@ -38,7 +38,7 @@ public class Login_Activity extends Activity {
         }
 
 
-
+/*
         if (myManager.check_HW_Info()){
             goto_conditions();
             finish();
@@ -46,7 +46,7 @@ public class Login_Activity extends Activity {
             //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
         }
 
-
+*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
