@@ -13,7 +13,7 @@ class DoneButton extends Button {
     public DoneButton(Context context, String prompt){
         super(context);
         this.setText(prompt);
-        this.setTextSize(30);
+        this.setTextSize(20);
         this.setStyleDefault();
     }
 
@@ -24,6 +24,7 @@ class DoneButton extends Button {
 
         this.setPadding(5,5,5,5);
         this.setBackgroundResource(R.drawable.button_bg);
+
 
 
 
