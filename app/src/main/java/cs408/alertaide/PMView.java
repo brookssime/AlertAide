@@ -48,6 +48,9 @@ class PMView extends LinearLayout {
             String uri = "drawable/" + myData.getString("image");
             int imageResource = getResources().getIdentifier(uri, null, myContext.getPackageName());
             myImage.setImageResource(imageResource);
+            if( imageResource==0 ){
+                myImage.setImageResource(R.drawable.no_image);
+            }
         } catch (Exception e){
             myImage.setImageResource(R.drawable.no_image);
         }
@@ -68,9 +71,11 @@ class PMView extends LinearLayout {
     private void clicked(){
         if (status) {
             myImage.setBackgroundColor(Color.parseColor("#990000"));
+            //setStyle();
             status = false;
         } else {
             myImage.setBackgroundColor(Color.parseColor("#339900"));
+            //setDoneMode();
             status = true;
         }
     }
@@ -90,15 +95,51 @@ class PMView extends LinearLayout {
         }
     }
 
+    public String getLabel(){
+        try {
+            return myData.getString("label");
+        } catch (Exception e){
+            return "Missing label";
+        }
+    }
+
     private void setStyle(){
+        setMyImage();
         LinearLayout.LayoutParams imageParams=new LinearLayout.LayoutParams(1000, 1000);
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
         myTitle.setTextSize(24);
         myTitle.setTextColor(Color.WHITE);
-        myTitle.setBackgroundColor(Color.GRAY);
+        myTitle.setBackgroundColor(Color.RED);
         myTitle.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         myTitle.setLayoutParams(textParams);
         imageParams.gravity= Gravity.CENTER;
         myImage.setLayoutParams(imageParams);
+        myImage.setAlpha(1.0f);
+    }
+
+    private void setMyImage(){
+        try {
+            String uri = "drawable/" + myData.getString("image");
+            int imageResource = getResources().getIdentifier(uri, null, myContext.getPackageName());
+            myImage.setImageResource(imageResource);
+            if( imageResource==0 ){
+                myImage.setImageResource(R.drawable.no_image);
+            }
+        } catch (Exception e){
+            myImage.setImageResource(R.drawable.no_image);
+        }
+    }
+
+    private void setDoneMode(){
+        LinearLayout.LayoutParams imageParams=new LinearLayout.LayoutParams(500, 500);
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
+        myTitle.setTextSize(20);
+        myTitle.setTextColor(Color.WHITE);
+        myTitle.setBackgroundColor(Color.GREEN);
+        myTitle.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        myTitle.setLayoutParams(textParams);
+        imageParams.gravity= Gravity.CENTER;
+        myImage.setLayoutParams(imageParams);
+        myImage.setAlpha(0.5f);
     }
 }

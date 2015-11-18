@@ -24,7 +24,6 @@ public class Trig_Ques_Activity extends Activity {
 
     LinearLayout myLayout;
     JSONObject tq;
-    JSONObject tqLog;
     JSONObject tqAnswers;
     AA_Manager myManager;
     Bundle myBundle;
@@ -45,7 +44,6 @@ public class Trig_Ques_Activity extends Activity {
 
 
             tqAnswers = new JSONObject();
-            tqLog = new JSONObject();
 
             myTQViews = new ArrayList<>();
 
@@ -125,7 +123,6 @@ public class Trig_Ques_Activity extends Activity {
                             tqAnswers.put(tqView.getQuestion(), tqView.getAnswer());
                         }
                     }
-                    tqLog.put("tqLog", tqAnswers);
                     myManager.logInfo(myBundle.getString("file"), "tqLog", tqAnswers);
                     int clinicalExpertID = 0;
                     myManager.send_Initial_SMS(myBundle.getString("file"), clinicalExpertID);

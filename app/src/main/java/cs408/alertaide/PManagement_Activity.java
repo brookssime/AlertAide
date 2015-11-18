@@ -34,7 +34,7 @@ public class PManagement_Activity extends Activity {
 
     JSONObject myPMJson;
 
-    JSONObject pmLog;
+
     JSONObject myLog;
 
     int nextCE;
@@ -57,7 +57,6 @@ public class PManagement_Activity extends Activity {
 
         nextCE = 1;
         myLog = new JSONObject();
-        pmLog = new JSONObject();
 
         try {
             if (getIntent().getExtras().getString("condition") == null || getIntent().getExtras().getString("file") == null) {
@@ -121,6 +120,7 @@ public class PManagement_Activity extends Activity {
 
 
     public void sendSmsAgain(){
+        logPMData();
         try {
             myManager.send_Initial_SMS(myFile, nextCE);
         } catch (Exception e){
@@ -156,6 +156,11 @@ public class PManagement_Activity extends Activity {
     }
 
     private void finishPM(){
+        logPMData();
+        goto_checkout();
+    }
+
+    private void logPMData(){
         try {
             Long end = System.currentTimeMillis();
             String endTime = end.toString();
@@ -167,12 +172,10 @@ public class PManagement_Activity extends Activity {
                 myLog.put(action, isDone);
             }
 
-            pmLog.put("pmLog", myLog);
-            myManager.logInfo(myFile, "pmLog", pmLog);
+            myManager.logInfo(myFile, "pmLog", myLog);
         } catch (Exception e){
             throw_Error("Error logging PM: \n"+e.getMessage());
         }
-        goto_checkout();
     }
 
     private void goto_checkout(){
