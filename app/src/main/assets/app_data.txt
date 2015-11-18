@@ -1,7 +1,7 @@
 {
     "Conditions Array":
     {
-        "conditions_array": [ "Postpartum Hemorrhage", "Preeclampsia"]
+        "conditions_array": [ "Postpartum Hemorrhage" ]
     },
     
     "Condition":
