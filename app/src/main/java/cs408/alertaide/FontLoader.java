@@ -12,11 +12,13 @@ public enum FontLoader {
 
     BEBAS("bebas");
 
-    private final String name;
+
+
+    private String name;
     private Typeface typeFace;
 
 
-    private FontLoader(final String name) {
+    private FontLoader(String name) {
         this.name = name;
 
         typeFace=null;

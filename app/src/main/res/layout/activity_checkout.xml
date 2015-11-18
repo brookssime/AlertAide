@@ -2,14 +2,14 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" android:background="@android:color/black">
 
 
   <ScrollView
           xmlns:android="http://schemas.android.com/apk/res/android"
           android:layout_width="fill_parent"
           android:layout_height="fill_parent"
-          android:background="@android:color/background_light">
+  >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="fill_parent"
@@ -26,7 +26,7 @@
               android:textSize="30dp"
               android:paddingTop="20dp"
               android:paddingBottom="20dp"
-              android:textColor="@android:color/black"
+              android:textColor="@android:color/white"
               android:background="#F2AFCB"
               android:id="@+id/tv1"/>
       <TableLayout
@@ -45,7 +45,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:textSize="17dp"
-                  android:textColor="@android:color/black"
+                  android:textColor="@android:color/white"
                   android:layout_gravity="center_horizontal"
                   android:gravity="center"
                   android:text="CE Contacted\nPatient Treated"
@@ -58,7 +58,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:textSize="17dp"
-                  android:textColor="@android:color/black"
+                  android:textColor="@android:color/white"
                   android:gravity="center"
                   android:layout_gravity="center_horizontal"
                   android:text="CE Contacted\nPatient Not Treated"
@@ -114,7 +114,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:textSize="17dp"
-                  android:textColor="@android:color/black"
+                  android:textColor="@android:color/white"
                   android:layout_gravity="center_horizontal"
                   android:gravity="center"
                   android:text="CE Not Contacted\nPatient Treated"
@@ -127,7 +127,7 @@
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:textSize="17dp"
-                  android:textColor="@android:color/black"
+                  android:textColor="@android:color/white"
                   android:gravity="center_horizontal"
                   android:layout_gravity="center_horizontal"
                   android:text="CE Not Contacted\nPatient Not Treated"
@@ -180,10 +180,10 @@
 
       <Button
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               android:textSize="24dp"
               android:textColor="#FFFFFF"
-              android:background="@drawable/done"
+              android:background="@drawable/button_bg"
               android:gravity="center"
               android:layout_gravity="center_horizontal"
               android:text="Done"

@@ -108,8 +108,8 @@ class PMView extends LinearLayout {
         LinearLayout.LayoutParams imageParams=new LinearLayout.LayoutParams(1000, 1000);
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 100);
         myTitle.setTextSize(24);
-        myTitle.setTextColor(Color.WHITE);
-        myTitle.setBackgroundColor(Color.RED);
+        myTitle.setTextColor(Color.BLACK);
+        myTitle.setBackgroundColor(Color.parseColor("#F2AFCB"));
         myTitle.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         myTitle.setLayoutParams(textParams);
         imageParams.gravity= Gravity.CENTER;

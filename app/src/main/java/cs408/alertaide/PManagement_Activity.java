@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import android.widget.TextView;
 import cs408.alertaide.backend.AA_Manager;
 
 import android.content.DialogInterface.OnClickListener;
@@ -38,7 +40,10 @@ public class PManagement_Activity extends Activity {
     JSONObject myLog;
 
     int nextCE;
+
     LinearLayout.LayoutParams layoutParams;
+    LinearLayout.LayoutParams doneParams;
+
 
 
 
@@ -51,7 +56,17 @@ public class PManagement_Activity extends Activity {
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
         myLayout.setPadding(0, 100, 0, 100);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        doneParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
         layoutParams.setMargins(25, 75, 25, 75);
+
+        TextView tv = (TextView) findViewById(R.id.tv1);
+        Typeface face = Typeface.createFromAsset(getAssets(),
+                "fonts/bebas.TTF");
+
+        if (face != null) {
+            tv.setTypeface(face);
+        }
 
         myPMViews = new ArrayList<>();
 
@@ -73,7 +88,7 @@ public class PManagement_Activity extends Activity {
         }
 
 
-        AAButton done = new AAButton(this, "DONE");
+        DoneButton done = new DoneButton(this, "DONE");
         done.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v) {
@@ -83,7 +98,7 @@ public class PManagement_Activity extends Activity {
 
         });
 
-        myLayout.addView(done, layoutParams);
+        myLayout.addView(done, doneParams);
 
         Button newSms = (Button) findViewById(R.id.newSms);
         newSms.setOnClickListener(new View.OnClickListener() {
