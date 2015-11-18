@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_light">
+    android:background="@android:color/background_dark">
 
     <TextView
         android:layout_width="match_parent"
@@ -10,8 +10,9 @@
         android:text="SELECT CONDITIONS"
         android:gravity="center"
         android:textSize="30dp"
-        android:paddingTop="10dp"
-        android:textColor="@android:color/white"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:textColor="@android:color/black"
         android:background="#F2AFCB"
         android:id="@+id/tv1"/>
 

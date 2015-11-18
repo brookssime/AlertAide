@@ -3,6 +3,7 @@ package cs408.alertaide;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONObject;
 
@@ -22,6 +24,7 @@ public class Login_Activity extends Activity {
     private EditText editName;
     private EditText editLocation;
     private EditText editHospital;
+    private TextView welcome;
     private RelativeLayout myLayout;
 
 
@@ -51,6 +54,12 @@ public class Login_Activity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        welcome = (TextView) findViewById(R.id.SignUpView);
+        Typeface typeFace= FontLoader.getTypeFace(this,"bebas");
+        if(typeFace!= null) {
+            welcome.setTypeface(typeFace);
+        }
 
         editName = (EditText) findViewById(R.id.editName);
         editLocation = (EditText) findViewById(R.id.editLocation);

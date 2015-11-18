@@ -20,7 +20,9 @@ class AAButton extends Button {
     public void setStyleDefault(){
         this.setTextColor(Color.WHITE);
         this.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-        this.setBackgroundResource(R.drawable.pm_button);
+        this.setBackgroundResource(R.drawable.done);
+        this.setHeight(70);
+        this.setWidth(230);
 
     }
 }

@@ -11,8 +11,9 @@
         android:text="TRIGGER QUESTIONS"
         android:gravity="center"
         android:textSize="30dp"
-        android:paddingTop="10dp"
-        android:textColor="@android:color/white"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:textColor="@android:color/black"
         android:background="#F2AFCB"
         android:id="@+id/tv1"/>
 
@@ -20,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv1"
-        android:background="@android:color/background_light">
+        android:background="@android:color/background_dark">
 
 
         <LinearLayout

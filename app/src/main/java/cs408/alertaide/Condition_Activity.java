@@ -3,13 +3,12 @@ package cs408.alertaide;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Gravity;
-import android.widget.*;
+import android.view.*;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,9 +21,8 @@ public class Condition_Activity extends Activity {
     private String logFileID;
     private LinearLayout myLayout;
     private AA_Manager myManager;
-    private AAView promptView;
     private Button myButton;
-    JSONObject myCondition;
+    private JSONObject myCondition;
 
     private LinearLayout.LayoutParams layoutParams;
 
@@ -40,6 +38,13 @@ public class Condition_Activity extends Activity {
         myLinear.setOrientation(LinearLayout.VERTICAL);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
+
+        TextView tv = (TextView) findViewById(R.id.tv1);
+        Typeface typeFace= FontLoader.getTypeFace(this,"bebas");
+        if(typeFace!=null){
+            tv.setTypeface(typeFace);
+        }
+
 
 
 
@@ -100,14 +105,10 @@ public class Condition_Activity extends Activity {
             //Logging
             timeStamp();
             myCondition.put("conditionName", selectedCondition);
-
-
-            //selectedCondition = mySpinner.getSelectedItem().toString();
             logFileID = myManager.getLogSession(selectedCondition);
 
-            //myManager.logInfo(logFileID, "condition", myCondition );
-            /*Toast.makeText(Condition_Activity.this,
-                    myCondition.toString(), Toast.LENGTH_LONG).show();*/
+
+
             Intent intent = new Intent(this, Trig_Ques_Activity.class);
             Bundle extras = new Bundle();
             extras.putString("condition", selectedCondition);

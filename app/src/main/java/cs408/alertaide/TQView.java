@@ -31,7 +31,7 @@ class TQView extends LinearLayout {
         super(context);
         myContext = context;
         this.setOrientation(VERTICAL);
-        this.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        this.setBackgroundColor(Color.parseColor("#000000"));
         myData = tq;
 
         myAnswersView = new LinearLayout(myContext);

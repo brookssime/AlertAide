@@ -2,12 +2,14 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import cs408.alertaide.backend.AA_Manager;
@@ -28,6 +30,7 @@ public class Trig_Ques_Activity extends Activity {
     Bundle myBundle;
     ArrayList<TQView> myTQViews;
     LayoutParams tqPadding;
+    ImageButton done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class Trig_Ques_Activity extends Activity {
                         goto_conditions();
                     }
                 });
+                myLayout.setBackgroundColor(Color.parseColor("#F2AFCB"));
                 LayoutParams error = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 myLayout.addView(condition, error);
 
@@ -107,7 +111,7 @@ public class Trig_Ques_Activity extends Activity {
     }
 
     private void finish_TQ() {
-        AAButton done = new AAButton(this, "Done");
+        AAButton done = new AAButton(this, "");
 
 
         done.setOnClickListener(new View.OnClickListener() {

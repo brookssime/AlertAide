@@ -24,9 +24,10 @@
               android:text="CHECK OUT"
               android:gravity="center"
               android:textSize="30dp"
-              android:paddingTop="0dp"
-              android:textColor="@android:color/white"
-              android:background="@android:color/black"
+              android:paddingTop="20dp"
+              android:paddingBottom="20dp"
+              android:textColor="@android:color/black"
+              android:background="#F2AFCB"
               android:id="@+id/tv1"/>
       <TableLayout
               android:id="@+id/tl"
@@ -182,7 +183,7 @@
               android:layout_height="match_parent"
               android:textSize="24dp"
               android:textColor="#FFFFFF"
-              android:background="@drawable/pm_button"
+              android:background="@drawable/done"
               android:gravity="center"
               android:layout_gravity="center_horizontal"
               android:text="Done"
