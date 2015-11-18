@@ -4,10 +4,10 @@
 
 <item android:state_pressed="true" android:state_focused="true">
     <shape>
-        <solid android:color="#cc0042a0"/>
+        <solid android:color="#ccF2AFCB"/>
         <stroke
             android:width="2.3dp"
-            android:color="#cc0042a0" />
+            android:color="#ccF2AFCB" />
          <corners
             android:radius="15dp" />
     </shape>
@@ -15,10 +15,10 @@
 
 <item android:state_pressed="true" android:state_focused="false">
     <shape>
-        <solid android:color="#cc0042a0"/>
+        <solid android:color="#ccF2AFCB"/>
         <stroke
             android:width="2.3dp"
-            android:color="#cc0042a0" />
+            android:color="#ccF2AFCB" />
         <corners
             android:radius="15dp" />
     </shape>
@@ -29,7 +29,7 @@
         <solid android:color="#FFFFFF"/>
         <stroke
             android:width="2.3dp"
-            android:color="#cc0042a0" />
+            android:color="#F2AFCB" />
         <corners
             android:radius="15dp" />
     </shape>

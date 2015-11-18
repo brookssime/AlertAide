@@ -3,13 +3,13 @@ package cs408.alertaide;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Gravity;
-import android.widget.*;
+import android.view.*;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import cs408.alertaide.backend.AAException;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,9 +22,11 @@ public class Condition_Activity extends Activity {
     private String logFileID;
     private LinearLayout myLayout;
     private AA_Manager myManager;
-    private AAView promptView;
     private Button myButton;
-    JSONObject myCondition;
+    private JSONObject myCondition;
+    private LinearLayout myConditions;
+
+
 
     private LinearLayout.LayoutParams layoutParams;
 
@@ -36,10 +38,18 @@ public class Condition_Activity extends Activity {
         myCondition = new JSONObject();
 
         myLayout = (LinearLayout) findViewById(R.id.myLayout);
-        LinearLayout myLinear = new LinearLayout(this);
-        myLinear.setOrientation(LinearLayout.VERTICAL);
+        myConditions = new LinearLayout(this);
+        myConditions.setOrientation(LinearLayout.VERTICAL);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
+
+        TextView tv = (TextView) findViewById(R.id.tv1);
+        Typeface face = Typeface.createFromAsset(getAssets(),
+                "fonts/bebas.TTF");
+
+        if (face != null) {
+            tv.setTypeface(face);
+        }
 
 
 
@@ -50,14 +60,25 @@ public class Condition_Activity extends Activity {
         }
 
         try {
+            makeConditions();
+        } catch (Exception e) {
+            throwError("Failed to create conditions \n" + e.getMessage());
+        }
+
+        update();
+
+    }
+
+
+    private void makeConditions() throws AAException, JSONException {
             JSONArray conditionsJA = myManager.getConditions();
             String[] nameArray = new String[conditionsJA.length()];
 
-            for(int i=0; i<conditionsJA.length(); i++) {
+            for (int i = 0; i < conditionsJA.length(); i++) {
                 nameArray[i] = conditionsJA.getString(i);
             }
 
-            for(int i=0; i<nameArray.length; i++) {
+            for (int i = 0; i < nameArray.length; i++) {
                 myButton = new Button(this);
                 String text = nameArray[i];
                 myButton.setText(text);
@@ -74,17 +95,32 @@ public class Condition_Activity extends Activity {
                         goto_trigger_questions();
                     }
                 });
-                myLinear.addView(myButton);
+                myConditions.addView(myButton);
             }
+        myLayout.addView(myConditions, layoutParams);
 
-
-            myLayout.addView(myLinear, layoutParams);
-
-        } catch (Exception e) {
-            throwError("Failed to create list of conditions\n" + e.getMessage());
         }
 
 
+    private void update() {
+        Button updateButton;
+        updateButton = (Button) findViewById(R.id.update);
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goto_testUpdate();
+            }
+        });
+
+    }
+
+
+
+
+
+    private void goto_testUpdate(){
+        Intent intent = new Intent(this, UpdateActivity.class);
+        startActivity(intent);
     }
 
     private void timeStamp () throws JSONException {
@@ -100,14 +136,10 @@ public class Condition_Activity extends Activity {
             //Logging
             timeStamp();
             myCondition.put("conditionName", selectedCondition);
-
-
-            //selectedCondition = mySpinner.getSelectedItem().toString();
             logFileID = myManager.getLogSession(selectedCondition);
 
-            //myManager.logInfo(logFileID, "condition", myCondition );
-            /*Toast.makeText(Condition_Activity.this,
-                    myCondition.toString(), Toast.LENGTH_LONG).show();*/
+
+
             Intent intent = new Intent(this, Trig_Ques_Activity.class);
             Bundle extras = new Bundle();
             extras.putString("condition", selectedCondition);

@@ -18,7 +18,7 @@ class AnswerButton extends Button {
         myIndex = index;
         setText(value);
         setBackgroundResource(R.drawable.answer_white);
-        setTextColor(Color.WHITE);
+        setTextColor(Color.BLACK);
     }
 
     public String getValue(){

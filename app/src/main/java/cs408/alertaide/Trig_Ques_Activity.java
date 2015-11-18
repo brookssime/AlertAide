@@ -2,6 +2,8 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +31,8 @@ public class Trig_Ques_Activity extends Activity {
     ArrayList<TQView> myTQViews;
     LayoutParams tqPadding;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -39,6 +44,13 @@ public class Trig_Ques_Activity extends Activity {
 
             tqPadding = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
+        TextView tv = (TextView) findViewById(R.id.tv1);
+        Typeface face = Typeface.createFromAsset(getAssets(),
+                "fonts/bebas.TTF");
+
+        if (face != null) {
+            tv.setTypeface(face);
+        }
 
             tqAnswers = new JSONObject();
 
@@ -65,6 +77,7 @@ public class Trig_Ques_Activity extends Activity {
                         goto_conditions();
                     }
                 });
+                myLayout.setBackgroundColor(Color.parseColor("#F2AFCB"));
                 LayoutParams error = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 myLayout.addView(condition, error);
 
@@ -105,7 +118,7 @@ public class Trig_Ques_Activity extends Activity {
     }
 
     private void finish_TQ() {
-        AAButton done = new AAButton(this, "Done");
+        DoneButton done = new DoneButton(this, "DONE");
 
 
         done.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +145,10 @@ public class Trig_Ques_Activity extends Activity {
 
             }
         });
-        myLayout.addView(done);
+        LayoutParams doneParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        doneParams.setMargins(20,0,20,0);
+        done.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+        myLayout.addView(done,doneParams);
     }
 
 

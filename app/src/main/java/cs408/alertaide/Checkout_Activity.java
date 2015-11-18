@@ -1,36 +1,21 @@
 package cs408.alertaide;
 
 import android.app.Activity;
-
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
-
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
-import cs408.alertaide.backend.AA_Manager;
-
-import android.widget.TextView;
-
-import org.json.JSONException;
-
-import org.json.JSONObject;
-
-import java.util.Iterator;
-
-import cs408.alertaide.backend.AA_Manager;
-
-import android.widget.ImageButton;
-import android.widget.Toast;
-import android.view.View;
 import android.view.View.OnClickListener;
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import cs408.alertaide.backend.AA_Manager;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class Checkout_Activity extends Activity implements OnClickListener {
@@ -64,6 +49,14 @@ public class Checkout_Activity extends Activity implements OnClickListener {
         myLayout.setPadding(0, 100, 0, 100);
         layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(25, 75, 25, 75);
+
+        TextView tv = (TextView) findViewById(R.id.tv1);
+        Typeface face = Typeface.createFromAsset(getAssets(),
+                "fonts/bebas.TTF");
+
+        if (face != null) {
+            tv.setTypeface(face);
+        }
 
         checkoutanswer = "default";
         ce_t = false;

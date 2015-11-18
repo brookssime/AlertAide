@@ -1,198 +1,200 @@
 
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:background="@android:color/black">
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@android:color/background_dark">
+
+  <ScrollView
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="fill_parent"
+          android:layout_height="fill_parent"
+  >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:id="@+id/myLayout">
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:orientation="vertical"
+                  android:id="@+id/myLayout">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="36dp"
-        android:textColor="#FFFFFF"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:text="Check Out"
-        android:layout_marginBottom="12dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
-        />
-
-
-    <TableLayout
-        android:id="@+id/tl"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center" >
+      <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="CHECK OUT"
+              android:gravity="center"
+              android:textSize="30dp"
+              android:paddingTop="20dp"
+              android:paddingBottom="20dp"
+              android:textColor="@android:color/white"
+              android:background="#F2AFCB"
+              android:id="@+id/tv1"/>
+      <TableLayout
+              android:id="@+id/tl"
+              android:layout_width="match_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center" >
 
         <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="center" >
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center" >
 
-            <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="17dp"
-            android:textColor="#FFFFFF"
-            android:layout_gravity="center_horizontal"
-                android:gravity="center"
-            android:text="CE Contacted\nPatient Treated"
-            android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-            android:layout_marginTop="0dp"
-            />
-            <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="17dp"
-            android:textColor="#FFFFFF"
-                android:gravity="center"
-            android:layout_gravity="center_horizontal"
-                android:text="CE Contacted\nPatient Not Treated"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="0dp"
-            />
-     </TableRow>
+          <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:textSize="17dp"
+                  android:textColor="@android:color/white"
+                  android:layout_gravity="center_horizontal"
+                  android:gravity="center"
+                  android:text="CE Contacted\nPatient Treated"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginTop="0dp"
+          />
+          <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:textSize="17dp"
+                  android:textColor="@android:color/white"
+                  android:gravity="center"
+                  android:layout_gravity="center_horizontal"
+                  android:text="CE Contacted\nPatient Not Treated"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="5dp"
+                  android:layout_marginTop="0dp"
+          />
+        </TableRow>
         <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="center" >
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center" >
 
-            <ImageButton
-                android:id="@+id/contact_treatment"
-                android:src="@drawable/checkout_ce_t"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-              />
-            <ImageButton
-                android:id="@+id/contact_notreatment"
-                android:src="@drawable/checkout_ce"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                />
+          <ImageButton
+                  android:id="@+id/contact_treatment"
+                  android:src="@drawable/checkout_ce_t"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="5dp"
+                  android:layout_marginTop="0dp"
+                  android:layout_weight="1"
+                  android:adjustViewBounds="true"
+                  android:padding="20dp"
+                  android:scaleType="fitCenter"
+          />
+          <ImageButton
+                  android:id="@+id/contact_notreatment"
+                  android:src="@drawable/checkout_ce"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginTop="0dp"
+                  android:layout_weight="1"
+                  android:adjustViewBounds="true"
+                  android:padding="20dp"
+                  android:scaleType="fitCenter"
+          />
 
         </TableRow>
         <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="center" >
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center" >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="17dp"
-                android:textColor="#FFFFFF"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="CE Not Contacted\nPatient Treated"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="0dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="17dp"
-                android:textColor="#FFFFFF"
-                android:gravity="center_horizontal"
-                android:layout_gravity="center_horizontal"
-                android:text="CE Not Contacted\nPatient Not Treated"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="0dp"
-                />
+          <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:textSize="17dp"
+                  android:textColor="@android:color/white"
+                  android:layout_gravity="center_horizontal"
+                  android:gravity="center"
+                  android:text="CE Not Contacted\nPatient Treated"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginTop="0dp"
+          />
+          <TextView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:textSize="17dp"
+                  android:textColor="@android:color/white"
+                  android:gravity="center_horizontal"
+                  android:layout_gravity="center_horizontal"
+                  android:text="CE Not Contacted\nPatient Not Treated"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="5dp"
+                  android:layout_marginTop="0dp"
+          />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center" >
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" >
 
-            <ImageButton
-                android:id="@+id/nocontact_treatment"
-                android:src="@drawable/checkout_t"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                />
-            <ImageButton
-                android:id="@+id/nocontact_notreatment"
-                android:src="@drawable/checkout"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                />
+          <ImageButton
+                  android:id="@+id/nocontact_treatment"
+                  android:src="@drawable/checkout_t"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="5dp"
+                  android:layout_marginTop="0dp"
+                  android:layout_weight="1"
+                  android:adjustViewBounds="true"
+                  android:padding="20dp"
+                  android:scaleType="fitCenter"
+          />
+          <ImageButton
+                  android:id="@+id/nocontact_notreatment"
+                  android:src="@drawable/checkout"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_marginBottom="5dp"
+                  android:layout_marginLeft="5dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginTop="0dp"
+                  android:layout_weight="1"
+                  android:adjustViewBounds="true"
+                  android:padding="20dp"
+                  android:scaleType="fitCenter"
+          />
 
 
         </TableRow>
 
-    </TableLayout>
+      </TableLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="24dp"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/pm_button"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:text="Done"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:onClick="exit"
-        />
+      <Button
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="24dp"
+              android:textColor="#FFFFFF"
+              android:background="@drawable/button_bg"
+              android:gravity="center"
+              android:layout_gravity="center_horizontal"
+              android:text="Done"
+              android:layout_marginBottom="10dp"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="10dp"
+              android:layout_marginTop="15dp"
+              android:onClick="exit"
+      />
 
-</LinearLayout>
+    </LinearLayout>
 
-</ScrollView>
+  </ScrollView>
+</RelativeLayout>

@@ -3,6 +3,7 @@ package cs408.alertaide;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONObject;
 
@@ -21,7 +24,8 @@ public class Login_Activity extends Activity {
     private EditText editName;
     private EditText editLocation;
     private EditText editHospital;
-
+    private TextView welcome;
+    private RelativeLayout myLayout;
 
 
     @Override
@@ -30,6 +34,7 @@ public class Login_Activity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        myLayout = (RelativeLayout) findViewById(R.id.myLayout);
 
         try {
             myManager = new AA_Manager(this);
@@ -38,7 +43,7 @@ public class Login_Activity extends Activity {
         }
 
 
-/*
+
         if (myManager.check_HW_Info()){
             goto_conditions();
             finish();
@@ -46,9 +51,15 @@ public class Login_Activity extends Activity {
             //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
         }
 
-*/
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        welcome = (TextView) findViewById(R.id.SignUpView);
+        Typeface typeFace= FontLoader.getTypeFace(this,"bebas");
+        if(typeFace!= null) {
+            welcome.setTypeface(typeFace);
+        }
 
         editName = (EditText) findViewById(R.id.editName);
         editLocation = (EditText) findViewById(R.id.editLocation);
@@ -89,6 +100,7 @@ public class Login_Activity extends Activity {
                 }
             }
         });
+
 
     }
 

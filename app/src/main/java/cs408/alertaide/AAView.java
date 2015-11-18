@@ -27,13 +27,13 @@ class AAView extends TextView {
 
     public void setStyleOne(){
         this.setTextSize(20);
-        this.setTextColor(Color.WHITE);
+        this.setTextColor(Color.parseColor("#FFFFFF"));
         this.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         this.setShadowLayer(1, 1, 1, Color.BLACK);
         this.setPadding(20,30,20,30);
 
         GradientDrawable shape =  new GradientDrawable();
-        shape.setColor(Color.parseColor("#0099cc"));
+        shape.setColor(Color.parseColor("#000000"));
         this.setBackground(shape);
     }
 

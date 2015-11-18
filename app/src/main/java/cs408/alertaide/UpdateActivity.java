@@ -2,16 +2,16 @@ package cs408.alertaide;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.os.StrictMode;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
+import cs408.alertaide.backend.AA_Log;
+import cs408.alertaide.backend.AA_Manager;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -24,9 +24,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Iterator;
 
-import cs408.alertaide.backend.AA_Log;
-import cs408.alertaide.backend.AA_Manager;
-
 
 public class UpdateActivity extends Activity {
     private LinearLayout myLayout;
@@ -34,7 +31,7 @@ public class UpdateActivity extends Activity {
 
     private LinearLayout.LayoutParams layoutParams;
 
-    private String defaultURL = "http://alertaide.com/app_data.txt";
+    private String defaultURL = "http://www.alertaide.com/wp-content/uploads/2015/11/app_data.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +45,7 @@ public class UpdateActivity extends Activity {
         statusView = new AAView(this, "Press to update or to restore app data", 1);
         myLayout.addView(statusView, layoutParams);
 
-        AAButton updateMe = new AAButton(this, "Update data");
+        UpdateButton updateMe = new UpdateButton(this, "Update data");
         updateMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +54,7 @@ public class UpdateActivity extends Activity {
         });
         myLayout.addView(updateMe, layoutParams);
 
-        AAButton sysRestore = new AAButton(this, "Restore Original");
+        UpdateButton sysRestore = new UpdateButton(this, "Restore Original");
         sysRestore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,12 +64,12 @@ public class UpdateActivity extends Activity {
         myLayout.addView(sysRestore, layoutParams);
 
         final EditText linkInput = new EditText(this);
-        linkInput.setHintTextColor(Color.BLUE);
-        linkInput.setTextColor(Color.BLUE);
+        linkInput.setHintTextColor(Color.WHITE);
+        linkInput.setTextColor(Color.WHITE);
         linkInput.setHint("link");
         myLayout.addView(linkInput);
 
-        final AAButton updateLink = new AAButton(this, "Set udpate link");
+        final UpdateButton updateLink = new UpdateButton(this, "Set update link");
         updateLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,8 +80,7 @@ public class UpdateActivity extends Activity {
         });
         myLayout.addView(updateLink, layoutParams);
 
-        Button call = new Button(this);
-        call.setText("Test CALL");
+        final UpdateButton call = new UpdateButton(this, "Test Call");
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,7 +1,7 @@
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:background="@android:color/black">
 
     <TextView
         android:layout_width="match_parent"
@@ -9,16 +9,17 @@
         android:text="PATIENT MANAGEMENT"
         android:gravity="center"
         android:textSize="30dp"
-        android:paddingTop="10dp"
-        android:textColor="@android:color/white"
-        android:background="@android:color/black"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:textColor="@android:color/black"
+        android:background="#F2AFCB"
         android:id="@+id/tv1"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv1"
-        android:background="@android:color/black">
+    >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,7 +42,7 @@
             android:layout_weight="0.5"
             android:background="@drawable/pm_button"
             android:textColor="@android:color/white"
-            android:text="NEW-SMS"
+            android:text="NEW SMS"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:id="@+id/newSms"/>
@@ -51,7 +52,7 @@
             android:layout_weight="0.5"
             android:background="@drawable/pm_button"
             android:textColor="@android:color/white"
-            android:text="CALL-CE"
+            android:text="CALL CE"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:id="@+id/callCe"/>
