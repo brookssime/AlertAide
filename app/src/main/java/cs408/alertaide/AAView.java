@@ -33,7 +33,7 @@ class AAView extends TextView {
         this.setPadding(20,30,20,30);
 
         GradientDrawable shape =  new GradientDrawable();
-        shape.setColor(Color.parseColor("#0099cc"));
+        shape.setColor(Color.parseColor("#ccF2AFCB"));
         this.setBackground(shape);
     }
 

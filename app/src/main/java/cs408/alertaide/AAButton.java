@@ -21,18 +21,6 @@ class AAButton extends Button {
         this.setTextColor(Color.WHITE);
         this.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
         this.setBackgroundResource(R.drawable.pm_button);
-//        this.setShadowLayer(5, 5, 5, Color.BLACK);
-//
-//        this.setPadding(20, 30, 20, 30);
-//
-//        GradientDrawable shape = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{Color.parseColor("#0099cc"), Color.parseColor("#0000FF")});
-//        shape.setStroke(2, Color.WHITE);
-//
-//        shape.setGradientCenter(0, 0);
-//        shape.setGradientRadius(100);
-//        shape.setCornerRadius(30);
-//
-//        //shape.setShape(R.drawable.img_button);
-//        this.setBackground(shape);
+
     }
 }

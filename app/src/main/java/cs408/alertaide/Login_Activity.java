@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import cs408.alertaide.backend.AA_Manager;
 import org.json.JSONObject;
 
@@ -21,7 +22,7 @@ public class Login_Activity extends Activity {
     private EditText editName;
     private EditText editLocation;
     private EditText editHospital;
-
+    private RelativeLayout myLayout;
 
 
     @Override
@@ -30,6 +31,7 @@ public class Login_Activity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        myLayout = (RelativeLayout) findViewById(R.id.myLayout);
 
         try {
             myManager = new AA_Manager(this);
@@ -39,12 +41,12 @@ public class Login_Activity extends Activity {
 
 
 
-        if (myManager.check_HW_Info()){
-            goto_conditions();
-            finish();
-
-            //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
-        }
+//        if (myManager.check_HW_Info()){
+//            goto_conditions();
+//            finish();
+//
+//            //TODO add a line here that terminates this activity. I don't know how to do that yet. Or maybe it goes in the goto_conditions function.
+//       }
 
 
         super.onCreate(savedInstanceState);
@@ -89,6 +91,7 @@ public class Login_Activity extends Activity {
                 }
             }
         });
+
 
     }
 
